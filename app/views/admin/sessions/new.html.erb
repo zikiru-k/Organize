@@ -1,0 +1,17 @@
+<h2>管理者ログイン</h2>
+
+<%= form_with model: @admin, url: new_admin_session_path, local: true do |f| %>
+  <div class="field">
+    <%= f.label :"メールアドレス",class:"control-label" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,placeholder: "sample@example.com",class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"パスワード6文字以上",class:"control-label" %>
+    <%= f.password_field :password, autocomplete: "new-password",class:"form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "ログイン" %>
+  </div>
+<% end %>
