@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  namespace :public do
+  scope module: :public do
+  # namespace :public do
     get 'top', to: "homes#top"
     get 'about', to: "homes#about", as: "about"
 
@@ -27,12 +28,11 @@ Rails.application.routes.draw do
 
     resources :order_details, only: [:index, :edit, :create, :update, :destroy] do
       resources :comments, only: [:create, :destroy]
-      resource :goods, only: [:create, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
     end
 
     resources :seraches, only: [:index, :edit, :create, :update, :destroy]
     resources :items
-    resources :websites
 
     get "customers/mypage", to: "customers#show"
     get "customers/information/edit", to: "customers#edit"

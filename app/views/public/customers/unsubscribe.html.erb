@@ -4,7 +4,7 @@
 「退会する」を押した時点で、退会手続きが完了しますのでご注意ください。
 </p>
 
-<%= link_to "退会しない", public_customers_mypage_path %>
-<% form_with model: @customer, url: public_customers_withdraw_path, method: :patch,  local: true do |f| %>
-  <%= f.submit "退会する", public_customers_withdraw_path %>
+<%= form_with model: @customer, url: customers_withdraw_path, method: :patch,  local: true do |f| %>
+  <%= link_to "退会しない", customers_mypage_path %>
+  <%= f.submit "退会する" %>
 <% end %>

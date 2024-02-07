@@ -10,7 +10,12 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <header>
+    <%= link_to "ABOUT", about_path %>
+    <%= link_to "マイページ", customers_mypage_path %>
+    <%= link_to "グループ", groups_path %>
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+  </header>
   <body>
     <%= yield %>
   </body>
