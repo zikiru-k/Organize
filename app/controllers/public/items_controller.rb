@@ -1,2 +1,30 @@
 class Public::ItemsController < ApplicationController
+
+  def index
+    @items = Item.all
+  end
+
+  def show
+    @item = Item.find(params[:id])
+  end
+
+  def new
+    @item = Item.new
+  end
+
+  def create
+    item = Item.new(item_params)
+    if item.save
+      item.save_tags(params[:item][:tag])
+      redirect_to item_path(item), notice: "商品登録が出来ました"
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:name, :code, :capacity, :site)
+  end
 end

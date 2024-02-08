@@ -1,2 +1,50 @@
 class Public::OrdersController < ApplicationController
+
+  def index
+    @orders = Order.all
+  end
+
+  def new
+    @order = Order.new
+  end
+
+  def create
+    @order = Order.new(order_params)
+    if @order.save
+      redirect_to orders_path
+    else
+      render :new
+    end
+  end
+
+  def show
+    @order = Order.find(params[:id])
+  end
+
+  # def edit
+  #   @order = Order.find(params[:id])
+  # end
+
+  # def update
+  #   @order = Order.find(params[:id])
+  #   if @order.update(order_params)
+  #     redirect_to order_path(params[:id])
+  #   else
+  #     render :edit
+  #   end
+  # end
+
+  # def destroy
+  #   Order.destroy(params[:id])
+  #   redirect_to orders_path
+  # end
+
+  private
+
+  def order_params
+    # album_tracks_attributesが子のモデルに保存する要素
+    #   :id, :_destroyをつけることで、編集と削除が可能になる
+    params.require(:order).permit(
+      order_derails_attributes: [:id, :amount, :_destroy])
+  end
 end

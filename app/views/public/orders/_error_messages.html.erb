@@ -1,0 +1,8 @@
+<% model.errors.any? %>
+<ul>
+  <% model.errors.full_messages.each do |message|  %>
+  <li>
+    <%= message %>
+  </li>
+  <% end %>
+</ul>

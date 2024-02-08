@@ -1,0 +1,30 @@
+<div class="details">
+  <%# トラックの追加フォームをするボタン %>
+  <%# 詳しいオプション : https://github.com/nathanvda/cocoon#link_to_add_association %>
+  <%= link_to_add_association '部材の追加',
+                              # form_withのformタグ変数
+                              order,
+                              # フォームのデータを追加するモデル名
+                              :order_details,
+                              # 追加するフォームの部分テンプレート
+                              partial: "order_detail_fields",
+                              # オプション
+                              data: {
+                                # フォームを追加する場所の指定
+                                association_insertion_node: '#order_detail-forms',
+                              },
+                              class: "btn btn-primary mb-3"
+  %>
+
+  <%# フォームを追加する場所。%>
+  <%#   link_to_add_associationのassociation_insertion_nodeで指定 %>
+  <div id="order_detail-forms">
+    <%= order.fields_for :order_details do |order_detail| %>
+      <% render 'album_track_fields', order_detail: order_detail %>
+    <% end %>
+  </div>
+
+</div>
+<div class="field">
+  <%= order.submit %>
+</div>

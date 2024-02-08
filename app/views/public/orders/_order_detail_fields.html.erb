@@ -1,0 +1,69 @@
+<%# 以下の.nested-fieldsは、必須です。 %>
+<div class="nested-fields">
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="existing" id="existing_label">
+          <input type="radio" id="existing_mode" name="existing" onclick="modeChange(this)" value="existing" checked />
+            既存
+        </label>
+        <label for="new" id="new_label">
+          <input type="radio" id="new_mode" name="existing" onclick="modeChange(this)" value="new" />
+            新規
+        </label>
+      </div>
+
+      <script>
+        function modeChange(elem) {
+          var unixtime = $(elem).parent().data('area') // areaデータ取得
+          var clickElem = $(elem).attr('id') // id属性取得
+          if (clickElem.match(/^existing_mode/)) { // 正規表現 ref: https://qiita.com/iLLviA/items/b6bf680cd2408edd050f
+            $(`#existing_area_${unixtime}`).removeClass('d-none').addClass('d-block') // 既存部品表示
+            $(`#new_area_${unixtime}`).removeClass('d-block').addClass('d-none') // 新規部品非表示
+          } else {
+            $(`#existing_area_${unixtime}`).removeClass('d-block').addClass('d-none') // 既存部品非表示
+            $(`#new_area_${unixtime}`).removeClass('d-none').addClass('d-block') // 新規部品表示
+          }
+        }
+      </script>
+
+
+
+      <!--<div class="form-group">-->
+      <!--  <%#= order.label :tag, 'タグ' %><br>-->
+      <!--  <%#= order.text_field :tag, value: @item.tags.pluck(:name) %><br>-->
+      <!--  <small>スペースで区切ることで複数指定できます。</small><br>-->
+      <!--</div>-->
+
+      <div id="existing_area">
+        <div class="form-group">
+          <%= f.label :item_id, "商品名", class:"control-label" %>
+          <%= f.text_field :item_id, class:"form-control" %>
+        </div>
+        <div class="form-group" class="d-block">
+          <%= f.label :info, "購入先サイト", class:"control-label" %>
+          <%= f.text_field :info, class:"form-control" %>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :code, "コード", class:"control-label" %>
+              <%= f.text_field :code, class:"form-control" %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :amount, "購入数", class:"control-label" %>
+              <%= f.text_field :amount, class:"form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="new_area" class="d-none">
+        新規
+      </div>
+    </div>
+  </div>
+</div>

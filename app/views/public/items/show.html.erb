@@ -1,0 +1,21 @@
+<h1>商品詳細</h1>
+
+<h2>商品名</h2>
+<p><%= @item.name %></p>
+
+<h2>購入先サイト</h2>
+<p><%= @item.site %></p>
+
+<h2>コード</h2>
+<p><%= @item.code %></p>
+
+<h2>タグ</h2>
+<ul>
+  <%# 該当のPostからアソシエーションでタグを取得 %>
+  <% @item.tags.each do |tag| %>
+    <%# タグを展開 %>
+    <li>
+      <%= link_to tag.name, tag_path(tag) %>
+    </li>
+  <% end %>
+</ul>

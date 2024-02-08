@@ -1,1 +1,18 @@
 <h1>発注/在庫状況</h1>
+<%= link_to '発注願い作成', new_order_path %>
+
+<%# 現在の登録数を表示する。“#{}”は、Rubyの式展開 %>
+<%#= "登録アルバム数 : #{@orders.count}" %>
+
+<%# @albumsでレコードが1件もない場合の分岐 %>
+<% if @orders.count == 0 %>
+  <%# @albumsにデータがない場合の表示 %>
+  <p>発注情報はありません</p>
+<% else %>
+  <%# @albumsにレコードがある場合、タイトルを表示する %>
+  <% @orders.each do |order| %>
+    <p>
+      <%= link_to order.title, order_path(order) %>
+    </p>
+  <% end %>
+<% end %>

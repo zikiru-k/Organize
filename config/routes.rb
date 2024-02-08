@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
     resources :seraches, only: [:index, :edit, :create, :update, :destroy]
     resources :items
+    resources :tags, only: [:index, :show, :destroy]
 
     get "customers/mypage", to: "customers#show"
     get "customers/information/edit", to: "customers#edit"

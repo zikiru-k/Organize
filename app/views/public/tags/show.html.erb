@@ -1,0 +1,16 @@
+<h1>登録商品　タグ詳細</h1>
+<!--<h2>Actions --</h2>-->
+<!--<%#= link_to 'Tags List', tags_path %>-->
+<!--<%#= link_to 'Delete', tag_path(@tag), method: :delete, data: {confirm: '関連づいた記事のタグが空になりますがタグを削除しますか？'} %>-->
+
+<%# タグ名 %>
+<h2><%= @tag.name %></h2>
+
+<%# タグに関連付く記事一覧 %>
+<ul>
+  <% @tag.items.each do |item| %>
+    <li>
+      <%= link_to item.name, item_path(item) %>
+    </li>
+  <% end %>
+</ul>

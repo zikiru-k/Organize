@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 2024_02_05_131055) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "order_tag_relation_id", null: false
+    t.integer "order_tag_relation_id"
     t.string "name"
     t.string "code"
     t.string "capacity"
@@ -122,16 +122,15 @@ ActiveRecord::Schema.define(version: 2024_02_05_131055) do
     t.integer "order_id", null: false
     t.integer "item_id", null: false
     t.integer "amount"
+    t.string "code"
     t.string "info"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id"], name: "index_order_details_on_item_id"
-    t.index ["order_id"], name: "index_order_details_on_order_id"
   end
 
   create_table "order_tag_relations", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.integer "tag_id", null: false
+    t.integer "item_id"
+    t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_order_tag_relations_on_item_id"
@@ -175,8 +174,6 @@ ActiveRecord::Schema.define(version: 2024_02_05_131055) do
   add_foreign_key "group_users", "customers"
   add_foreign_key "group_users", "groups"
   add_foreign_key "items", "order_tag_relations"
-  add_foreign_key "order_details", "items"
-  add_foreign_key "order_details", "orders"
   add_foreign_key "order_tag_relations", "items"
   add_foreign_key "order_tag_relations", "tags"
   add_foreign_key "orders", "groups"

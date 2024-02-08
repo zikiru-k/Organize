@@ -1,10 +1,12 @@
 <h1>グループ一覧</h1>
 <%= link_to "グループ作成", new_group_path %>
+<%= link_to "登録済み商品", items_path %>
+<%= link_to 'タグ一覧', tags_path %>
 
 <% @groups.each do |group| %>
   <div>
     <p>グループ名</p>
-    <p><%= link_to group.name, group_path(group) %></p>
+    <p><%= link_to group.name, orders_path %></p>
     <p>紹介文</p>
     <p><%= group.content %></p>
   </div>
