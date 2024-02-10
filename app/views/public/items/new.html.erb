@@ -1,34 +1,36 @@
-<h1>商品登録</h1>
+<div class="container">
+  <h1>商品登録</h1>
 
-<%= form_with model: @item, url: items_path, method: :post, local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :"商品名", class:"control-label" %>
-    <%= f.text_field :name, class:"form-control" %>
-  </div>
+  <%= form_with model: @item, url: items_path, method: :post, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :name, "商品名", class:"control-label" %>
+      <%= f.text_field :name, class:"form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :"購入先サイト", class:"control-label" %>
-    <%= f.text_field :site, class:"form-control" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :site, "購入先サイト", class:"control-label" %>
+      <%= f.text_field :site, class:"form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :"コード", class:"control-label" %>
-    <%= f.text_field :code, class:"form-control" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :code, "コード", class:"control-label" %>
+      <%= f.text_field :code, class:"form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :"内容量", class:"control-label" %>
-    <%= f.text_field :capacity, class:"form-control" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :capacity, "内容量", class:"control-label" %>
+      <%= f.text_field :capacity, class:"form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :tag, 'タグ' %><br>
-    <%# Edit用に@post.tags.pluck(:name)でタグの配列を取得 %>
-    <%= f.text_field :tag, value: @item.tags.pluck(:name) %><br>
-    <small>スペースで区切ることで複数指定できます。</small><br>
-  </div>
+    <div class="form-group">
+      <%= f.label :tag, 'タグ' %><br>
+      <%# Edit用に@post.tags.pluck(:name)でタグの配列を取得 %>
+      <%= f.text_field :tag, value: @item.tags.pluck(:name) %><br>
+      <small>スペースで区切ることで複数指定できます。</small><br>
+    </div>
 
-  <div class="form-group">
-    <%= f.submit :"商品登録", class: "btn btn-info" %>
-  </div>
-<% end %>
+    <div class="form-group">
+      <%= f.submit :"商品登録", class: "btn btn-info" %>
+    </div>
+  <% end %>
+</div>

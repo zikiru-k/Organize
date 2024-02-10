@@ -20,7 +20,7 @@
   <%#   link_to_add_associationのassociation_insertion_nodeで指定 %>
   <div id="order_detail-forms">
     <%= order.fields_for :order_details do |order_detail| %>
-      <% render 'album_track_fields', order_detail: order_detail %>
+      <% render 'order_detail_fields', f: order_detail %>
     <% end %>
   </div>
 

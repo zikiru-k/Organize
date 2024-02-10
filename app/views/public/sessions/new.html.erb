@@ -1,20 +1,22 @@
-<h2>ログイン</h2>
+<div class="container">
+  <h2>ログイン</h2>
 
-<%= form_with model: @customer, url: new_customer_session_path, local: true do |f| %>
-  <div class="field">
-    <%= f.label :"メールアドレス",class:"control-label" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,placeholder: "sample@example.com",class:"form-control" %>
-  </div>
+  <%= form_with model: @customer, url: new_customer_session_path, local: true do |f| %>
+    <div class="field">
+      <%= f.label :"メールアドレス",class:"control-label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" ,placeholder: "sample@example.com",class:"form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :"パスワード6文字以上",class:"control-label" %>
-    <%= f.password_field :password, autocomplete: "new-password",class:"form-control" %>
-  </div>
+    <div class="field">
+      <%= f.label :"パスワード6文字以上",class:"control-label" %>
+      <%= f.password_field :password, autocomplete: "new-password",class:"form-control" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
+    <div class="actions">
+      <%= f.submit "ログイン" %>
+    </div>
+  <% end %>
 
-<h2>会員登録がお済みでない方</h2>
-<%= link_to "こちら", new_customer_registration_path %>　から新規登録をしてください
+  <h2>会員登録がお済みでない方</h2>
+  <%= link_to "こちら", new_customer_registration_path %>　から新規登録をしてください
+</div>

@@ -1,12 +1,14 @@
-<h1>マイページ</h1>
-
-<p>氏名</p>
-<%= @customer.full_name %>
-
-<p>メールアドレス</p>
-<%= @customer.email %>
-
-<p>電話番号</p>
-<%= @customer.telephone_number %>
-
-<%= link_to "編集", customers_information_edit_path %>
+<div class="container">
+  <h1>マイページ</h1>
+  
+  <p>氏名</p>
+  <%= @customer.full_name %>
+  
+  <p>メールアドレス</p>
+  <%= @customer.email %>
+  
+  <p>電話番号</p>
+  <%= @customer.telephone_number %>
+  
+  <%= link_to "編集", customers_information_edit_path %>
+</div>

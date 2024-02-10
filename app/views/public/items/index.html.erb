@@ -1,26 +1,28 @@
-<h1>登録済み商品</h1>
-<%= link_to "商品登録", new_item_path %>
+<div class="container">
+  <h1>登録済み商品</h1>
+  <%= link_to "商品登録", new_item_path %>
 
-<% @items.each do |item| %>
-  <div>
-    <h2>商品名</h2>
-    <p><%= link_to item.name, item_path(item) %></p>
+  <% @items.each do |item| %>
+    <div>
+      <p>商品名</p>
+      <p><%= link_to item.name, item_path(item) %></p>
 
-    <h2>購入先サイト</h2>
-    <p><%= item.site %></p>
+      <p>購入先サイト</p>
+      <p><%= item.site %></p>
 
-    <h2>コード</h2>
-    <p><%= item.code %></p>
+      <p>コード</p>
+      <p><%= item.code %></p>
 
-    <h2>タグ</h2>
-    <ul>
-      <%# 該当のPostからアソシエーションでタグを取得 %>
-      <% item.tags.each do |tag| %>
-        <%# タグを展開 %>
-        <li>
-          <%= link_to tag.name, tag_path(tag) %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+      <p>タグ</p>
+      <ul>
+        <%# 該当のPostからアソシエーションでタグを取得 %>
+        <% item.tags.each do |tag| %>
+          <%# タグを展開 %>
+          <li>
+            <%= link_to tag.name, tag_path(tag) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

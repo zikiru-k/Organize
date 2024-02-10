@@ -42,9 +42,10 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    # album_tracks_attributesが子のモデルに保存する要素
+    # モデル名_attributesが子のモデルに保存する要素
     #   :id, :_destroyをつけることで、編集と削除が可能になる
     params.require(:order).permit(
-      order_derails_attributes: [:id, :amount, :_destroy])
+      order_derails_attributes: [:id, :amount, :_destroy,
+      items_attributes: [:id, :name, :code, :capacity, :site, :_destroy]])
   end
 end

@@ -1,0 +1,6 @@
+$('.bookmark_btn_<%= @comment.id %>').html("<%= j(render 'bookmark/bookmark',  comment: @comment ) %>")
+
+<!--下記を呼び出し部分に記載-->
+<!--<div class="bookmark_btn_<%#= @comment.id %>">-->
+<!--  <%#= render "bookmark/bookmark_btn", comment: comment %>-->
+<!--</div>-->

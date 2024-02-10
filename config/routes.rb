@@ -23,13 +23,13 @@ Rails.application.routes.draw do
     end
 
     get 'orders/completion', to: "orders#completion"
-    resources :orders, only: [:new, :create, :index, :show]
     post 'orders/confirm', to: "orders#confirm"
-
-    resources :order_details, only: [:index, :edit, :create, :update, :destroy] do
+    resources :orders, only: [:new, :create, :index, :show] do
       resources :comments, only: [:create, :destroy]
       resource :bookmarks, only: [:create, :destroy]
     end
+
+    resources :order_details, only: [:index, :edit, :create, :update, :destroy]
 
     resources :seraches, only: [:index, :edit, :create, :update, :destroy]
     resources :items

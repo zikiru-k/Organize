@@ -1,22 +1,24 @@
-<h1>グループ詳細</h1>
+<div class="container">
+  <h1>グループ詳細</h1>
 
-<div>
-  <p>グループ名</p>
-  <p><%= @group.name %></p>
+  <div>
+    <p>グループ名</p>
+    <p><%= @group.name %></p>
 
-  <p>紹介文</p>
-  <p><%= @group.content %></p>
+    <p>紹介文</p>
+    <p><%= @group.content %></p>
 
-  <p>メンバー</p>
-  <% @group.group_users.each do |group_user| %>
-    <p><%= group_user.customer.last_name %></p>
-  <% end %>
+    <p>メンバー</p>
+    <% @group.group_users.each do |group_user| %>
+      <p><%= group_user.customer.last_name %></p>
+    <% end %>
 
-  <% if @group.is_owned_by?(current_customer) %>
-    <%= link_to "編集", edit_group_path(@group) %>
-  <% elsif @group.include_customer?(current_customer) %>
-    <%= link_to "退会", group_group_users_path(@group), method: :delete %>
-  <% else %>
-    <%= link_to "参加", group_group_users_path(@group), method: :post %>
-  <% end %>
+    <% if @group.is_owned_by?(current_customer) %>
+      <%= link_to "編集", edit_group_path(@group) %>
+    <% elsif @group.include_customer?(current_customer) %>
+      <%= link_to "退会", group_group_users_path(@group), method: :delete %>
+    <% else %>
+      <%= link_to "参加", group_group_users_path(@group), method: :post %>
+    <% end %>
+  </div>
 </div>

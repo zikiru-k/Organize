@@ -1,27 +1,29 @@
-<h1>マイページ編集</h1>
+<div class="container">
+  <h1>マイページ編集</h1>
 
-<%= form_with model: @customer, url: customers_information_edit_path, method: :patch,  local: true do |f| %>
-  <div>
-    <%= f.label :"氏名", class:"control-label" %>
-    <%= f.label :"苗字", class:"control-label" %>
-    <%= f.text_field :last_name, class:"form-control" %>
-    <%= f.label :"名前", class:"control-label" %>
-    <%= f.text_field :first_name, class:"form-control" %>
-  </div>
+  <%= form_with model: @customer, url: customers_information_edit_path, method: :patch,  local: true do |f| %>
+    <div>
+      <%= f.label :"氏名", class:"control-label" %>
+      <%= f.label :last_name, "苗字", class:"control-label" %>
+      <%= f.text_field :last_name, class:"form-control" %>
+      <%= f.label :first_name, "名前", class:"control-label" %>
+      <%= f.text_field :first_name, class:"form-control" %>
+    </div>
 
-  <div>
-    <%= f.label :"メールアドレス", class:"control-label" %>
-    <%= f.text_field :email, class:"form-control" %>
-  </div>
+    <div>
+      <%= f.label :email, "メールアドレス", class:"control-label" %>
+      <%= f.text_field :email, class:"form-control" %>
+    </div>
 
-  <div>
-    <%= f.label :"電話番号", class:"control-label" %>
-    <%= f.text_field :telephone_number, class:"form-control" %>
-  </div>
+    <div>
+      <%= f.label :telephone_number, "電話番号", class:"control-label" %>
+      <%= f.text_field :telephone_number, class:"form-control" %>
+    </div>
 
-  <div>
-    <%= f.submit "変更" %>
-    <%= link_to "退会", customers_unsubscribe_path %>
-  </div>
+    <div>
+      <%= f.submit "変更" %>
+      <%= link_to "退会", customers_unsubscribe_path %>
+    </div>
 
-<% end %>
+  <% end %>
+</div>
