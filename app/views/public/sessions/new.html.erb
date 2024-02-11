@@ -17,6 +17,9 @@
     </div>
   <% end %>
 
+  <h2>ゲストログイン（閲覧用）</h2>
+  <%= link_to 'ゲストログイン', customer_guest_sign_in_path, method: :post %>
+
   <h2>会員登録がお済みでない方</h2>
   <%= link_to "こちら", new_customer_registration_path %>　から新規登録をしてください
 </div>

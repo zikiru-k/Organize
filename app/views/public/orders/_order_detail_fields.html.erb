@@ -29,44 +29,16 @@
 
       <div id="existing_area">
         既存
+        <%= f.fields_for :items do |item| %>
+          <%= render 'existing_fields', :f => item %>
+        <% end %>
       </div>
 
       <div id="new_area" class="d-none">
-        <div class="form-group">
-          <%= f.label :item_id, "商品名", class:"control-label" %>
-          <%= f.text_field :item_id, class:"form-control" %>
-        </div>
-
-        <!--<div class="form-group">-->
-        <!--  <%#= order.label :tag, 'タグ' %><br>-->
-        <!--  <%#= order.text_field :tag, value: @item.tags.pluck(:name) %><br>-->
-        <!--  <small>スペースで区切ることで複数指定できます。</small><br>-->
-        <!--</div>-->
-
-        <div class="form-group" class="d-block">
-          <%= f.label :site, "購入先サイト", class:"control-label" %>
-          <%= f.text_field :site, class:"form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :code, "コード", class:"control-label" %>
-          <%= f.text_field :code, class:"form-control" %>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <%= f.label :capacity, "内容量", class:"control-label" %>
-              <%= f.text_field :capacity, class:"form-control" %>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <%= f.label :amount, "購入数", class:"control-label" %>
-              <%= f.text_field :amount, class:"form-control" %>
-            </div>
-          </div>
-        </div>
+        新規
+        <%= f.fields_for :order_details do |order_detail| %>
+          <%= render 'new_fields', :f => order_detail %>
+        <% end %>
       </div>
 
     </div>

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  # ゲストログイン
+  devise_scope :customer do
+    post 'customer/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   devise_for :users
   # 顧客用
   # URL /customers/sign_in ...
@@ -29,9 +34,7 @@ Rails.application.routes.draw do
       resource :bookmarks, only: [:create, :destroy]
     end
 
-    resources :order_details, only: [:index, :edit, :create, :update, :destroy]
-
-    resources :seraches, only: [:index, :edit, :create, :update, :destroy]
+    # resources :order_details, only: [:index, :edit, :create, :update, :destroy]
     resources :items
     resources :tags, only: [:index, :show, :destroy]
 
@@ -41,5 +44,6 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe', to: "customers#unsubscribe"
     patch 'customers/withdraw', to: "customers#withdraw"
 
+    resources :seraches, only: [:index, :edit, :create, :update, :destroy]
   end
 end
