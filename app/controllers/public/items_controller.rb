@@ -8,6 +8,11 @@ class Public::ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def ajax_show
+    @item = Item.find(params[:id])
+    render layout:false
+  end
+
   def new
     @item = Item.new
   end

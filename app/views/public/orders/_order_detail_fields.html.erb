@@ -13,25 +13,11 @@
         </label>
       </div>
 
-      <script>
-        function modeChange(elem) {
-          var unixtime = $(elem).parent().data('area') // areaデータ取得
-          var clickElem = $(elem).attr('id') // id属性取得
-          if (clickElem.match(/^existing_mode/)) { // 正規表現 ref: https://qiita.com/iLLviA/items/b6bf680cd2408edd050f
-            $(`#existing_area_${unixtime}`).removeClass('d-none').addClass('d-block') // 既存部品表示
-            $(`#new_area_${unixtime}`).removeClass('d-block').addClass('d-none') // 新規部品非表示
-          } else {
-            $(`#existing_area_${unixtime}`).removeClass('d-block').addClass('d-none') // 既存部品非表示
-            $(`#new_area_${unixtime}`).removeClass('d-none').addClass('d-block') // 新規部品表示
-          }
-        }
-      </script>
-
       <div id="existing_area">
         既存
-        <%= f.fields_for :items do |item| %>
-          <%= render 'existing_fields', :f => item %>
-        <% end %>
+        <%= f.label :name, "登録済み商品", class:"control-label" %>
+        <%= f.collection_select :item_id, Item.all, :id, :name, {include_blank: "選択して下さい"}, {onChange:"itemChange(this)" } %>
+        <div class="item_info"></div>
       </div>
 
       <div id="new_area" class="d-none">
@@ -44,3 +30,53 @@
     </div>
   </div>
 </div>
+
+<script>
+  function modeChange(elem) {
+    var unixtime = $(elem).parent().data('area') // areaデータ取得
+    var clickElem = $(elem).attr('id') // id属性取得
+    if (clickElem.match(/^existing_mode/)) { // 正規表現 ref: https://qiita.com/iLLviA/items/b6bf680cd2408edd050f
+      $(`#existing_area_${unixtime}`).removeClass('d-none').addClass('d-block') // 既存部品表示
+      $(`#new_area_${unixtime}`).removeClass('d-block').addClass('d-none') // 新規部品非表示
+    } else {
+      $(`#existing_area_${unixtime}`).removeClass('d-block').addClass('d-none') // 既存部品非表示
+      $(`#new_area_${unixtime}`).removeClass('d-none').addClass('d-block') // 新規部品表示
+    }
+  }
+  function itemChange(elem){
+    var id = $(elem).attr('id');
+    console.log(id);
+    var item_id = $(elem).val();
+    console.log(item_id);
+    var item_info = $(elem).parent().find(".item_info");
+
+    $.ajax({
+      url: '/items/ajax_show/'+ item_id,
+            /* 自サイトのドメインであれば、https://kinocolog.com/ajax/test.html というURL指定も可 */
+      type: 'GET',
+      dataType: 'html'
+    }).done(function(data){
+      console.log(data);
+            /* 通信成功時 */
+      $(item_info).html(data); //取得したHTMLを.resultに反映
+
+    }).fail(function(data){
+            /* 通信失敗時 */
+            alert('通信失敗！');
+
+    });
+  }
+/*
+  var item = document.getElementById('item_selection')
+  console.log(item)
+  var init = () => {
+    $('body').on('change', item, test)
+  }
+  var test = e => {
+    var ele = (e.currentTarget)
+    console.log(ele)
+  }
+  $(init)
+*/
+  // checkButton.addEventListener('click', butotnClick);
+</script>

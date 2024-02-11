@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
     # resources :order_details, only: [:index, :edit, :create, :update, :destroy]
     resources :items
+    get "items/ajax_show/:id" , to: "items#ajax_show"
     resources :tags, only: [:index, :show, :destroy]
 
     get "customers/mypage", to: "customers#show"

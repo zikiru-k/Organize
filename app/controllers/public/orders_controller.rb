@@ -45,7 +45,7 @@ class Public::OrdersController < ApplicationController
     # モデル名_attributesが子のモデルに保存する要素
     #   :id, :_destroyをつけることで、編集と削除が可能になる
     params.require(:order).permit(
-      order_derails_attributes: [:id, :item_id, :amount, :_destroy,
-      items_attributes: [:id, :order_tag_relation_id, :name, :code, :capacity, :site, :_destroy]])
+      order_derails_attributes: [:id, :item_id, :amount, :_destroy])
+      #items_attributes: [:id, :order_tag_relation_id, :name, :code, :capacity, :site, :_destroy]
   end
 end
