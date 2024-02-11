@@ -4,42 +4,10 @@
   <%# バリデーションメッセージの部分テンプレート %>
   <%#= render 'layouts/error_messages', model: @order %>
 
-  <script>
-    $(document).ready(function () {
-      // var label = new Date().getTime();
-      $("#order_detail-forms").on('cocoon:after-insert', function(e, elem) {
-        var label = new Date().getTime();
-        // name属性変更
-        $('#existing_mode').attr('name', 'existing_mode_' + label)
-        $('#new_mode').attr('name', 'existing_mode_' + label)
-
-        // クリック属性変更
-        $('#existing_label').attr('for', 'existing_mode_' + label)
-        $('#new_label').attr('for', 'new_mode_' +  label)
-
-        // クリック属性変更
-        $('#existing_label').attr('data-area', label)
-        $('#new_label').attr('data-area', label)
-
-        // Areaのid属性変更
-        $('#existing_area').attr('id', 'existing_area_' + label)
-        $('#new_area').attr('id', 'new_area_' +  label)
-
-        // id属性変更
-        $('#existing_mode').attr('id', 'existing_mode_' + label)
-        $('#new_mode').attr('id', 'new_mode_' + label)
-
-        // id属性変更
-        $('#existing_label').attr('id', 'existing_label_' + label)
-        $('#new_label').attr('id', 'new_label_' + label)
-      })
-    })
-  </script>
-
   <div class="row">
     <div class="col-md-6">
       <%# フォーム部分 %>
-      <%= form_with model: @order do |order| %>
+      <%= form_with model: [@order], url: orders_path do |order| %>
         <%# フォームのテンプレート %>
         <% render 'form', order: order %>
       <% end %>
@@ -47,3 +15,35 @@
     <div class="col-md-6">コメント欄</div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function () {
+    // var label = new Date().getTime();
+    $("#order_detail-forms").on('cocoon:after-insert', function(e, elem) {
+      var label = new Date().getTime();
+      // name属性変更
+      $('#existing_mode').attr('name', 'existing_mode_' + label)
+      $('#new_mode').attr('name', 'existing_mode_' + label)
+
+      // クリック属性変更
+      $('#existing_label').attr('for', 'existing_mode_' + label)
+      $('#new_label').attr('for', 'new_mode_' +  label)
+
+      // クリック属性変更
+      $('#existing_label').attr('data-area', label)
+      $('#new_label').attr('data-area', label)
+
+      // Areaのid属性変更
+      $('#existing_area').attr('id', 'existing_area_' + label)
+      $('#new_area').attr('id', 'new_area_' +  label)
+
+      // id属性変更
+      $('#existing_mode').attr('id', 'existing_mode_' + label)
+      $('#new_mode').attr('id', 'new_mode_' + label)
+
+      // id属性変更
+      $('#existing_label').attr('id', 'existing_label_' + label)
+      $('#new_label').attr('id', 'new_label_' + label)
+    })
+  })
+</script>

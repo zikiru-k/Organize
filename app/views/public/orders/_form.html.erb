@@ -16,7 +16,7 @@
                               class: "btn btn-primary mb-3"
   %>
 
-  <%# フォームを追加する場所。%>
+  <%# フォームを追加する場所 %>
   <%#   link_to_add_associationのassociation_insertion_nodeで指定 %>
   <div id="order_detail-forms">
     <%= order.fields_for :order_details do |order_detail| %>
@@ -26,5 +26,5 @@
 
 </div>
 <div class="field">
-  <%= link_to "発注", orders_path, method: :post %>
+  <%= order.submit '発注' %>
 </div>

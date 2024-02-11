@@ -13,7 +13,7 @@
     <%# @ordersにレコードがある場合、タイトルを表示する %>
     <% @orders.each do |order| %>
       <p>
-        <%= link_to order.title, order_path(order) %>
+        <%= link_to order.created_at.in_time_zone('Asia/Tokyo').strftime('%Y年%m月%d日 %H時%M分'), order_path(order) %>
       </p>
     <% end %>
   <% end %>

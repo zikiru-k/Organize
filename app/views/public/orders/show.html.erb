@@ -1,33 +1,6 @@
-<h1>Albums#show</h1>
-
-<!--<h2>Actions</h2>-->
-<!--<ul>-->
-<!--  <li><%#= link_to 'Edit Album', edit_album_path(@album) %></li>-->
-<!--  <li><%#= link_to 'Delete Album', album_path(@album), method: :delete %></li>-->
-<!--</ul>-->
-
-<h3>Title -> <%= @order.title %></h3>
-<h3>Artist -> <%= @order.artist %></h3>
-<hr>
-
-<h4>Tracks --></h4>
-
-<%# トラックの存在確認 %>
-<% if @order.album_tracks.count == 0 %>
-  <%# トラックなしの場合の表示 %>
-  <p>
-    該当トラックなし
-  </p>
-<% else %>
-  <%# トラックがある場合の表示 %>
-  <p>
-    <%= "#{@order.album_tracks.count} Tracks" %>
-  </p>
-  <ul>
-    <% @order.album_tracks.each do |order| %>
-      <li>
-        <%= order.title %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+<h1>注文詳細</h1>
+<ul>
+  <% @order.order_details.each do |detail| %>
+    <li><%= detail.item.name %> - <%= detail.amount %></li>
+  <% end %>
+</ul>
