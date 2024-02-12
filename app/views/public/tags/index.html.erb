@@ -1,12 +1,10 @@
 <div class="container">
   <h1>タグ一覧</h1>
-  <!--<h2>Actions </h2>-->
-  <!--<#%= link_to 'Top', root_path %>-->
   <ul>
     <% @tags.each do |tag| %>
       <li>
         <%# タグの名前と、関連付く記事数を表示 %>
-        <%= link_to "#{tag.name} ( 登録商品: #{tag.items.count} )", tag_path(tag) %>
+        <%= link_to "#{tag.name} ( 登録商品: #{tag.items.count} )", group_tag_path(params[:group_id], tag) %>
       </li>
     <% end %>
   </ul>

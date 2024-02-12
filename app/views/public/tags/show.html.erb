@@ -11,7 +11,7 @@
   <ul>
     <% @tag.items.each do |item| %>
       <li>
-        <%= link_to item.name, item_path(item) %>
+        <%= link_to item.name, group_item_path(params[:group_id], item) %>
       </li>
     <% end %>
   </ul>

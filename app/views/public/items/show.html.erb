@@ -9,17 +9,17 @@
 
   <p>コード</p>
   <p><%= @item.code %></p>
-  
+
   <p>内容量</p>
   <p><%= @item.capacity %></p>
-  
+
   <p>タグ</p>
   <ul>
     <%# 該当のPostからアソシエーションでタグを取得 %>
     <% @item.tags.each do |tag| %>
       <%# タグを展開 %>
       <li>
-        <%= link_to tag.name, tag_path(tag) %>
+        <%= link_to tag.name, group_tag_path(params[:group_id], tag) %>
       </li>
     <% end %>
   </ul>

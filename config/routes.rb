@@ -32,14 +32,10 @@ Rails.application.routes.draw do
           resource :bookmarks, only: [:create, :destroy]
         end
       end
+      resources :items
+      get "items/ajax_show/:id" , to: "items#ajax_show"
+      resources :tags, only: [:index, :show, :destroy]
     end
-
-
-
-    # resources :order_details, only: [:index, :edit, :create, :update, :destroy]
-    resources :items
-    get "items/ajax_show/:id" , to: "items#ajax_show"
-    resources :tags, only: [:index, :show, :destroy]
 
     get "customers/mypage", to: "customers#show"
     get "customers/information/edit", to: "customers#edit"

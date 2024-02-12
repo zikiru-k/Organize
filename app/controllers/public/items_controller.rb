@@ -21,7 +21,7 @@ class Public::ItemsController < ApplicationController
     item = Item.new(item_params)
     if item.save
       item.save_tags(params[:item][:tag])
-      redirect_to item_path(item), notice: "商品登録が出来ました"
+      redirect_to group_item_path(params[:group_id], item), notice: "商品登録が出来ました"
     else
       render :new
     end

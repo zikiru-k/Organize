@@ -1,11 +1,11 @@
 <div class="container">
   <h1>登録済み商品</h1>
-  <%= link_to "商品登録", new_item_path %>
+  <%= link_to "商品登録", new_group_item_path %>
 
   <% @items.each do |item| %>
     <div>
       <p>商品名</p>
-      <p><%= link_to item.name, item_path(item) %></p>
+      <p><%= link_to item.name, group_item_path(params[:group_id], item) %></p>
 
       <p>購入先サイト</p>
       <p><%= item.site %></p>
@@ -19,7 +19,7 @@
         <% item.tags.each do |tag| %>
           <%# タグを展開 %>
           <li>
-            <%= link_to tag.name, tag_path(tag) %>
+            <%= link_to tag.name, group_tag_path(params[:group_id], tag) %>
           </li>
         <% end %>
       </ul>

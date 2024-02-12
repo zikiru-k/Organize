@@ -1,6 +1,8 @@
 <div class="container">
   <h1>発注/在庫状況</h1>
   <%= link_to '発注願い作成', new_group_order_path %>
+  <%= link_to "登録済み商品", group_items_path(params[:group_id]) %>
+  <%= link_to 'タグ一覧', group_tags_path(params[:group_id]) %>
 
   <%# 現在の登録数を表示する。“#{}”は、Rubyの式展開 %>
   <%#= "登録アルバム数 : #{@orders.count}" %>
