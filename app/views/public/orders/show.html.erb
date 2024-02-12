@@ -1,6 +1,43 @@
-<h1>注文詳細</h1>
-<ul>
-  <% @order.order_details.each do |detail| %>
-    <li><%= detail.item.name %> - <%= detail.amount %></li>
-  <% end %>
-</ul>
+<div class="container">
+  <h1>注文詳細</h1>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <ul>
+        <% @order.order_details.each do |detail| %>
+          <li>
+            <%= detail.item.name %>
+            <ul>
+              <li><%= detail.item.code %></li>
+              <li><%= detail.item.site %></li>
+              <li><%= detail.item.capacity %></li>
+              <li><%= detail.amount %></li>
+            </ul>
+          </li>
+
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <% @order.comments.each do |comment| %>
+        <div><%= simple_format(comment.content, class: 'm-0') %></div>
+        <div>
+          <small class="text-black-50">
+            <%= comment.customer.full_name %><br>
+            <%= mail_to comment.customer.email %>
+          </small>
+        </div>
+        <div id="bookmark_btn_<%= comment.id %>" class="mt-1 mb-3">
+          <%= render "public/bookmarks/bookmark", comment: comment %>
+        </div>
+      <% end %>
+      <div>
+        <%= form_with model: [@order, @comment], url: group_order_comments_path(params[:group_id], params[:id]) do |f| %>
+          <%= f.text_area :content, rows: '5', placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

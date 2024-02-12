@@ -1,11 +1,11 @@
 <% if comment.bookmark_by?(current_customer) %>
-  <%= link_to order_bookmarks_path(comment), method: :delete,remote: true do %>
-    <i class="fa-regular fa-square-check" aria-hidden="true"></i>
-    <%= comment.bookmark.count %>人が確認しました。
+  <%= link_to group_order_comment_bookmarks_path(comment.order.group_id, comment.order, comment), method: :delete,remote: true do %>
+    <i class="fa-regular fa-square-check" aria-hidden="true" style="color: red;"></i>
+    <%= comment.bookmarks.count %>人が確認しました。
   <% end %>
 <% else %>
-  <%= link_to order_bookmarks_path(comment), method: :post,remote: true do %>
-    <i class="fa-solid fa-square-check" aria-hidden="true" style="color:green"></i>
-    <%= comment.bookmark.count %>人が確認しました。
+  <%= link_to group_order_comment_bookmarks_path(comment.order.group_id, comment.order, comment), method: :post,remote: true do %>
+    <i class="fa-solid fa-square-check" aria-hidden="true"></i>
+    <%= comment.bookmarks.count %>人が確認しました。
   <% end %>
 <% end %>

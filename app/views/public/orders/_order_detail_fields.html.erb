@@ -29,17 +29,19 @@
       <div id="new_area" class="d-none">
         新規
         <div class="form-group">
-          <%#= f.label 'item[name]', "商品名", class:"control-label" %>
-          <%#= f.text_field :item[], class:"form-control" %>
           <p class="m-0">商品名</p>
           <%= text_field_tag 'new_items[name][]' %>
+          
           <p class="m-0">コード</p>
           <%= text_field_tag 'new_items[code][]' %>
+          
           <p class="m-0">内容量</p>
           <%= text_field_tag 'new_items[capacity][]' %>
+          
           <p class="m-0">購入先サイト</p>
           <%= text_field_tag 'new_items[site][]' %>
-          <p class="m-0">数量</p>
+          
+          <p class="m-0">購入数</p>
           <%= text_field_tag 'new_items[amount][]' %>
         </div>
 
@@ -47,16 +49,6 @@
         <!--  <%#= f.label :tag, 'タグ' %><br>-->
         <!--  <%#= f.text_field :tag, value: @item.tags.pluck(:name) %><br>-->
         <!--  <small>スペースで区切ることで複数指定できます。</small><br>-->
-        <!--</div>-->
-
-        <!--<div class="form-group" class="d-block">-->
-        <!--  <%#= f.label :site, "購入先サイト", class:"control-label" %>-->
-        <!--  <%#= f.text_field :site, class:"form-control" %>-->
-        <!--</div>-->
-
-        <!--<div class="form-group">-->
-        <!--  <%#= f.label :code, "コード", class:"control-label" %>-->
-        <!--  <%#= f.text_field :code, class:"form-control" %>-->
         <!--</div>-->
 
         <!--<div class="row">-->

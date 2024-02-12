@@ -8,17 +8,14 @@
     <p>紹介文</p>
     <p><%= @group.content %></p>
 
-    <p>メンバー</p>
+    <p>グループ作成者:  <%= @group.owner.last_name %></p>
+    <p>グループメンバー</p>
     <% @group.group_users.each do |group_user| %>
       <p><%= group_user.customer.last_name %></p>
     <% end %>
 
     <% if @group.is_owned_by?(current_customer) %>
       <%= link_to "編集", edit_group_path(@group) %>
-    <% elsif @group.include_customer?(current_customer) %>
-      <%= link_to "退会", group_group_users_path(@group), method: :delete %>
-    <% else %>
-      <%= link_to "参加", group_group_users_path(@group), method: :post %>
     <% end %>
   </div>
 </div>

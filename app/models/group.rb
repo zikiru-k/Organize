@@ -1,5 +1,6 @@
 class Group < ApplicationRecord
   has_many :group_users, dependent: :destroy
+  has_many :customers, through: :group_users
   has_many :orders, dependent: :destroy
   belongs_to :owner, class_name: "Customer"
   belongs_to :permit, class_name: "Customer"

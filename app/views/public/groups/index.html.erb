@@ -11,9 +11,17 @@
           <% @groups.each do |group| %>
             <div>
               <p>グループ名</p>
-              <p><%= link_to group.name, orders_path %></p>
+              <p><%= link_to group.name, group_orders_path(group) %></p>
               <p>紹介文</p>
               <p><%= group.content %></p>
+              <p><%= link_to "グループ詳細", group_path(group) %></p>
+              <% if group.is_owned_by?(current_customer) %>
+                <%= link_to "編集", edit_group_path(group) %>
+              <% elsif group.include_customer?(current_customer) %>
+                <%= link_to "退会", group_group_users_path(group), method: :delete %>
+              <% else %>
+                <%= link_to "参加", group_group_users_path(group), method: :post %>
+              <% end %>
             </div>
           <% end %>
         </div>

@@ -25,14 +25,16 @@ Rails.application.routes.draw do
 
     resources :groups do
       resource :group_users, only: [:create, :destroy]
+      get 'orders/completion', to: "orders#completion"
+      post 'orders/confirm', to: "orders#confirm"
+      resources :orders, only: [:new, :create, :index, :show] do
+        resources :comments, only: [:create, :destroy] do
+          resource :bookmarks, only: [:create, :destroy]
+        end
+      end
     end
 
-    get 'orders/completion', to: "orders#completion"
-    post 'orders/confirm', to: "orders#confirm"
-    resources :orders, only: [:new, :create, :index, :show] do
-      resources :comments, only: [:create, :destroy]
-      resource :bookmarks, only: [:create, :destroy]
-    end
+
 
     # resources :order_details, only: [:index, :edit, :create, :update, :destroy]
     resources :items

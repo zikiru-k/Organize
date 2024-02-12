@@ -1,14 +1,23 @@
 <div class="container">
   <h1>マイページ</h1>
-  
-  <p>氏名</p>
-  <%= @customer.full_name %>
-  
-  <p>メールアドレス</p>
-  <%= @customer.email %>
-  
-  <p>電話番号</p>
-  <%= @customer.telephone_number %>
-  
-  <%= link_to "編集", customers_information_edit_path %>
+  <div class="card">
+    <div class="card-body">
+      <div class="row mb-10">
+        <p class="col-2">氏名</p>
+        <p class="col-3"><%= @customer.full_name %></p>
+      </div>
+
+      <div class="row mb-10">
+        <p class="col-2">メールアドレス</p>
+        <p class="col-3"><%= @customer.email %></p>
+      </div>
+
+      <div class="row mb-10">
+        <p class="col-2">電話番号</p>
+        <p class="col-3"><%= @customer.telephone_number %></p>
+      </div>
+
+      <%= link_to "編集", customers_information_edit_path %>
+    </div>
+  </div>
 </div>
