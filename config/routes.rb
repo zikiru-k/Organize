@@ -32,7 +32,11 @@ Rails.application.routes.draw do
           resource :bookmarks, only: [:create, :destroy]
         end
       end
-      resources :items
+      resources :items do
+        collection do
+          get 'search'
+        end
+      end
       get "items/ajax_show/:id" , to: "items#ajax_show"
       resources :tags, only: [:index, :show, :destroy]
     end
@@ -43,6 +47,6 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe', to: "customers#unsubscribe"
     patch 'customers/withdraw', to: "customers#withdraw"
 
-    resources :seraches, only: [:index, :edit, :create, :update, :destroy]
+
   end
 end

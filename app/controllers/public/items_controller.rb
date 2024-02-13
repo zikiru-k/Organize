@@ -1,4 +1,5 @@
 class Public::ItemsController < ApplicationController
+  before_action :set_q, only: [:index, :search]
 
   def index
     @items = Item.all
@@ -27,9 +28,17 @@ class Public::ItemsController < ApplicationController
     end
   end
 
+  def search
+    @results = @q.result
+  end
+
   private
 
   def item_params
     params.require(:item).permit(:name, :code, :capacity, :site)
+  end
+
+  def set_q
+    @q = Item.ransack(params[:q])
   end
 end

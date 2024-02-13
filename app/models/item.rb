@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   # throughを利用して、order_tag_relationsを通してtagsとの関連付け(中間テーブル)
   #   Item.tagsとすれば、Itemに紐付けられたTagの取得が可能
   has_many :tags, through: :order_tag_relations
-  
+
   def save_tags(tags)
 
     # タグをスペース区切りで分割し配列にする
@@ -42,5 +42,9 @@ class Item < ApplicationRecord
       #   配列追加のようにレコードを渡すことで新規レコード作成が可能
       self.tags << new_post_tag
     end
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["capacity", "code", "created_at", "id", "name", "order_tag_relation_id", "site", "updated_at"]
   end
 end
