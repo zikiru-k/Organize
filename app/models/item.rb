@@ -6,7 +6,6 @@ class Item < ApplicationRecord
   has_many :tags, through: :order_tag_relations
 
   def save_tags(tags)
-
     # タグをスペース区切りで分割し配列にする
     #   連続した空白も対応するので、最後の“+”がポイント
     tag_list = tags.split(/[[:blank:]]+/)

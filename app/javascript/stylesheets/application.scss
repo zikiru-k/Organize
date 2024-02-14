@@ -21,8 +21,9 @@ header {
 }
 
 h1 {
+  width: 400px;
   text-align: center;
-  margin: 0;
+  margin: 0 auto 10px auto;
   padding: 10px;
   font-size: 20px;
   background-color: #fff;
@@ -50,6 +51,18 @@ main {
 
 .container {
   margin: 15px auto;
+}
+
+dl {
+  display: flex;
+}
+
+dt {
+  width: 15%;
+}
+
+dd {
+  width: 30%;
 }
 
 .card {

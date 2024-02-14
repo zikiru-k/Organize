@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
+
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers,skip: [:passwords], controllers: {
@@ -18,6 +19,20 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  scope module: :admin do
+    resources :groups, only: [:index, :show, :edit, :update, :destroy] do
+      resource :group_users, only: [:create, :destroy]
+      resources :orders, only: [:index, :show, :edit, :update] do
+        resources :comments, only: [:create, :destroy] do
+          resource :bookmarks, only: [:create, :destroy]
+        end
+      end
+      resources :items, only: [:index, :show, :edit, :update, :destroy]
+      resources :tags, only: [:index, :show, :edit, :update, :destroy]
+    end
+    resources :customers, only: [:index, :show, :edit, :update]
+  end
+
   scope module: :public do
   # namespace :public do
     get 'top', to: "homes#top"
@@ -25,8 +40,6 @@ Rails.application.routes.draw do
 
     resources :groups do
       resource :group_users, only: [:create, :destroy]
-      get 'orders/completion', to: "orders#completion"
-      post 'orders/confirm', to: "orders#confirm"
       resources :orders, only: [:new, :create, :index, :show] do
         resources :comments, only: [:create, :destroy] do
           resource :bookmarks, only: [:create, :destroy]
@@ -46,7 +59,5 @@ Rails.application.routes.draw do
     patch "customers/information", to: "customers#update"
     get 'customers/unsubscribe', to: "customers#unsubscribe"
     patch 'customers/withdraw', to: "customers#withdraw"
-
-
   end
 end

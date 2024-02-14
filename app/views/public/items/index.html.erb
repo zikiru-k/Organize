@@ -2,11 +2,9 @@
   <h1>登録済み商品</h1>
   <%= link_to "商品登録", new_group_item_path %>
 
-  <h1>商品名検索</h1>
   <%= search_form_for @q, url: search_group_items_path(params[:group_id]) do |f| %>
-    <%= f.label :name_cont, '商品名' %>
+    <%= f.label :name_cont, '商品検索' %>
     <%= f.search_field :name_cont %>
-    <br>
     <%= f.submit '検索' %>
   <% end %>
 

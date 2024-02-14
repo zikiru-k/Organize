@@ -15,9 +15,7 @@
 
   <p>タグ</p>
   <ul>
-    <%# 該当のPostからアソシエーションでタグを取得 %>
     <% @item.tags.each do |tag| %>
-      <%# タグを展開 %>
       <li>
         <%= link_to tag.name, group_tag_path(params[:group_id], tag) %>
       </li>
