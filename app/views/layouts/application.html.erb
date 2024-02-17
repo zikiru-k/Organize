@@ -14,14 +14,27 @@
   <body>
     <header>
       <p><%= link_to "ORGANIZE", top_path %></p>
-
       <nav class="nav">
-        <ul>
-          <li><%= link_to "ABOUT", about_path %></li>
-          <li><%= link_to "マイページ", customers_mypage_path %></li>
-          <li><%= link_to "グループ", groups_path %></li>
-          <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-        </ul>
+        <% if admin_signed_in? %>
+          <ul>
+            <li><%= link_to "会員", customers_path %></li>
+            <li><%= link_to "グループ", groups_path %></li>
+            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+          </ul>
+        <% elsif customer_signed_in? %>
+          <ul>
+            <li><%= link_to "ABOUT", about_path %></li>
+            <li><%= link_to "マイページ", customers_mypage_path %></li>
+            <li><%= link_to "グループ", groups_path %></li>
+            <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+          </ul>
+        <% else %>
+          <ul>
+            <li><%= link_to "ABOUT", about_path %></li>
+            <li><%= link_to "新規登録", new_customer_registration_path %></li>
+            <li><%= link_to "ログイン", new_customer_session_path %></li>
+          </ul>
+        <% end %>
       </nav>
     </header>
 
@@ -30,7 +43,7 @@
     </main>
 
     <footer>
-      <p>Copyright © 2024 ORGANIZE.</p>
+      <p>© 2024 ORGANIZE</p>
     </footer>
   </body>
 </html>

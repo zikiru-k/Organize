@@ -1,6 +1,5 @@
 <div class="container">
   <h1>グループ一覧</h1>
-  <%= link_to "グループ作成", new_group_path %>
 
   <div class="row">
     <div class="col-3">
@@ -13,13 +12,7 @@
               <p>紹介文</p>
               <p><%= group.content %></p>
               <p><%= link_to "グループ詳細", group_path(group) %></p>
-              <% if group.is_owned_by?(current_customer) %>
-                <%= link_to "編集", edit_group_path(group) %>
-              <% elsif group.include_customer?(current_customer) %>
-                <%= link_to "退会", group_group_users_path(group), method: :delete %>
-              <% else %>
-                <%= link_to "参加", group_group_users_path(group), method: :post %>
-              <% end %>
+              <%= link_to "編集", edit_group_path(group) %>
             </div>
           <% end %>
         </div>

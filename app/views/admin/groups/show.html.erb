@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>グループ詳細</h1>
+
+  <div>
+    <p>グループ名</p>
+    <p><%= @group.name %></p>
+
+    <p>紹介文</p>
+    <p><%= @group.content %></p>
+
+    <p>グループ作成者:  <%= @group.owner.last_name %></p>
+    <p>グループメンバー</p>
+    <% @group.group_users.each do |group_user| %>
+      <p><%= group_user.customer.last_name %></p>
+    <% end %>
+
+    <%= link_to "編集", edit_group_path(@group) %>
+  </div>
+</div>
