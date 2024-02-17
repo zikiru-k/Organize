@@ -9,6 +9,8 @@ class Public::CommentsController < ApplicationController
   end
 
   def destroy
+    Comment.find(params[:id]).destroy
+    redirect_to group_order_path(order.group_id, order)
   end
 
   private

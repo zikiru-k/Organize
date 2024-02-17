@@ -22,6 +22,12 @@
       <%= f.text_field :capacity, class:"form-control" %>
     </div>
 
+    <div class="form-group">
+      <%# Edit用にf.tags.pluck(:name)でタグの配列を取得 %>
+      <%= f.text_field :tag, value: @item.tags.pluck(:name) %><br>
+      <small>スペースで区切ることで複数指定できます。</small><br>
+    </div>
+
     <div>
       <%= f.submit "変更" %>
     </div>

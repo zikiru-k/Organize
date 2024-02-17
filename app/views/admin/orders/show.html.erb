@@ -21,15 +21,13 @@
     <div class="col-md-6">
       <% @order.comments.each do |comment| %>
         <div><%= simple_format(comment.content, class: 'm-0') %></div>
+        <%= link_to "削除", group_order_comment_path(params[:group_id], params[:id], comment), method: :delete %>
         <div>
           <small class="text-black-50">
             <%= comment.customer.full_name %><br>
             <%= mail_to comment.customer.email %>
           </small>
         </div>
-        <% if comment.customer == current_customer %>
-          <%= link_to "削除", group_order_comment_path(params[:group_id], params[:id], comment), method: :delete %>
-        <% end %>
         <div id="bookmark_btn_<%= comment.id %>" class="mt-1 mb-3">
           <%= render "public/bookmarks/bookmark", comment: comment %>
         </div>

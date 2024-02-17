@@ -26,6 +26,11 @@ class Admin::ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    Item.find(params[:id]).destroy()
+    redirect_to group_items_path(params[:group_id])
+  end
+
   def search
     @results = @q.result
   end
