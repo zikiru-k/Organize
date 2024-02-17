@@ -27,7 +27,11 @@ Rails.application.routes.draw do
           resource :bookmarks, only: [:create, :destroy]
         end
       end
-      resources :items, only: [:index, :show, :edit, :update, :destroy]
+      resources :items, only: [:index, :show, :edit, :update, :destroy] do
+        collection do
+          get 'search'
+        end
+      end
       resources :tags, only: [:index, :show, :edit, :update, :destroy]
     end
     resources :customers, only: [:index, :show, :edit, :update]
