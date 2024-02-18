@@ -1,24 +1,42 @@
 <div class="container">
   <h1>商品詳細</h1>
+  <div class="row d-flex justify-content-center">
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body">
 
-  <p>商品名</p>
-  <p><%= @item.name %></p>
+          <div class="row mb-10">
+            <p class="col-4">商品名</p>
+            <p class="col-4"><%= @item.name %></p>
+          </div>
 
-  <p>購入先サイト</p>
-  <p><%= @item.site %></p>
+          <div class="row mb-10">
+            <p class="col-4">購入先サイト</p>
+            <p class="col-4"><%= @item.site %></p>
+          </div>
 
-  <p>コード</p>
-  <p><%= @item.code %></p>
+          <div class="row mb-10">
+            <p class="col-4">コード</p>
+            <p class="col-4"><%= @item.code %></p>
+          </div>
 
-  <p>内容量</p>
-  <p><%= @item.capacity %></p>
+          <div class="row mb-10">
+            <p class="col-4">内容量</p>
+            <p class="col-4"><%= @item.capacity %></p>
+          </div>
 
-  <p>タグ</p>
-  <ul>
-    <% @item.tags.each do |tag| %>
-      <li>
-        <%= link_to tag.name, group_tag_path(params[:group_id], tag) %>
-      </li>
-    <% end %>
-  </ul>
+          <div class="row mb-10">
+            <p class="col-4">タグ</p>
+            <ul class="col-4">
+              <% @item.tags.each do |tag| %>
+                <li>
+                  <%= link_to tag.name, group_tag_path(params[:group_id], tag) %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -25,9 +25,11 @@
             <% @group.group_users.each do |group_user| %>
               <p class="col-4"><%= group_user.customer.last_name %></p>
             <% end %>
+          </div>
 
+          <div class="d-flex justify-content-around">
             <% if @group.is_owned_by?(current_customer) %>
-              <%= link_to "編集", edit_group_path(@group) %>
+              <%= link_to "編集", edit_group_path(@group), class:"btn btn-primary"  %>
             <% end %>
           </div>
 
