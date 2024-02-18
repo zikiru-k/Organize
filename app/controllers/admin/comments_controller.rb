@@ -6,12 +6,12 @@ class Admin::CommentsController < ApplicationController
     comment = current_customer.comments.new(comment_params)
     comment.order_id = order.id
     comment.save
-    redirect_to group_order_path(order.group_id, order)
+    redirect_to admin_group_order_path(order.group_id, order)
   end
 
   def destroy
     Comment.find(params[:id]).destroy
-    redirect_to group_order_path(order.group_id, order)
+    redirect_to admin_group_order_path(order.group_id, order)
   end
 
   private

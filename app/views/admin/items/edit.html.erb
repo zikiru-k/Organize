@@ -1,7 +1,7 @@
 <div class="container">
   <h1>商品編集</h1>
 
-  <%= form_with model: @item, url: group_item_path(params[:group_id], @item), method: :patch, local: true do |f| %>
+  <%= form_with model: @item, url: admin_group_item_path(params[:group_id], @item), method: :patch, local: true do |f| %>
     <div class="form-group">
       <%= f.label :name, "商品名", class:"control-label" %>
       <%= f.text_field :name, class:"form-control" %>

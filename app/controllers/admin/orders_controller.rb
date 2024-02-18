@@ -16,7 +16,7 @@ class Admin::OrdersController < ApplicationController
   def update
     order = Order.find(params[:id])
     if order.update(order_params)
-      redirect_to group_order_path(params[:group_id], order)
+      redirect_to admin_group_order_path(params[:group_id], order)
     else
       render :edit
     end

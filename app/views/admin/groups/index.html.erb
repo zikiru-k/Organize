@@ -8,11 +8,11 @@
           <% @groups.each do |group| %>
             <div>
               <p>グループ名</p>
-              <p><%= link_to group.name, group_orders_path(group) %></p>
+              <p><%= link_to group.name, admin_group_orders_path(group) %></p>
               <p>紹介文</p>
               <p><%= group.content %></p>
-              <p><%= link_to "グループ詳細", group_path(group) %></p>
-              <%= link_to "編集", edit_group_path(group) %>
+              <p><%= link_to "グループ詳細", admin_group_path(group) %></p>
+              <%= link_to "編集", edit_admin_group_path(group) %>
             </div>
           <% end %>
         </div>

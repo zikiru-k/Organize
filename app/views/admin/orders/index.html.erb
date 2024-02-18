@@ -1,7 +1,7 @@
 <div class="container">
   <h1>発注/在庫状況</h1>
-  <%= link_to "登録済み商品", group_items_path(params[:group_id]) %>
-  <%= link_to "タグ一覧", group_tags_path(params[:group_id]) %>
+  <%= link_to "登録済み商品", admin_group_items_path(params[:group_id]) %>
+  <%= link_to "タグ一覧", admin_group_tags_path(params[:group_id]) %>
 
   <%# 現在の登録数を表示する。“#{}”は、Rubyの式展開 %>
   <%#= "登録アルバム数 : #{@orders.count}" %>
@@ -14,7 +14,7 @@
     <%# @ordersにレコードがある場合、タイトルを表示する %>
     <% @orders.each do |order| %>
       <p>
-        <%= link_to order.created_at.in_time_zone('Asia/Tokyo').strftime('%Y年%m月%d日 %H時%M分'), group_order_path(order.group_id, order) %>
+        <%= link_to order.created_at.in_time_zone('Asia/Tokyo').strftime('%Y年%m月%d日 %H時%M分'), admin_group_order_path(order.group_id, order) %>
       </p>
     <% end %>
   <% end %>

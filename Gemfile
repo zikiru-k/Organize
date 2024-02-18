@@ -64,6 +64,8 @@ gem "cocoon"
 
 gem 'ransack'
 
+gem 'enum_help'
+
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

@@ -19,7 +19,8 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  scope module: :admin do
+  namespace :admin do
+  # scope module: :admin do
     resources :groups, only: [:index, :show, :edit, :update, :destroy] do
       resource :group_users, only: [:create, :destroy]
       resources :orders, only: [:index, :show, :edit, :update] do

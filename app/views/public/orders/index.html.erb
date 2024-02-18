@@ -4,8 +4,6 @@
   <%= link_to "登録済み商品", group_items_path(params[:group_id]) %>
   <%= link_to "タグ一覧", group_tags_path(params[:group_id]) %>
 
-  <%# 現在の登録数を表示する。“#{}”は、Rubyの式展開 %>
-  <%#= "登録アルバム数 : #{@orders.count}" %>
 
   <%# @ordersでレコードが1件もない場合の分岐 %>
   <% if @orders.count == 0 %>
@@ -14,9 +12,16 @@
   <% else %>
     <%# @ordersにレコードがある場合、タイトルを表示する %>
     <% @orders.each do |order| %>
-      <p>
-        <%= link_to order.created_at.in_time_zone('Asia/Tokyo').strftime('%Y年%m月%d日 %H時%M分'), group_order_path(order.group_id, order) %>
-      </p>
+      <table>
+        <thead>
+          <th>発注日</th>
+          <th>発注状況</th>
+        </thead>
+        <tbody>
+          <td><%= link_to order.created_at.in_time_zone('Asia/Tokyo').strftime('%Y年%m月%d日 %H時%M分'), group_order_path(order.group_id, order) %></td>
+          <td><%= order.stats_i18n %></td>
+        </tbody>
+      </table>
     <% end %>
   <% end %>
 </div>

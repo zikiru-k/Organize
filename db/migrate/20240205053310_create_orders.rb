@@ -4,7 +4,7 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.references :group, null: false, foreign_key: true
       t.integer :orderer_id
       t.integer :draft
-      t.integer :stats
+      t.integer :stats, default: 0
       t.timestamps
     end
   end

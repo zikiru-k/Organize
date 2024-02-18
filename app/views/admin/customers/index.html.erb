@@ -5,12 +5,12 @@
       <dt>会員ID</dt>
       <dd><%= customer.id %></dd>
     </dl>
-    
+
     <dl>
       <dt>氏名</dt>
-      <dd><%= link_to customer.full_name, customer_path(customer) %></dd>
+      <dd><%= link_to customer.full_name, admin_customer_path(customer) %></dd>
     </dl>
-  
+
     <dl>
       <dt>ステータス</dt>
       <dd>

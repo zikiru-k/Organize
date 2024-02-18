@@ -4,7 +4,7 @@
     <% @tags.each do |tag| %>
       <li>
         <%# タグの名前と、関連付く記事数を表示 %>
-        <%= link_to "#{tag.name} ( 登録商品: #{tag.items.count} )", group_tag_path(params[:group_id], tag) %>
+        <%= link_to "#{tag.name} ( 登録商品: #{tag.items.count} )", admin_group_tag_path(params[:group_id], tag) %>
       </li>
     <% end %>
   </ul>

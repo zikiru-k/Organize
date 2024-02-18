@@ -19,7 +19,7 @@ class Admin::ItemsController < ApplicationController
     if item.update(item_params)
       item.update_tags(params[:item][:tag])
       flash[:notice] = "商品登録情報を更新しました。"
-      redirect_to group_item_path(params[:group_id], item)
+      redirect_to admin_group_item_path(params[:group_id], item)
     else
       flash[:notice] = "商品登録情報を更新に失敗しました。"
       render :edit
@@ -28,7 +28,7 @@ class Admin::ItemsController < ApplicationController
 
   def destroy
     Item.find(params[:id]).destroy()
-    redirect_to group_items_path(params[:group_id])
+    redirect_to admin_group_items_path(params[:group_id])
   end
 
   def search

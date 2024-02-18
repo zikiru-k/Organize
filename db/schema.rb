@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 2024_02_05_131055) do
     t.integer "group_id", null: false
     t.integer "orderer_id"
     t.integer "draft"
-    t.integer "stats"
+    t.integer "stats", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["group_id"], name: "index_orders_on_group_id"
