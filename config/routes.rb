@@ -67,4 +67,6 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe', to: "customers#unsubscribe"
     patch 'customers/withdraw', to: "customers#withdraw"
   end
+
+  root to: "public/homes#top"
 end

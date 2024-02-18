@@ -14,8 +14,8 @@
         </label>
       </div>
 
+      <!--既存-->
       <div id="existing_area">
-        既存
         <%= f.label :name, "登録済み商品", class:"control-label" %>
         <!--{onChange:"itemChange(this)" }のthisはcollection_selectを表す-->
         <%= f.collection_select :item_id, Item.all, :id, :name, {include_blank: "選択して下さい"}, {onChange:"itemChange(this)" } %>
@@ -26,8 +26,8 @@
         </div>
       </div>
 
+      <!--新規-->
       <div id="new_area" class="d-none">
-        新規
         <div class="form-group">
           <p class="m-0">商品名</p>
           <%= text_field_tag 'new_items[name][]' %>
@@ -38,16 +38,16 @@
           <p class="m-0">コード</p>
           <%= text_field_tag 'new_items[code][]' %>
 
-          <!--<div class="row">-->
-          <!--  <div class="col-md-6">-->
+          <div class="row">
+            <div class="col-md-6">
               <p class="m-0">内容量</p>
               <%= text_field_tag 'new_items[capacity][]' %>
-            <!--</div>-->
-            <!--<div class="col-md-6">-->
+            </div>
+            <div class="col-md-6">
               <p class="m-0">購入数</p>
               <%= text_field_tag 'new_items[amount][]' %>
-            <!--</div>-->
-          <!--</div>-->
+            </div>
+          </div>
         </div>
         <!--<div class="form-group">-->
         <!--  <%#= f.label :tag, 'タグ' %><br>-->
@@ -78,15 +78,14 @@
   function itemChange(elem){
 
     var id = $(elem).attr('id'); // collection_selectのid属性取得
-    console.log(id);
     var item_id = $(elem).val(); // item_idのid属性取得
-    console.log(item_id);
     // collection_selectの親(div id="existing_area")からitem_infoの場所を探す
     var item_info = $(elem).parent().find(".item_info"); // どの場所に表示するかを取得
     item_info.empty();
 
     $.ajax({
-      url: '/items/ajax_show/'+ item_id,
+      // url: '/groups/<%= params[:group_id] %>/items/ajax_show/' + item_id,
+      url: `/groups/<%= params[:group_id] %>/items/ajax_show/${item_id}`,
       // url: '/groups/' + params[:group_id] + '/items/ajax_show/' + item_id,
      //   group_item GET    /groups/:group_id/items/ajax_show/:id(.:format)  public/items#ajax_show
             /* 自サイトのドメインであれば、https://kinocolog.com/ajax/test.html というURL指定も可 */
