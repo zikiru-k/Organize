@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 2024_02_18_060426) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_comments_on_customer_id"
-    t.index ["order_id"], name: "index_comments_on_order_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -108,14 +107,12 @@ ActiveRecord::Schema.define(version: 2024_02_18_060426) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "order_tag_relation_id"
     t.string "name"
     t.string "code"
     t.string "capacity"
     t.string "site"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["order_tag_relation_id"], name: "index_items_on_order_tag_relation_id"
   end
 
   create_table "order_details", force: :cascade do |t|
@@ -167,10 +164,8 @@ ActiveRecord::Schema.define(version: 2024_02_18_060426) do
   add_foreign_key "bookmarks", "comments"
   add_foreign_key "bookmarks", "customers"
   add_foreign_key "comments", "customers"
-  add_foreign_key "comments", "orders"
   add_foreign_key "group_users", "customers"
   add_foreign_key "group_users", "groups"
-  add_foreign_key "items", "order_tag_relations"
   add_foreign_key "order_tag_relations", "items"
   add_foreign_key "order_tag_relations", "tags"
   add_foreign_key "orders", "groups"
