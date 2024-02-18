@@ -1,25 +1,35 @@
 <div class="container">
   <h1>会員一覧</h1>
   <% @customers.each do |customer| %>
-    <dl>
-      <dt>会員ID</dt>
-      <dd><%= customer.id %></dd>
-    </dl>
+    <div class="row">
+      <div class="col-md-6">
 
-    <dl>
-      <dt>氏名</dt>
-      <dd><%= link_to customer.full_name, admin_customer_path(customer) %></dd>
-    </dl>
+        <div class="card my-3">
+          <div class="card-body">
+            <div class="row mb-2">
+              <div class="col-3 font-weight-bold">会員ID</div>
+              <div class="col-3"><%= customer.id %></div>
+            </div>
 
-    <dl>
-      <dt>ステータス</dt>
-      <dd>
-        <% if customer.is_active? %>
-          <p class="text-center">有効</p>
-        <% else %>
-          <p class="text-center text-success">退会済</p>
-        <% end %>
-      </dd>
-    </dl>
+            <div class="row mb-2">
+              <div class="col-3 font-weight-bold">氏名</div>
+              <div class="col-3"><%= link_to customer.full_name, admin_customer_path(customer) %></div>
+            </div>
+
+            <div class="row">
+              <div class="col-3 font-weight-bold">ステータス</div>
+              <div class="col-3">
+                <% if customer.is_active? %>
+                  <span class="badge badge-primary">有効</span>
+                <% else %>
+                  <span class="badge badge-secondary">退会済</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   <% end %>
 </div>
