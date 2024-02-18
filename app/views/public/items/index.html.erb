@@ -1,34 +1,47 @@
 <div class="container">
   <h1>登録済み商品</h1>
-  <%= link_to "商品登録", new_group_item_path %>
+  <div class="d-flex justify-content-around">
+    <%= link_to "商品登録", new_group_item_path, class:"btn btn-primary" %>
 
-  <%= search_form_for @q, url: search_group_items_path(params[:group_id]) do |f| %>
-    <%= f.label :name_cont, '商品検索' %>
-    <%= f.search_field :name_cont %>
-    <%= f.submit '検索' %>
-  <% end %>
+    <%= search_form_for @q, url: search_group_items_path(params[:group_id]) do |f| %>
+      <%= f.label :name_cont, '商品検索' %>
+      <%= f.search_field :name_cont %>
+      <%= f.submit '検索' %>
+    <% end %>
+  </div>
 
-  <% @items.each do |item| %>
-    <div>
-      <p>商品名</p>
-      <p><%= link_to item.name, group_item_path(params[:group_id], item) %></p>
-
-      <p>購入先サイト</p>
-      <p><%= item.site %></p>
-
-      <p>コード</p>
-      <p><%= item.code %></p>
-
-      <p>タグ</p>
-      <ul>
-        <%# 該当のPostからアソシエーションでタグを取得 %>
-        <% item.tags.each do |tag| %>
-          <%# タグを展開 %>
-          <li>
-            <%= link_to tag.name, group_tag_path(params[:group_id], tag) %>
-          </li>
+  <%# @ordersでレコードが1件もない場合の分岐 %>
+  <% if @items.count == 0 %>
+    <%# @ordersにデータがない場合の表示 %>
+    <p>登録商品はありません</p>
+  <% else %>
+    <div class="d-flex justify-content-center">
+      <table class="table table-bordered mt-3">
+        <thead class="text-center thead-light">
+          <th style="width: 20%">商品名</th>
+          <th style="width: 20%">購入先サイト</th>
+          <th style="width: 20%">コード</th>
+          <th style="width: 30%">タグ</th>
+        </thead>
+        <% @items.each do |item| %>
+          <tbody class="text-center bg-white">
+            <td style="width: 20%"><%= link_to item.name, group_item_path(params[:group_id], item) %></td>
+            <td style="width: 20%"><%= item.site %></td>
+            <td style="width: 20%"><%= item.code %></td>
+            <td style="width: 30%">
+              <ul>
+                <%# 該当のPostからアソシエーションでタグを取得 %>
+                <% item.tags.each do |tag| %>
+                  <%# タグを展開 %>
+                  <li>
+                    <%= link_to tag.name, group_tag_path(params[:group_id], tag) %>
+                  </li>
+                <% end %>
+              </ul>
+            </td>
+          </tbody>
         <% end %>
-      </ul>
+      </table>
     </div>
   <% end %>
 </div>

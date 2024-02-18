@@ -1,21 +1,38 @@
 <div class="container">
   <h1>グループ詳細</h1>
+  <div class="row d-flex justify-content-center">
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body">
 
-  <div>
-    <p>グループ名</p>
-    <p><%= @group.name %></p>
+          <div class="row mb-10">
+            <p class="col-4">グループ名</p>
+            <p class="col-4"><%= @group.name %></p>
+          </div>
 
-    <p>紹介文</p>
-    <p><%= @group.content %></p>
+          <div class="row mb-10">
+            <p class="col-4">紹介文</p>
+            <p class="col-4"><%= @group.content %></p>
+          </div>
 
-    <p>グループ作成者:  <%= @group.owner.last_name %></p>
-    <p>グループメンバー</p>
-    <% @group.group_users.each do |group_user| %>
-      <p><%= group_user.customer.last_name %></p>
-    <% end %>
+          <div class="row mb-10">
+            <p class="col-4">グループ作成者</p>
+            <p class="col-4"><%= @group.owner.last_name %></p>
+          </div>
 
-    <% if @group.is_owned_by?(current_customer) %>
-      <%= link_to "編集", edit_group_path(@group) %>
-    <% end %>
+          <div class="row mb-10">
+            <p class="col-4">グループメンバー</p>
+            <% @group.group_users.each do |group_user| %>
+              <p class="col-4"><%= group_user.customer.last_name %></p>
+            <% end %>
+
+            <% if @group.is_owned_by?(current_customer) %>
+              <%= link_to "編集", edit_group_path(@group) %>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
 </div>

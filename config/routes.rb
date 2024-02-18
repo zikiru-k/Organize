@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # root to: 'costomer/sessions#new'
+
   # ゲストログイン
   devise_scope :customer do
     post 'customer/guest_sign_in', to: 'public/sessions#guest_sign_in'

@@ -3,6 +3,7 @@ class Public::ItemsController < ApplicationController
 
   def index
     @items = Item.all
+    # @items = Item.where(group_id: params[:group_id])
   end
 
   def show

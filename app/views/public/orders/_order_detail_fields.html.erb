@@ -88,8 +88,9 @@
     $.ajax({
       url: '/items/ajax_show/'+ item_id,
       // url: '/groups/' + params[:group_id] + '/items/ajax_show/' + item_id,
+     //   group_item GET    /groups/:group_id/items/ajax_show/:id(.:format)  public/items#ajax_show
             /* 自サイトのドメインであれば、https://kinocolog.com/ajax/test.html というURL指定も可 */
-      //   group_item GET    /groups/:group_id/items/ajax_show/:id(.:format)  public/items#ajax_show
+
       type: 'GET',
       dataType: 'html'
     }).done(function(data){

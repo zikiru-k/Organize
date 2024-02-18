@@ -3,15 +3,15 @@
 
   <div class="row">
     <div class="col-md-6">
-      <ul>
+      <ul class="list-group">
         <% @order.order_details.each do |detail| %>
-          <li>
-            <%= detail.item.name %>
-            <ul>
-              <li><%= detail.item.code %></li>
-              <li><%= detail.item.site %></li>
-              <li><%= detail.item.capacity %></li>
-              <li><%= detail.amount %></li>
+          <li class="list-group-item mb-3">
+            発注商品：<%= detail.item.name %>
+            <ul class="list-group">
+              <li class="list-group-item">コード：<%= detail.item.code %></li>
+              <li class="list-group-item">購入先サイト：<%= detail.item.site %></li>
+              <li class="list-group-item">内容量：<%= detail.item.capacity %></li>
+              <li class="list-group-item">購入数：<%= detail.amount %></li>
             </ul>
           </li>
 

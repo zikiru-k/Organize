@@ -1,7 +1,8 @@
 class Public::OrdersController < ApplicationController
 
   def index
-    @orders = Order.all
+    # @orders = Order.all
+    @orders = Order.where(group_id: params[:group_id])
   end
 
   def new

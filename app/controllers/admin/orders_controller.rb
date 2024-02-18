@@ -7,6 +7,7 @@ class Admin::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit

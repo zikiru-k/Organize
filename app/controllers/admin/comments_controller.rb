@@ -2,14 +2,15 @@ class Admin::CommentsController < ApplicationController
   before_action :authenticate_admin!
 
   def create
-    order = Order.find(params[:order_id])
-    comment = current_customer.comments.new(comment_params)
-    comment.order_id = order.id
-    comment.save
-    redirect_to admin_group_order_path(order.group_id, order)
+    # order = Order.find(params[:order_id])
+    # comment = current_admin.comments.new(comment_params)
+    # comment.order_id = order.id
+    # comment.save
+    # redirect_to admin_group_order_path(order.group_id, order)
   end
 
   def destroy
+    order = Order.find(params[:order_id])
     Comment.find(params[:id]).destroy
     redirect_to admin_group_order_path(order.group_id, order)
   end
