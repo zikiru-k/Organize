@@ -17,9 +17,9 @@ class Admin::OrdersController < ApplicationController
   def update
     order = Order.find(params[:id])
     if order.update(order_params)
-      redirect_to admin_group_order_path(params[:group_id], order)
+      redirect_to admin_group_order_path(params[:group_id], order), notice: "ステータスを更新しました。"
     else
-      render :edit
+      render :edit, notice: "ステータスの更新に失敗しました。"
     end
   end
 

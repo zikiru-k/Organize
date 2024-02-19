@@ -3,35 +3,42 @@
 
   <div class="row">
     <div class="col-md-6">
-      <ul>
+      <ul class="list-group">
         <% @order.order_details.each do |detail| %>
-          <li>
-            <%= detail.item.name %>
-            <ul>
-              <li><%= detail.item.code %></li>
-              <li><%= detail.item.site %></li>
-              <li><%= detail.item.capacity %></li>
-              <li><%= detail.amount %></li>
+          <li class="list-group-item mb-3">
+            発注商品：<%= detail.item.name %>
+            <ul class="list-group">
+              <li class="list-group-item">コード：<%= detail.item.code %></li>
+              <li class="list-group-item">購入先サイト：<%= detail.item.site %></li>
+              <li class="list-group-item">内容量：<%= detail.item.capacity %></li>
+              <li class="list-group-item">購入数：<%= detail.amount %></li>
             </ul>
           </li>
-
         <% end %>
       </ul>
     </div>
+
     <div class="col-md-6">
       <% @order.comments.each do |comment| %>
-        <div><%= simple_format(comment.content, class: 'm-0') %></div>
-        <%= link_to "削除", admin_group_order_comment_path(params[:group_id], params[:id], comment), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-sm btn-danger" %>
+        <div class="p-2 bg-light text-dark">
+          <%= simple_format(comment.content, class: 'm-0') %>
+        </div>
         <div>
           <small class="text-black-50">
-            <%= comment.customer.full_name %><br>
+            <%= comment.customer.full_name %> /
             <%= mail_to comment.customer.email %>
           </small>
         </div>
-        <div id="bookmark_btn_<%= comment.id %>" class="mt-1 mb-3">
+
+        <div id="bookmark_btn_<%= comment.id %>">
           <%= render "admin/bookmarks/bookmark", comment: comment %>
         </div>
+
+        <div class="mb-3">
+          <%= link_to "削除", admin_group_order_comment_path(params[:group_id], params[:id], comment), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-sm btn-danger" %>
+        </div>
       <% end %>
+
       <div>
         <%= form_with model: [@order, @comment], url: admin_group_order_comments_path(params[:group_id], params[:id]) do |f| %>
           <%= f.text_area :content, rows: '5', placeholder: "コメントをここに" %>

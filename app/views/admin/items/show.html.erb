@@ -1,24 +1,43 @@
 <div class="container">
   <h1>商品詳細</h1>
 
-  <p>商品名</p>
-  <p><%= @item.name %></p>
+  <div class="row d-flex justify-content-center">
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body">
 
-  <p>購入先サイト</p>
-  <p><%= @item.site %></p>
+          <div class="d-flex justify-content-center align-items-center my-3 mb-10">
+            <p class="col-3">商品名：</p>
+            <p class="col-5"><%= @item.name %></p>
+          </div>
 
-  <p>コード</p>
-  <p><%= @item.code %></p>
+          <div class="d-flex justify-content-center align-items-center my-3 mb-10">
+            <p class="col-3">購入先サイト：</p>
+            <p class="col-5"><%= @item.site %></p>
+          </div>
 
-  <p>内容量</p>
-  <p><%= @item.capacity %></p>
+          <div class="d-flex justify-content-center align-items-center my-3 mb-10">
+            <p class="col-3">コード：</p>
+            <p class="col-5"><%= @item.code %></p>
+          </div>
 
-  <p>タグ</p>
-  <ul>
-    <% @item.tags.each do |tag| %>
-      <li>
-        <%= link_to tag.name, admin_group_tag_path(params[:group_id], tag) %>
-      </li>
-    <% end %>
-  </ul>
+          <div class="d-flex justify-content-center align-items-center my-3 mb-10">
+            <p class="col-3">内容量：</p>
+            <p class="col-5"><%= @item.capacity %></p>
+          </div>
+
+          <div class="d-flex justify-content-center align-items-center my-3 mb-10">
+            <p class="col-3">タグ：</p>
+            <ul class="cp_list d-flex justify-content-start col-5">
+              <% @item.tags.each do |tag| %>
+                <li>
+                  <%= link_to tag.name, admin_group_tags_path(params[:group_id]) %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

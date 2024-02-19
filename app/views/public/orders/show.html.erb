@@ -36,7 +36,7 @@
 
         <div class="mb-3">
           <% if comment.customer == current_customer %>
-            <%= link_to "削除", group_order_comment_path(params[:group_id], params[:id], comment), method: :delete %>
+            <%= link_to "削除", group_order_comment_path(params[:group_id], params[:id], comment), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-sm btn-danger" %>
           <% end %>
         </div>
       <% end %>

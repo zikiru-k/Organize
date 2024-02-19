@@ -18,11 +18,9 @@ class Admin::ItemsController < ApplicationController
     item = Item.find(params[:id])
     if item.update(item_params)
       item.update_tags(params[:item][:tag])
-      flash[:notice] = "商品登録情報を更新しました。"
-      redirect_to admin_group_item_path(params[:group_id], item)
+      redirect_to admin_group_item_path(params[:group_id], item), notice: "商品登録情報を更新しました。"
     else
-      flash[:notice] = "商品登録情報を更新に失敗しました。"
-      render :edit
+      render :edit, notice: "商品登録情報を更新に失敗しました。"
     end
   end
 

@@ -34,7 +34,7 @@
                 <% item.tags.each do |tag| %>
                   <%# タグを展開 %>
                   <li>
-                    <%= link_to tag.name, group_tag_path(params[:group_id], tag) %>
+                    <%= link_to tag.name, group_tags_path(params[:group_id]) %>
                   </li>
                   <%= link_to group_tag_path(params[:group_id], tag), method: :delete do %>
                     <i class="fa-solid fa-circle-xmark" aria-hidden style="color: red;"></i>

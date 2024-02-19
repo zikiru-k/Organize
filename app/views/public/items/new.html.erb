@@ -2,9 +2,9 @@
   <h1>商品登録</h1>
 
   <%= form_with model: @item, url: group_items_path, method: :post, local: true do |f| %>
-    <div class="card">
-      <div class="card-body d-flex flex-column">
-        <form class="form-horizontal d-flex justify-content-center">
+    <form class="form-horizontal d-flex justify-content-center">
+      <div class="card">
+        <div class="card-body d-flex flex-column">
           <div class="form-group my-3 d-flex justify-content-center align-items-center">
             <%= f.label :name, "商品名：", class:"col-sm-2 m-0 control-label" %>
             <div class="col-sm-5">
@@ -45,8 +45,8 @@
           <div class="text-center mt-3">
             <%= f.submit :"商品登録", class: "btn btn-info" %>
           </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </form>
   <% end %>
 </div>

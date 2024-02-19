@@ -1,7 +1,9 @@
 <div class="container">
   <h1>発注/在庫状況</h1>
-  <%= link_to "登録済み商品", admin_group_items_path(params[:group_id]) %>
-  <%= link_to "タグ一覧", admin_group_tags_path(params[:group_id]) %>
+  <div class="d-flex justify-content-around">
+    <%= link_to "登録済み商品", admin_group_items_path(params[:group_id]), class:"btn btn-primary" %>
+    <%= link_to "タグ一覧", admin_group_tags_path(params[:group_id]), class:"btn btn-primary" %>
+  </div>
 
   <%# 現在の登録数を表示する。“#{}”は、Rubyの式展開 %>
   <%#= "登録アルバム数 : #{@orders.count}" %>
@@ -11,11 +13,20 @@
     <%# @ordersにデータがない場合の表示 %>
     <p>発注情報はありません</p>
   <% else %>
-    <%# @ordersにレコードがある場合、タイトルを表示する %>
-    <% @orders.each do |order| %>
-      <p>
-        <%= link_to order.created_at.in_time_zone('Asia/Tokyo').strftime('%Y年%m月%d日 %H時%M分'), admin_group_order_path(order.group_id, order) %>
-      </p>
-    <% end %>
+    <div class="d-flex justify-content-center">
+      <table class="table table-bordered mt-3" style="width: 80%">
+        <thead class="text-center thead-light">
+          <th style="width: 50%">発注日</th>
+          <th style="width: 50%">発注状況</th>
+        </thead>
+        <%# @ordersにレコードがある場合、タイトルを表示する %>
+        <% @orders.each do |order| %>
+          <tbody class="text-center bg-white">
+            <td style="width: 50%"><%= link_to order.created_at.in_time_zone('Asia/Tokyo').strftime('%Y年%m月%d日 %H時%M分'), admin_group_order_path(order.group_id, order) %></td>
+            <td style="width: 50%"><%= order.stats_i18n %></td>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
   <% end %>
 </div>

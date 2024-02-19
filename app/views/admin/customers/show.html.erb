@@ -1,18 +1,54 @@
 <div class="container">
   <h1>会員詳細</h1>
 
-  <p>会員ID</p>
-  <%= @customer.id %>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="col-4">会員ID：</p>
+            <p class="col-4"><%= @customer.id %></p>
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="col-4">氏名：</p>
+            <p class="col-4"><%= @customer.full_name %></p>
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="col-4">メールアドレス：</p>
+            <p class="col-4"><%= @customer.email %></p>
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="col-4">電話番号：</p>
+            <p class="col-4"><%= @customer.telephone_number %></p>
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="col-4">ステータス：</p>
+            <p class="col-4">
+              <% if @customer.is_active? %>
+                <span class="badge badge-primary">有効</span>
+              <% else %>
+                <span class="badge badge-secondary">退会済</span>
+              <% end %>
+            </p>
+          </div>
+          <div class="text-center">
+            <%= link_to "編集", edit_admin_customer_path, class:"btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <p>氏名</p>
-  <%= @customer.full_name %>
-
-  <p>ステータス</p>
-  <% if @customer.is_active? %>
-    <p class="text-center">有効</p>
-  <% else %>
-    <p class="text-center text-success">退会済</p>
-  <% end %>
-
-  <%= link_to "編集", edit_admin_customer_path %>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <p>参加中のグループ</p>
+          <ul>
+            <% @customer.groups.each do |group| %>
+              <li><%= group.name %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,33 +1,50 @@
 <div class="container">
   <h1>登録済み商品</h1>
+  <div class="d-flex justify-content-around">
+    <%= search_form_for @q, url: search_admin_group_items_path(params[:group_id]) do |f| %>
+      <%= f.search_field :name_cont, placeholder:"キーワードを入力" %>
+      <%= f.submit '検索' %>
+    <% end %>
+  </div>
 
-  <%= search_form_for @q, url: search_admin_group_items_path(params[:group_id]) do |f| %>
-    <%= f.label :name_cont, '商品検索' %>
-    <%= f.search_field :name_cont %>
-    <%= f.submit '検索' %>
-  <% end %>
-
-  <% @items.each do |item| %>
-    <div>
-      <p>商品名</p>
-      <p><%= link_to item.name, admin_group_item_path(params[:group_id], item) %></p>
-
-      <p>購入先サイト</p>
-      <p><%= item.site %></p>
-
-      <p>コード</p>
-      <p><%= item.code %></p>
-
-      <p>タグ</p>
-      <ul>
-        <%# 該当のPostからアソシエーションでタグを取得 %>
-        <% item.tags.each do |tag| %>
-          <%# タグを展開 %>
-          <li>
-            <%= link_to tag.name, admin_group_tag_path(params[:group_id], tag) %>
-          </li>
+  <%# @ordersでレコードが1件もない場合の分岐 %>
+  <% if @items.count == 0 %>
+    <%# @ordersにデータがない場合の表示 %>
+    <p>登録商品はありません</p>
+  <% else %>
+    <div class="d-flex justify-content-center">
+      <table class="table table-bordered mt-3">
+        <thead class="text-center thead-light">
+          <th>商品名</th>
+          <th>購入先サイト</th>
+          <th>コード</th>
+          <th>内容量</th>
+          <th>タグ</th>
+        </thead>
+        <% @items.each do |item| %>
+          <tbody class="text-center bg-white">
+            <td><%= link_to item.name, admin_group_item_path(params[:group_id], item) %></td>
+            <td><%= item.site %></td>
+            <td ><%= item.code %></td>
+            <td><%= item.capacity %></td>
+            <td class="p-1">
+              <ul class="cp_list d-flex justify-content-start">
+                <%# 該当のPostからアソシエーションでタグを取得 %>
+                <% item.tags.each do |tag| %>
+                  <%# タグを展開 %>
+                  <li>
+                    <%= link_to tag.name, admin_group_tags_path(params[:group_id]) %>
+                  </li>
+                  <%= link_to admin_group_tag_path(params[:group_id], tag), method: :delete do %>
+                    <i class="fa-solid fa-circle-xmark" aria-hidden style="color: red;"></i>
+                  <% end %>
+                <% end %>
+              </ul>
+            </td>
+          </tbody>
         <% end %>
-      </ul>
+      </table>
     </div>
   <% end %>
 </div>
+

@@ -2,21 +2,34 @@
   <h1>グループ一覧</h1>
 
   <div class="row">
-    <div class="col-3">
-      <div class="card my-3 text-center">
-        <div class="card-body">
-          <% @groups.each do |group| %>
-            <div>
-              <p>グループ名</p>
-              <p><%= link_to group.name, admin_group_orders_path(group) %></p>
-              <p>紹介文</p>
-              <p><%= group.content %></p>
-              <p><%= link_to "グループ詳細", admin_group_path(group) %></p>
-              <%= link_to "編集", edit_admin_group_path(group) %>
+    <% @groups.each do |group| %>
+      <div class="col-4">
+          <div class="card my-3 text-center">
+            <div class="card-body">
+              <div>
+                <p class="border-bottom border-black mb-1">グループ名</p>
+                <p class="card-text"><%= link_to group.name, admin_group_path(group) %></p>
+
+                <p class="border-bottom border-black mb-1">紹介文</p>
+                <p class="card-text"><%= group.content %></p>
+
+                <p class="border-bottom border-black mb-1">グループ作成者</p>
+                <p class="card-text"><%= group.owner.last_name %></p>
+
+                <p class="border-bottom border-black mb-1">グループメンバー</p>
+                <p class="card-text">
+                  <% group.group_users.each do |group_user| %>
+                    <small><%= group_user.customer.last_name %></small>
+                  <% end %>
+                </p>
+
+                <p><%= link_to "発注詳細", admin_group_orders_path(group) %></p>
+                <%= link_to "編集", edit_admin_group_path(group), class:"btn btn-success btn-sm" %>
+              </div>
             </div>
-          <% end %>
-        </div>
+          </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
+

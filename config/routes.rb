@@ -34,7 +34,7 @@ Rails.application.routes.draw do
           get 'search'
         end
       end
-      resources :tags, only: [:index, :show, :destroy]
+      resources :tags, only: [:index, :destroy]
     end
     resources :customers, only: [:index, :show, :edit, :update]
   end
