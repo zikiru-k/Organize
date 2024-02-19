@@ -10,17 +10,20 @@
           <div class="card my-3 text-center">
             <div class="card-body">
               <div>
-                <p class="mb-1">グループ名</p>
-                <p><%= link_to group.name, group_orders_path(group) %></p>
-                <p class="mb-1">紹介文</p>
-                <p><%= group.content %></p>
-                <p><%= link_to "グループ詳細", group_path(group) %></p>
+                <p class="card-title mb-1">グループ名</p>
+                <p class="card-text"><%= link_to group.name, group_path(group) %></p>
+
+                <p class="card-title mb-1">紹介文</p>
+                <p class="card-text"><%= group.content %></p>
+
+                <p><%= link_to "発注詳細", group_orders_path(group) %></p>
+
                 <% if group.is_owned_by?(current_customer) %>
-                  <%= link_to "編集", edit_group_path(group) %>
+                  <%= link_to "編集", edit_group_path(group), class:"btn btn-success btn-sm" %>
                 <% elsif group.include_customer?(current_customer) %>
-                  <%= link_to "退会", group_group_users_path(group), method: :delete %>
+                  <%= link_to "退会", group_group_users_path(group), method: :delete, class:"btn btn-danger btn-sm" %>
                 <% else %>
-                  <%= link_to "参加", group_group_users_path(group), method: :post %>
+                  <%= link_to "参加", group_group_users_path(group), method: :post, class:"btn btn-primary btn-sm" %>
                 <% end %>
               </div>
             </div>

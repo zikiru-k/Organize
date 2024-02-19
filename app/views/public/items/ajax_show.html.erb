@@ -1,11 +1,14 @@
-<p>商品名</p>
-<p><%= @item.name %></p>
+<div class="d-flex align-items-center my-3 mb-10">
+  <p class="col-4 p-0 m-0">購入先サイト：</p>
+  <p class="m-0"><%= @item.site %></p>
+</div>
 
-<p>購入先サイト</p>
-<p><%= @item.site %></p>
+<div class="d-flex align-items-center my-3 mb-10">
+  <p class="col-4 p-0 m-0">コード：</p>
+  <p class="m-0"><%= @item.code %></p>
+</div>
 
-<p>コード</p>
-<p><%= @item.code %></p>
-
-<p>内容量</p>
-<p><%= @item.capacity %></p>
+<div class="d-flex align-items-center my-3 mb-10">
+  <p class="col-4 p-0 m-0">内容量：</p>
+  <p class="m-0"><%= @item.capacity %></p>
+</div>

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # root to: 'costomer/sessions#new'
 
   # ゲストログイン
   devise_scope :customer do
@@ -58,7 +57,7 @@ Rails.application.routes.draw do
         end
       end
       get "items/ajax_show/:id" , to: "items#ajax_show"
-      resources :tags, only: [:index, :show, :destroy]
+      resources :tags, only: [:index, :destroy]
     end
 
     get "customers/mypage", to: "customers#show"

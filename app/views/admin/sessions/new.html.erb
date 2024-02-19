@@ -2,18 +2,24 @@
   <h1>管理者ログイン</h1>
 
   <%= form_with model: @admin, url: new_admin_session_path, local: true do |f| %>
-    <div class="field">
-      <%= f.label :"メールアドレス",class:"control-label" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" ,placeholder: "sample@example.com",class:"form-control" %>
-    </div>
+    <form class="form-horizontal">
+      <div class="form-group my-3 d-flex justify-content-center align-items-center">
+        <%= f.label :email, "メールアドレス",class:"col-sm-2 control-label" %><br />
+        <div class="col-sm-4">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com",class:" form-control" %>
+        </div>
+      </div>
 
-    <div class="field">
-      <%= f.label :"パスワード6文字以上",class:"control-label" %>
-      <%= f.password_field :password, autocomplete: "new-password",class:"form-control" %>
-    </div>
+      <div class="form-group my-3 d-flex justify-content-center align-items-center">
+        <%= f.label :password, "パスワード",class:"col-sm-2 control-label" %><br />
+        <div class="col-sm-4">
+          <%= f.password_field :password, autocomplete: "current-password",class:"form-control" %>
+        </div>
+      </div>
 
-    <div class="actions">
-      <%= f.submit "ログイン" %>
-    </div>
+      <div class="text-center mt-3 mb-5">
+        <%= f.submit "ログイン", class:"btn btn-info" %>
+      </div>
+    </form>
   <% end %>
 </div>

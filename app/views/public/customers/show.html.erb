@@ -2,20 +2,20 @@
   <h1>マイページ</h1>
   <div class="row">
 
-    <div class="col-md-6">
+    <div class="col-md-8">
       <div class="card">
         <div class="card-body">
-          <div class="row mb-10">
-            <p class="col-4">氏名</p>
-            <p class="col-6"><%= @customer.full_name %></p>
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="col-4">氏名：</p>
+            <p class="col-4"><%= @customer.full_name %></p>
           </div>
-          <div class="row mb-10">
-            <p class="col-4">メールアドレス</p>
-            <p class="col-6"><%= @customer.email %></p>
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="col-4">メールアドレス：</p>
+            <p class="col-4"><%= @customer.email %></p>
           </div>
-          <div class="row mb-10">
-            <p class="col-4">電話番号</p>
-            <p class="col-6"><%= @customer.telephone_number %></p>
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="col-4">電話番号：</p>
+            <p class="col-4"><%= @customer.telephone_number %></p>
           </div>
           <div class="text-center">
             <%= link_to "編集", customers_information_edit_path, class:"btn btn-primary" %>
@@ -24,10 +24,10 @@
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="card">
         <div class="card-body">
-          <p>現在参加中のグループ</p>
+          <p>参加中のグループ</p>
           <ul>
             <% @customer.groups.each do |group| %>
               <li><%= group.name %></li>

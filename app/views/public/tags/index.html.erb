@@ -1,11 +1,23 @@
 <div class="container">
   <h1>タグ一覧</h1>
-  <ul>
+
+  <div class="row">
     <% @tags.each do |tag| %>
-      <li>
-        <%# タグの名前と、関連付く記事数を表示 %>
-        <%= link_to "#{tag.name} ( 登録商品: #{tag.items.count} )", group_tag_path(params[:group_id], tag) %>
-      </li>
+      <div class="col-md-3">
+        <ul class="list-group">
+          <li class="list-group-item mb-3">
+            <%# タグの名前と、関連付く記事数を表示 %>
+            <%= "#{tag.name} ( 登録商品: #{tag.items.count} )" %>
+            <ul class="list-group">
+              <% tag.items.each do |item| %>
+                <li class="list-group-item">
+                  <%= link_to item.name, group_item_path(params[:group_id], item) %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      </div>
     <% end %>
-  </ul>
+  </div>
 </div>
