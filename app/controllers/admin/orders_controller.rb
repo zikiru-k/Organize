@@ -2,7 +2,7 @@ class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @orders = Order.all
+    @orders = Order.where(group_id: params[:group_id])
   end
 
   def show
@@ -10,14 +10,10 @@ class Admin::OrdersController < ApplicationController
     @comment = Comment.new
   end
 
-  def edit
-    @order = Order.find(params[:id])
-  end
-
   def update
     order = Order.find(params[:id])
     if order.update(order_params)
-      redirect_to admin_group_order_path(params[:group_id], order), notice: "ステータスを更新しました。"
+      redirect_to admin_group_orders_path(params[:group_id]), notice: "ステータスを更新しました。"
     else
       render :edit, notice: "ステータスの更新に失敗しました。"
     end

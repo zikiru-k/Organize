@@ -1,8 +1,12 @@
 class Public::OrdersController < ApplicationController
 
   def index
-    # @orders = Order.all
     @orders = Order.where(group_id: params[:group_id])
+  end
+
+  def show
+    @order = Order.find(params[:id])
+    @comment = Comment.new
   end
 
   def new
@@ -35,11 +39,6 @@ class Public::OrdersController < ApplicationController
     end
   end
 
-  def show
-    @order = Order.find(params[:id])
-    @comment = Comment.new
-  end
-
   private
 
   def order_params
@@ -51,21 +50,3 @@ class Public::OrdersController < ApplicationController
     params.require(:order).permit(order_details_attributes: [:id, :item_id, :amount, :_destroy]).merge(group_id: params[:group_id])
   end
 end
-
-  # def edit
-  #   @order = Order.find(params[:id])
-  # end
-
-  # def update
-  #   @order = Order.find(params[:id])
-  #   if @order.update(order_params)
-  #     redirect_to order_path(params[:id])
-  #   else
-  #     render :edit
-  #   end
-  # end
-
-  # def destroy
-  #   Order.destroy(params[:id])
-  #   redirect_to orders_path
-  # end

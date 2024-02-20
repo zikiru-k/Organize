@@ -3,6 +3,6 @@
     order:
       stats:
         not_ordered: 未発注
-        order: 発注中
+        ordered: 発注中
         delivered: 配達済み
         cancel: 配達中止

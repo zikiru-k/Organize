@@ -2,20 +2,19 @@
   <h1>グループ新規登録</h1>
 
   <%= form_with model: @group, url: groups_path, method: :post, local: true do |f| %>
-    <form class="form-horizontal d-flex justify-content-center">
-      <div class="card col-7">
+    <form class="form-horizontal">
+      <div class="card col-8 d-flex justify-content-center">
         <div class="card-body">
-
           <div class="form-group my-3 d-flex justify-content-center align-items-center">
             <%= f.label :name, "グループ名：", class:"col-sm-3 m-0 control-label" %>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
               <%= f.text_field :name, class:"form-control" %>
             </div>
           </div>
 
           <div class="form-group my-3 d-flex justify-content-center align-items-center">
             <%= f.label :content, "紹介文：", class:"col-sm-3 m-0 control-label" %>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
               <%= f.text_area :content, class:"form-control" %>
             </div>
           </div>
@@ -23,7 +22,6 @@
           <div class="d-flex justify-content-around mt-3">
             <%= f.submit :"グループ作成", class: "btn btn-info" %>
           </div>
-
         </div>
       </div>
     </form>

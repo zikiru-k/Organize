@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>商品編集</h1>
+    <p>商品名:</p><%= @item.name %>
+    <p>購入先サイト:</p><%= @item.site %>
+    <p>コード:</p><%= @item.code %>
+    <p>内容量:</p><%= @item.capacity %>
+  <%= form_with model: @item, url: group_item_path(params[:group_id], @item), method: :patch, local: true do |f| %>
+
+    <div class="form-group">
+      <%# Edit用にf.tags.pluck(:name)でタグの配列を取得 %>
+      <%= f.text_field :tag, value: @item.tags.pluck(:name) %><br>
+      <small>スペースで区切ることで複数指定できます。</small><br>
+    </div>
+
+    <div>
+      <%= f.submit "変更" %>
+    </div>
+  <% end %>
+</div>

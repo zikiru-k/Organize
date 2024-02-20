@@ -29,21 +29,29 @@ class Public::ItemsController < ApplicationController
     end
   end
 
-  # def edit
-  #   @post = Post.find_by(id: params[:id])
-  #   @tag_list = @post.tags.pluck(:tag_name).join(',')
+  def edit
+    @item = Item.find(params[:id])
+    # @tag = @item.tags.pluck(:name).join(' ')
+  end
+
+  # def update
+  #   item = Item.find_by(id: params[:id])
+  #   tag = params[:item][:tag].split(' ')
+  #   if item.update(tag: tag)
+  #     flash[:notice] = 'タグを追加できました'
+  #   else
+  #     flash[:notice] = 'タグの追加に失敗しました'
+  #   end
+  #   redirect_to request.referer
   # end
-# <i class="fa-solid fa-circle-plus" aria-hidden style="color: orange;"></i>
+
   def update
-    item = Item.find_by(id: params[:id])
-    tag = params[:item][:tag].split(nil)
-    if item.save
-      item.save_tag(tag)
-      flash[:notice] = 'タグを追加できました'
-      redirect_to request.referer
+    item = Item.find(params[:id])
+    if item.update(item_params)
+      item.save_tags(params[:item][:tag])
+      redirect_to group_items_path(params[:group_id])
     else
-      flash[:notice] = 'タグの追加に失敗しました'
-      redirect_to request.referer
+      render :edit
     end
   end
 
