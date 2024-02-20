@@ -5,7 +5,6 @@ class Public::BookmarksController < ApplicationController
     bookmark = current_customer.bookmarks.new(comment_id: @comment.id)
     bookmark.save
     render 'btn'
-    # redirect_to request.referer
   end
 
   def destroy
@@ -13,6 +12,5 @@ class Public::BookmarksController < ApplicationController
     bookmark = current_customer.bookmarks.find_by(comment_id: @comment.id)
     bookmark.destroy
     render 'btn'
-    # redirect_to request.referer
   end
 end

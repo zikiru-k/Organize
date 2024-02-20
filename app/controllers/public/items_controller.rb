@@ -1,9 +1,13 @@
 class Public::ItemsController < ApplicationController
-  before_action :set_q, only: [:index, :search]
+  before_action :set_q, only: [:index, :favorite_index, :search]
 
   def index
-    @items = Item.all
-    # @items = Item.where(group_id: params[:group_id])
+    @items = Item.where(group_id: params[:group_id])
+  end
+
+  def favorite_index
+    favorites = Favorite.where(customer_id: current_customer.id).pluck(:item_id)
+    @items = Item.find(favorites)
   end
 
   def show
@@ -62,7 +66,7 @@ class Public::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :code, :capacity, :site)
+    params.require(:item).permit(:name, :code, :capacity, :site).merge(group_id: params[:group_id])
   end
 
   def set_q

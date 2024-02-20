@@ -30,7 +30,7 @@
           <p>参加中のグループ</p>
           <ul>
             <% @customer.groups.each do |group| %>
-              <li><%= group.name %></li>
+              <li><%= link_to group.name, group_orders_path(group) %></li>
             <% end %>
           </ul>
         </div>

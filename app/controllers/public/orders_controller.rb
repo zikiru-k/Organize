@@ -26,7 +26,9 @@ class Public::OrdersController < ApplicationController
             item.code = params[:new_items][:code][index]
             item.capacity = params[:new_items][:capacity][index]
             item.site = params[:new_items][:site][index]
+            item.group_id = params[:group_id]
           end
+
           @order.order_details.create(item_id: item.id, amount:  params[:new_items][:amount][index])
         end
 

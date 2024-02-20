@@ -1,11 +1,12 @@
 class Item < ApplicationRecord
   has_many :order_details, dependent: :destroy
   has_many :order_tag_relations, dependent: :destroy
-  # throughを利用して、order_tag_relationsを通してtagsとの関連付け(中間テーブル)
-  #   Item.tagsとすれば、Itemに紐付けられたTagの取得が可能
   has_many :tags, through: :order_tag_relations
+  has_many :favorites, dependent: :destroy
+  belongs_to :group
 
   def save_tags(tags)
+
     # タグをスペース区切りで分割し配列にする
     #   連続した空白も対応するので、最後の“+”がポイント
     tag_list = tags.split(/[[:blank:]]+/)
@@ -35,15 +36,20 @@ class Item < ApplicationRecord
     new_tags.each do |new|
       # 条件のレコードを初めの1件を取得し1件もなければ作成する
       # find_or_create_by : https://railsdoc.com/page/find_or_create_by
-      new_post_tag = Tag.find_or_create_by(name: new)
+      new_item_tag = Tag.find_or_create_by(name: new)
 
-      # tag_mapsテーブルにpost_idとtag_idを保存
+      # tag_mapsテーブルにitem_idとtag_idを保存
       #   配列追加のようにレコードを渡すことで新規レコード作成が可能
-      self.tags << new_post_tag
+      self.tags << new_item_tag
     end
+
   end
 
   def self.ransackable_attributes(auth_object = nil)
     ["capacity", "code", "created_at", "id", "name", "order_tag_relation_id", "site", "updated_at"]
+  end
+
+  def favorite_by?(customer)
+    favorites.exists?(customer_id: customer.id)
   end
 end

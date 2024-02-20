@@ -51,10 +51,12 @@ Rails.application.routes.draw do
           resource :bookmarks, only: [:create, :destroy]
         end
       end
+      get "items/favorite_index" , to: "items#favorite_index"
       resources :items do
         collection do
           get 'search'
         end
+        resource :favorites, only: [:create, :destroy]
       end
       get "items/ajax_show/:id" , to: "items#ajax_show"
       resources :tags, only: [:index, :destroy]
