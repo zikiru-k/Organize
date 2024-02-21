@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_customer!,except: [:top]
+  before_action :ensure_guest_customer
 
   def create
     order = Order.find(params[:order_id])
@@ -18,5 +20,11 @@ class Public::CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content)
+  end
+
+  def ensure_guest_customer
+   if current_customer.guest_customer?
+     redirect_to top_path, notice: "新規登録をしてください。"
+   end
   end
 end

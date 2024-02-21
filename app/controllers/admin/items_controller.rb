@@ -3,7 +3,7 @@ class Admin::ItemsController < ApplicationController
   before_action :set_q, only: [:index, :search]
 
   def index
-    @items = Item.all
+    @items = Item.where(group_id: params[:group_id])
   end
 
   def show
@@ -17,7 +17,7 @@ class Admin::ItemsController < ApplicationController
   def update
     item = Item.find(params[:id])
     if item.update(item_params)
-      item.update_tags(params[:item][:tag])
+      item.save_tags(params[:item][:tag])
       redirect_to admin_group_item_path(params[:group_id], item), notice: "商品登録情報を更新しました。"
     else
       render :edit, notice: "商品登録情報を更新に失敗しました。"
@@ -36,7 +36,7 @@ class Admin::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :code, :capacity, :site)
+    params.require(:item).permit(:name, :code, :capacity, :site).merge(group_id: params[:group_id])
   end
 
   def set_q

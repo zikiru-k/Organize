@@ -23,8 +23,8 @@
       <%= render 'order_detail_fields', f: order_detail %>
     <% end %>
   </div>
-
 </div>
-<div class="field">
-  <%= order.submit '発注' %>
+
+<div class="field d-flex justify-content-around mt-5">
+  <%= order.submit '発注', class:"btn btn-primary" %>
 </div>

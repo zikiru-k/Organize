@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!,except: [:top]
+  before_action :ensure_guest_customer
 
   def index
     @orders = Order.where(group_id: params[:group_id])
@@ -50,5 +52,11 @@ class Public::OrdersController < ApplicationController
     # モデル名_attributesが子のモデルに保存する要素
     #   :id, :_destroyをつけることで、編集と削除が可能になる
     params.require(:order).permit(order_details_attributes: [:id, :item_id, :amount, :_destroy]).merge(group_id: params[:group_id])
+  end
+
+  def ensure_guest_customer
+   if current_customer.guest_customer?
+     redirect_to top_path, notice: "新規登録をしてください。"
+   end
   end
 end

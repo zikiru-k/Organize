@@ -1,8 +1,8 @@
 <div class="container">
   <h1>登録済み商品</h1>
   <div class="d-flex justify-content-around">
-    <%= link_to "商品登録", new_group_item_path, class:"btn btn-primary" %>
-    <%= link_to "お気に入り商品", group_items_favorite_index_path(params[:group_id]), class:"btn btn-primary" %>
+    <%= link_to "商品を登録", new_group_item_path, class:"btn btn-primary" %>
+    <%= link_to "お気に入り", group_items_favorite_index_path(params[:group_id]), class:"btn btn-primary" %>
     <%= search_form_for @q, url: search_group_items_path(params[:group_id]) do |f| %>
       <%= f.search_field :name_cont, placeholder:"キーワードを入力" %>
       <%= f.submit '検索' %>
@@ -62,4 +62,8 @@
       </table>
     </div>
   <% end %>
+
+  <div class="d-flex justify-content-around">
+    <%= link_to "注文履歴に戻る", group_orders_path(params[:group_id]), class:"btn btn-secondary" %>
+  </div>
 </div>

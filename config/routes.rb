@@ -1,9 +1,12 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do\
 
   # ゲストログイン
   devise_scope :customer do
     post 'customer/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
+  # devise_for :customer, controllers: {
+  #   registrations: 'customer/registrations'
+  # }
 
   devise_for :users
 

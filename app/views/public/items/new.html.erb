@@ -42,8 +42,9 @@
             </div>
           </div>
 
-          <div class="text-center mt-3">
-            <%= f.submit :"商品登録", class: "btn btn-info" %>
+          <div class="d-flex justify-content-around text-center mt-3">
+            <%= link_to "登録しない", group_items_path(params[:group_id]), class:"btn btn-secondary" %>
+            <%= f.submit "登録する", class: "btn btn-info" %>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 class Public::GroupsController < ApplicationController
-  # before_action :authenticate_customer!
-  before_action :ensure_current_customer, only:[:edit, :update]
+  before_action :authenticate_customer!,except: [:top]
+  before_action :ensure_current_customer_owner, only:[:edit, :update]
+  before_action :ensure_guest_customer, only:[:show, :new, :create, :edit, :update]
 
   def index
     @groups = Group.all
@@ -42,10 +43,16 @@ class Public::GroupsController < ApplicationController
     params.require(:group).permit(:name, :content)
   end
 
-  def ensure_current_customer
+  def ensure_current_customer_owner
     @group = Group.find(params[:id])
     unless @group.owner_id == current_customer.id
       redirect_to groups_path
     end
+  end
+
+  def ensure_guest_customer
+   if current_customer.guest_customer?
+     redirect_to top_path, notice: "新規登録をしてください。"
+   end
   end
 end

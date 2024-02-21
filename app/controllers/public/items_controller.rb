@@ -1,5 +1,7 @@
 class Public::ItemsController < ApplicationController
+  before_action :authenticate_customer!,except: [:top]
   before_action :set_q, only: [:index, :favorite_index, :search]
+  before_action :ensure_guest_customer
 
   def index
     @items = Item.where(group_id: params[:group_id])
@@ -71,5 +73,11 @@ class Public::ItemsController < ApplicationController
 
   def set_q
     @q = Item.ransack(params[:q])
+  end
+
+  def ensure_guest_customer
+   if current_customer.guest_customer?
+     redirect_to top_path, notice: "新規登録をしてください。"
+   end
   end
 end

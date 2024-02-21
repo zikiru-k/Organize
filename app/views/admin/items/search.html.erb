@@ -1,6 +1,7 @@
 <div class="container">
 <div class="container">
   <h1>検索結果</h1>
+
   <% @results.each do |result| %>
     <div class="row d-flex justify-content-center">
       <div class="col-8">
@@ -42,4 +43,8 @@
       </div>
     </div>
   <% end %>
+
+  <div class="d-flex justify-content-around">
+    <%= link_to "注文履歴に戻る", admin_group_orders_path(params[:group_id]), class:"btn btn-primary" %>
+  </div>
 </div>

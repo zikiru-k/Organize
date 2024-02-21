@@ -2,34 +2,53 @@
   <h1>商品編集</h1>
 
   <%= form_with model: @item, url: admin_group_item_path(params[:group_id], @item), method: :patch, local: true do |f| %>
-    <div class="form-group">
-      <%= f.label :name, "商品名", class:"control-label" %>
-      <%= f.text_field :name, class:"form-control" %>
-    </div>
+    <form class="form-horizontal">
+      <div class="card">
+        <div class="card-body">
 
-    <div class="form-group">
-      <%= f.label :site, "購入先サイト", class:"control-label" %>
-      <%= f.text_field :site, class:"form-control" %>
-    </div>
+          <div class="form-group my-3 d-flex justify-content-center align-items-center">
+            <%= f.label :name, "商品名：", class:"col-sm-2 m-0 control-label" %>
+            <div class="col-sm-4">
+              <%= f.text_field :name, class:"form-control" %>
+            </div>
+          </div>
 
-    <div class="form-group">
-      <%= f.label :code, "コード", class:"control-label" %>
-      <%= f.text_field :code, class:"form-control" %>
-    </div>
+          <div class="form-group my-3 d-flex justify-content-center align-items-center">
+            <%= f.label :site, "購入先サイト：", class:"col-sm-2 m-0 control-label" %>
+            <div class="col-sm-4">
+              <%= f.text_field :site, class:"form-control" %>
+            </div>
+          </div>
 
-    <div class="form-group">
-      <%= f.label :capacity, "内容量", class:"control-label" %>
-      <%= f.text_field :capacity, class:"form-control" %>
-    </div>
+          <div class="form-group my-3 d-flex justify-content-center align-items-center">
+            <%= f.label :code, "コード：", class:"col-sm-2 m-0 control-label" %>
+            <div class="col-sm-4">
+              <%= f.text_field :code, class:"form-control" %>
+            </div>
+          </div>
 
-    <div class="form-group">
-      <%# Edit用にf.tags.pluck(:name)でタグの配列を取得 %>
-      <%= f.text_field :tag, value: @item.tags.pluck(:name) %><br>
-      <small>スペースで区切ることで複数指定できます。</small><br>
-    </div>
+          <div class="form-group my-3 d-flex justify-content-center align-items-center">
+            <%= f.label :capacity, "内容量：", class:"col-sm-2 m-0 control-label" %>
+            <div class="col-sm-4">
+              <%= f.text_field :capacity, class:"form-control" %>
+            </div>
+          </div>
 
-    <div>
-      <%= f.submit "変更" %>
-    </div>
+          <div class="form-group my-3 d-flex justify-content-center align-items-center">
+            <%= f.label :tag, "タグ：", class:"col-sm-2 m-0 control-label" %>
+            <div class="col-sm-4">
+              <%# Edit用にf.tags.pluck(:name)でタグの配列を取得 %>
+              <%= f.text_field :tag, value: @item.tags.pluck(:name).join(' '), class:"form-control" %><br>
+              <small>スペースで区切ることで複数指定できます。</small>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-around mt-3">
+            <%= link_to "変更しない", admin_group_orders_path(params[:group_id]), class:"btn btn-secondary" %>
+            <%= f.submit :"変更する", class: "btn btn-success" %>
+          </div>
+        </div>
+      </div>
+    </form>
   <% end %>
 </div>

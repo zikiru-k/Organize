@@ -23,11 +23,16 @@ class Customer < ApplicationRecord
     last_name + " " + first_name
   end
 
+  GUEST_MEMBER_EMAIL = "guest@example.com"
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |customer|
+    find_or_create_by!(email: GUEST_MEMBER_EMAIL) do |customer|
       customer.password = SecureRandom.urlsafe_base64
       # customer.confirmed_at = Time.now  # Confirmable を使用している場合は必要
       # 例えば name を入力必須としているならば， customer.name = "ゲスト" なども必要
     end
+  end
+
+  def guest_customer?
+    email == GUEST_MEMBER_EMAIL
   end
 end
