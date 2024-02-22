@@ -6,3 +6,11 @@
         ordered: 発注中
         delivered: 配達済み
         cancel: 配達中止
+    order_detail:
+      stock_stats:
+        not_ordered: 未発注
+        ordered: 発注中
+        delivered: 配達済み
+        cancel: 配達中止
+        in_stock: 在庫あり
+        no_stock: 在庫切れ

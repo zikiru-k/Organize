@@ -43,6 +43,15 @@ class Public::OrdersController < ApplicationController
     end
   end
 
+  def update
+    order = Order.find(params[:id])
+    if order.update(order_stats_params)
+      redirect_to group_orders_path(params[:group_id]), notice: "ステータスを更新しました。"
+    else
+      render :inde, notice: "ステータスの更新に失敗しました。"
+    end
+  end
+
   private
 
   def order_params
@@ -52,6 +61,10 @@ class Public::OrdersController < ApplicationController
     # モデル名_attributesが子のモデルに保存する要素
     #   :id, :_destroyをつけることで、編集と削除が可能になる
     params.require(:order).permit(order_details_attributes: [:id, :item_id, :amount, :_destroy]).merge(group_id: params[:group_id])
+  end
+
+  def order_stats_params
+    params.require(:order).permit(:stats)
   end
 
   def ensure_guest_customer

@@ -4,6 +4,8 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = current_customer
+    @created_groups = Group.where(owner_id: current_customer.id)
+    @join_groups = @customer.group_users
   end
 
   def edit

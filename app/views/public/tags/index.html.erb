@@ -1,25 +1,29 @@
 <div class="container">
   <h1>タグ一覧</h1>
-
   <div class="row">
-    <% @tags.each do |tag| %>
-      <div class="col-md-3">
-        <ul class="list-group">
-          <li class="list-group-item mb-3">
-            <%# タグの名前と、関連付く記事数を表示 %>
-            <%= "#{tag.name} ( 登録商品: #{tag.items.count} )" %>
-            <ul class="list-group">
-              <% tag.items.each do |item| %>
-                <li class="list-group-item">
-                  <%= link_to item.name, group_item_path(params[:group_id], item) %>
-                </li>
-              <% end %>
-            </ul>
-          </li>
-        </ul>
-      </div>
+    <% if @tags.count == 0 %>
+      <p class="text-center m-5">登録商品はありません</p>
+    <% else %>
+      <% @tags.each do |tag| %>
+        <div class="col-md-3">
+          <ul class="list-group" style="border-radius: 20px 20px 20px 20px;">
+            <li class="list-group-item mb-3">
+              <%# タグの名前と、関連付く記事数を表示 %>
+              <%= "#{tag.name} ( 登録商品: #{tag.items.count} )" %>
+              <ul class="list-group">
+                <% tag.items.each do |item| %>
+                  <li class="list-group-item">
+                    <%= link_to item.name, group_item_path(params[:group_id], item) %>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      <% end %>
     <% end %>
   </div>
+
   <div class="d-flex justify-content-around">
     <%= link_to "商品一覧に戻る", group_items_path(params[:group_id]), class:"btn btn-secondary" %>
   </div>

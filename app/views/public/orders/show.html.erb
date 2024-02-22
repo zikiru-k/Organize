@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="col-md-6">
-      <ul class="list-group">
+      <ul class="list-group" style="border-radius: 20px 20px 20px 20px;">
         <% @order.order_details.each do |detail| %>
           <li class="list-group-item mb-3">
             発注商品：<%= detail.item.name %>
@@ -51,6 +51,6 @@
   </div>
 
   <div class="d-flex justify-content-around mt-5">
-    <%= link_to "注文履歴に戻る", group_orders_path(params[:group_id]), class:"btn btn-primary" %>
+    <%= link_to "注文履歴に戻る", group_orders_path(params[:group_id]), class:"btn btn-secondary" %>
   </div>
 </div>

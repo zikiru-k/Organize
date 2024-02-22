@@ -15,7 +15,7 @@ class Admin::OrdersController < ApplicationController
     if order.update(order_params)
       redirect_to admin_group_orders_path(params[:group_id]), notice: "ステータスを更新しました。"
     else
-      render :edit, notice: "ステータスの更新に失敗しました。"
+      render :index, notice: "ステータスの更新に失敗しました。"
     end
   end
 

@@ -3,7 +3,11 @@ class Public::TagsController < ApplicationController
   before_action :ensure_guest_customer
 
   def index
-    @tags = Tag.all
+    items = Item.where(group_id: params[:group_id])
+    @tags = []
+    items.each do |item|
+      @tags += item.tags
+    end
   end
 
   def destroy

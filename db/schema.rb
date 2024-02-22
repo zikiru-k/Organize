@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 2024_02_20_171723) do
     t.integer "order_id", null: false
     t.integer "item_id", null: false
     t.integer "amount"
+    t.integer "stock_stats", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

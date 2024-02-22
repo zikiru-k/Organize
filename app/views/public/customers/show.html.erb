@@ -29,7 +29,14 @@
         <div class="card-body">
           <p>参加中のグループ</p>
           <ul>
-            <% @customer.groups.each do |group| %>
+            <% @join_groups.each do |group| %>
+              <li><%= link_to group.group.name, group_orders_path(group.group) %></li>
+            <% end %>
+          </ul>
+
+          <p>作成したグループ</p>
+          <ul>
+            <% @created_groups.each do |group| %>
               <li><%= link_to group.name, group_orders_path(group) %></li>
             <% end %>
           </ul>

@@ -24,7 +24,6 @@
           <tbody class="text-center bg-white">
             <td style="width: 50%"><%= link_to order.created_at.in_time_zone('Asia/Tokyo').strftime('%Y年%m月%d日 %H時%M分'), admin_group_order_path(order.group_id, order) %></td>
             <td style="width: 50%">
-              <%#= order.stats_i18n %>
               <%= form_with model: order, url: admin_group_order_path(params[:group_id], order), method: :patch do |order| %>
                 <%= order.select :stats, Order.stats.keys.map {|k| [I18n.t("enums.order.stats.#{k}"), k]} %>
                 <%= order.submit "更新する", class:"btn btn-success btn-sm" %>
