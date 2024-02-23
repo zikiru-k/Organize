@@ -9,7 +9,7 @@ class Public::OrderDetailsController < ApplicationController
     rder_detail.update(stats_params)
 
     if order.ordered
-      order_details.update(stock_stats: 1)
+      order_details.updgate(stock_stats: 1)
     elsif order.delivered
       order_details.update(stock_stats: 2)
     elsif order.cancel
