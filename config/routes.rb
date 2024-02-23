@@ -44,7 +44,6 @@ Rails.application.routes.draw do\
   end
 
   scope module: :public do
-  # namespace :public do
     get 'top', to: "homes#top"
     get 'about', to: "homes#about", as: "about"
 

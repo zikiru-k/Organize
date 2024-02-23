@@ -5,18 +5,12 @@ class Public::OrderDetailsController < ApplicationController
 
   def update
     order_detail = OrderDetail.find(params[:id])
-    order = order_detail.order
-    rder_detail.update(stats_params)
 
-    if order.ordered
-      order_details.updgate(stock_stats: 1)
-    elsif order.delivered
-      order_details.update(stock_stats: 2)
-    elsif order.cancel
-      order_details.update(stock_stats: 3)
+    if order_detail.update(stats_params)
+      redirect_to group_order_details_path(params[:group_id]), notice: "ステータスを更新しました。"
+    else
+      render :index, notice: "ステータスの更新に失敗しました。"
     end
-    redirect_to group_order_details_path(params[:group_id]), notice: "ステータスを更新しました。"
-    # render :index, notice: "ステータスの更新に失敗しました。"
   end
 
   private

@@ -32,7 +32,7 @@
             <td><%= detail.amount %></td>
             <td>
               <% if detail.order.group.is_owned_by?(current_customer) %>
-                <%= form_with model: @order_detail, url: group_order_details_path(params[:group_id], detail), method: :patch do |detail| %>
+                <%= form_with model: detail, url: group_order_detail_path(params[:group_id], detail), method: :patch do |detail| %>
                   <%= detail.select :stock_stats, OrderDetail.stock_stats.keys.map {|k| [I18n.t("enums.order_detail.stock_stats.#{k}"), k]} %>
                   <%= detail.submit "更新する", class:"btn btn-success btn-sm" %>
                 <% end %>

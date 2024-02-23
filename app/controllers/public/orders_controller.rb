@@ -45,7 +45,16 @@ class Public::OrdersController < ApplicationController
 
   def update
     order = Order.find(params[:id])
-    if order.update(order_stats_params)
+    order_details = order.order_details
+
+    if order.update(stats_params)
+      if order.ordered?
+        order_details.update_all(stock_stats: 1)
+      elsif order.delivered?
+        order_details.update_all(stock_stats: 2)
+      elsif order.cancel?
+        order_details.update_all(stock_stats: 3)
+      end
       redirect_to group_orders_path(params[:group_id]), notice: "ステータスを更新しました。"
     else
       render :inde, notice: "ステータスの更新に失敗しました。"
@@ -63,7 +72,7 @@ class Public::OrdersController < ApplicationController
     params.require(:order).permit(order_details_attributes: [:id, :item_id, :amount, :_destroy]).merge(group_id: params[:group_id])
   end
 
-  def order_stats_params
+  def stats_params
     params.require(:order).permit(:stats)
   end
 
