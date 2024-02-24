@@ -27,7 +27,21 @@ h1 {
   padding: 10px;
   font-size: 25px;
   background-color: #fff;
-  border-radius: 20px 20px 20px 20px;
+  border-radius: 20px;
+}
+
+h2 {
+  display: inline-block;
+  border-bottom: solid 1px;
+  margin: 0 auto 10px auto;
+  padding: 5px;
+  font-size: 20px;
+}
+
+h3 {
+  text-align: start;
+  padding: 0 40px;
+  font-size: 20px;
 }
 
 .header_ul {
@@ -87,6 +101,26 @@ ul.cp_list li {
 	background: #e9ecef;
 	border-radius: 20px 20px 20px 20px;
 	color: #ffffff;
+}
+
+.wrapper {
+  margin: 25px auto;
+  padding: 10px;
+  text-align: center;
+  background-color: white;
+}
+
+.step {
+  background-color: #ededed78;
+  margin: 15px;
+  padding: 5px;
+  border-bottom: solid 1px;
+  border-top: solid 1px;
+}
+.step-p {
+  margin: 0;
+  text-align: start;
+  padding-left: 70px;
 }
 
 footer {

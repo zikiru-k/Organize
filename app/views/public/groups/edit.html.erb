@@ -2,8 +2,8 @@
   <h1>グループ編集</h1>
 
   <%= form_with model: @group, url: group_path, method: :patch, local: true do |f| %>
-    <form class="form-horizontal d-flex justify-content-center">
-      <div class="card col-8">
+    <form class="form-horizontal">
+      <div class="card">
         <div class="card-body">
           <div class="form-group my-3 d-flex justify-content-center align-items-center">
             <%= f.label :name, "グループ名：", class:"col-sm-3 m-0 control-label" %>
@@ -20,7 +20,8 @@
           </div>
 
           <div class="d-flex justify-content-around mt-3">
-            <%= f.submit :"変更", class: "btn btn-info" %>
+            <%= link_to "変更しない", groups_path, class:"btn btn-secondary" %>
+            <%= f.submit :"変更する", class: "btn btn-success" %>
           </div>
         </div>
       </div>

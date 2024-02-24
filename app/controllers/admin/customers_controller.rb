@@ -7,6 +7,8 @@ class Admin::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @created_groups = Group.where(owner_id: @customer.id)
+    @join_groups = @customer.group_users
   end
 
   def edit

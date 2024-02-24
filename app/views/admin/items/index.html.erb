@@ -1,6 +1,7 @@
 <div class="container">
   <h1>登録済み商品</h1>
   <div class="d-flex justify-content-around">
+    <%= link_to "タグ一覧", admin_group_tags_path(params[:group_id]), class:"btn btn-primary" %>
     <%= search_form_for @q, url: search_admin_group_items_path(params[:group_id]) do |f| %>
       <%= f.search_field :name_cont, placeholder:"キーワードを入力" %>
       <%= f.submit '検索' %>
@@ -10,7 +11,7 @@
   <%# @ordersでレコードが1件もない場合の分岐 %>
   <% if @items.count == 0 %>
     <%# @ordersにデータがない場合の表示 %>
-    <p>登録商品はありません</p>
+    <p class="text-center m-5">登録商品はありません</p>
   <% else %>
     <div class="d-flex justify-content-center">
       <table class="table table-bordered mt-3">
@@ -48,6 +49,6 @@
   <% end %>
 
   <div class="d-flex justify-content-around">
-    <%= link_to "注文履歴に戻る", admin_group_orders_path(params[:group_id]), class:"btn btn-primary" %>
+    <%= link_to "注文履歴に戻る", admin_group_orders_path(params[:group_id]), class:"btn btn-secondary" %>
   </div>
 </div>

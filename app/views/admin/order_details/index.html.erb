@@ -1,9 +1,8 @@
 <div class="container">
   <h1>在庫管理</h1>
   <div class="d-flex justify-content-around">
-    <%= link_to "発注願い作成", new_group_order_path, class:"btn btn-primary" %>
-    <%= link_to "発注状況", group_orders_path(params[:group_id]), class:"btn btn-primary" %>
-    <%= link_to "登録済み商品", group_items_path(params[:group_id]), class:"btn btn-primary" %>
+    <%= link_to "発注状況", admin_group_orders_path(params[:group_id]), class:"btn btn-primary" %>
+    <%= link_to "登録済み商品", admin_group_items_path(params[:group_id]), class:"btn btn-primary" %>
   </div>
 
   <%# @ordersでレコードが1件もない場合の分岐 %>
@@ -24,19 +23,15 @@
         </thead>
         <% @order_details.each do |detail| %>
           <tbody class="text-center bg-white">
-            <td><%= link_to detail.created_at.in_time_zone('Asia/Tokyo').strftime('%Y年%m月%d日'), group_order_path(params[:group_id], detail) %></td>
+            <td><%= link_to detail.created_at.in_time_zone('Asia/Tokyo').strftime('%Y年%m月%d日'), admin_group_order_path(params[:group_id], detail) %></td>
             <td><%= detail.item.name %></td>
             <td><%= detail.item.code %></td>
             <td><%= detail.item.capacity %></td>
             <td><%= detail.amount %></td>
             <td>
-              <% if detail.order.group.is_owned_by?(current_customer) %>
-                <%= form_with model: detail, url: group_order_detail_path(params[:group_id], detail), method: :patch do |detail| %>
-                  <%= detail.select :stock_stats, OrderDetail.stock_stats.keys.map {|k| [I18n.t("enums.order_detail.stock_stats.#{k}"), k]} %>
-                  <%= detail.submit "更新する", class:"btn btn-success btn-sm" %>
-                <% end %>
-              <% else %>
-                <%= detail.stock_stats_i18n %>
+              <%= form_with model: detail, url: admin_group_order_detail_path(params[:group_id], detail), method: :patch do |detail| %>
+                <%= detail.select :stock_stats, OrderDetail.stock_stats.keys.map {|k| [I18n.t("enums.order_detail.stock_stats.#{k}"), k]} %>
+                <%= detail.submit "更新する", class:"btn btn-success btn-sm" %>
               <% end %>
             </td>
           </tbody>
@@ -46,6 +41,6 @@
   <% end %>
 
   <div class="d-flex justify-content-around mt-5">
-    <%= link_to "グループ一覧に戻る", groups_path, class:"btn btn-secondary" %>
+    <%= link_to "グループ一覧に戻る", admin_groups_path, class:"btn btn-secondary" %>
   </div>
 </div>

@@ -32,7 +32,7 @@ Rails.application.routes.draw do\
           resource :bookmarks, only: [:create, :destroy]
         end
       end
-      resources :order_details, only: [:index, :edit, :update]
+      resources :order_details, only: [:index, :update]
       resources :items, only: [:index, :show, :edit, :update, :destroy] do
         collection do
           get 'search'
@@ -54,7 +54,11 @@ Rails.application.routes.draw do\
           resource :bookmarks, only: [:create, :destroy]
         end
       end
-      resources :order_details, only: [:index, :update]
+      resources :order_details, only: [:index, :update] do
+        collection do
+          get 'search'
+        end
+      end
       get "items/favorite_index" , to: "items#favorite_index"
       resources :items do
         collection do

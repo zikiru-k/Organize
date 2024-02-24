@@ -5,7 +5,7 @@
     <div class="col-md-6">
       <ul class="list-group">
         <% @order.order_details.each do |detail| %>
-          <li class="list-group-item mb-3">
+          <li class="list-group-item mb-3" style="border-radius: 20px;">
             発注商品：<%= detail.item.name %>
             <ul class="list-group">
               <li class="list-group-item">コード：<%= detail.item.code %></li>
@@ -19,9 +19,10 @@
     </div>
 
     <div class="col-md-6">
+      <p class="text-center">申し送りコメント欄</p>
       <% @order.comments.each do |comment| %>
         <div class="p-2 bg-light text-dark">
-          <%= simple_format(comment.content, class: 'm-0') %>
+          <%= simple_format(comment.content, class:'m-0') %>
         </div>
         <div>
           <small class="text-black-50">
@@ -49,6 +50,6 @@
   </div>
 
   <div class="d-flex justify-content-around">
-    <%= link_to "注文履歴に戻る", admin_group_orders_path(params[:group_id]), class:"btn btn-primary" %>
+    <%= link_to "注文履歴に戻る", admin_group_orders_path(params[:group_id]), class:"btn btn-secondary" %>
   </div>
 </div>

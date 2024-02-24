@@ -1,10 +1,10 @@
 <div class="container">
   <h1>グループ編集</h1>
+  
   <%= form_with model: @group, url: admin_group_path, method: :patch, local: true do |f| %>
     <form class="form-horizontal">
       <div class="card">
         <div class="card-body">
-
           <div class="form-group my-3 d-flex justify-content-center align-items-center">
             <%= f.label :name, "グループ名：", class:"col-sm-2 m-0 control-label" %>
             <div class="col-sm-4">
