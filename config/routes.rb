@@ -69,7 +69,7 @@ Rails.application.routes.draw do\
       get "items/ajax_show/:id" , to: "items#ajax_show"
       resources :tags, only: [:index, :destroy]
     end
-    resources :notifications, only: [:index]
+    resources :notifications, only: [:index, :update, :destroy]
 
     get "customers/mypage", to: "customers#show"
     get "customers/information/edit", to: "customers#edit"

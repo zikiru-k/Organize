@@ -21,4 +21,10 @@ class Public::OrderDetailsController < ApplicationController
   def stats_params
     params.require(:order_detail).permit(:stock_stats)
   end
+
+  def ensure_guest_customer
+   if current_customer.guest_customer?
+     redirect_to top_path, notice: "新規登録をしてください。"
+   end
+  end
 end

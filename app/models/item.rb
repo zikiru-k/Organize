@@ -5,6 +5,11 @@ class Item < ApplicationRecord
   has_many :favorites, dependent: :destroy
   belongs_to :group
 
+  validates :name, presence: true
+  validates :code, presence: true
+  validates :capacity, presence: true
+  validates :site, presence: true
+
   def save_tags(tags)
 
     # タグをスペース区切りで分割し配列にする

@@ -10,16 +10,6 @@ body {
   background-color: #e6e6e6;
 }
 
-header {
-  padding: 30px 4% 30px;
-  // position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-}
-
 h1 {
   width: 400px;
   text-align: center;
@@ -44,6 +34,16 @@ h3 {
   font-size: 20px;
 }
 
+header {
+  padding: 30px 4% 30px;
+  // position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+
 .header_ul {
   list-style: none;
   margin: 0;
@@ -51,17 +51,12 @@ h3 {
 }
 
 .header_li {
-  margin: 0 0 0 15px;
-  font-size: 14px;
+  margin: 15px;
+  font-size: 17px;
 }
 
 nav {
   margin: 0 0 0 auto;
-}
-
-main {
-  // position: relative;
-  top: 100px;
 }
 
 .container {
@@ -85,6 +80,7 @@ dd {
   border-radius: 20px 20px 20px 20px;
 }
 
+// タグのレイアウト
 ul.cp_list {
 	position: relative;
 	padding: 0;
@@ -103,6 +99,7 @@ ul.cp_list li {
 	color: #ffffff;
 }
 
+// TOP/ABOUTページ関連
 .wrapper {
   margin: 25px auto;
   padding: 10px;

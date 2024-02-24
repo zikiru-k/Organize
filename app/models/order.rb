@@ -11,9 +11,9 @@ class Order < ApplicationRecord
 
   # 未発注：not_ordered,　発注中：ordered,　配達済み：delivered,　配達中止：cancel
   enum stats: { not_ordered: 0, ordered: 1, delivered: 2, cancel: 3 }
-  
+
   after_create do
-    group.group_user.customers.each do |customer|
+    group.group_users.each do |customer|
       Notification.create(customer_id: customer.id, notifiable_type: "Order", notifiable_id: id)
     end
   end
