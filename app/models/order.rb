@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :group
+  belongs_to :customer
   has_many :comments, dependent: :destroy
   has_many :order_details, dependent: :destroy
   has_many :notifications, as: :notifiable, dependent: :destroy
@@ -13,8 +14,9 @@ class Order < ApplicationRecord
   enum stats: { not_ordered: 0, ordered: 1, delivered: 2, cancel: 3 }
 
   after_create do
-    group.group_users.each do |customer|
-      Notification.create(customer_id: customer.id, notifiable_type: "Order", notifiable_id: id)
+    Notification.create(customer_id: group.owner_id, notifiable_type: "Order", notifiable_id: id)
+    group.group_users.each do |group_user|
+      Notification.create(customer_id: group_user.customer_id, notifiable_type: "Order", notifiable_id: id)
     end
   end
 end

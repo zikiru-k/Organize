@@ -34,14 +34,18 @@ h3 {
   font-size: 20px;
 }
 
+// ヘッダー関係
 header {
-  padding: 30px 4% 30px;
-  // position: fixed;
+  padding: 5px 5% 5px;
   top: 0;
   width: 100%;
   background-color: #fff;
   display: flex;
   align-items: center;
+}
+
+nav {
+  margin: 0 0 0 auto;
 }
 
 .header_ul {
@@ -51,12 +55,11 @@ header {
 }
 
 .header_li {
+  display: flex;
   margin: 15px;
   font-size: 17px;
-}
-
-nav {
-  margin: 0 0 0 auto;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .container {
@@ -114,6 +117,7 @@ ul.cp_list li {
   border-bottom: solid 1px;
   border-top: solid 1px;
 }
+
 .step-p {
   margin: 0;
   text-align: start;

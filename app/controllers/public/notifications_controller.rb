@@ -6,7 +6,7 @@ class Public::NotificationsController < ApplicationController
   def update
     notification = current_customer.notifications.find(params[:id])
     notification.update(read: true)
-    redirect_to notification_path
+    redirect_to notification.notifiable_path
   end
 
   def index

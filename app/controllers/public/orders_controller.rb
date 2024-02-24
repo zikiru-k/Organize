@@ -34,7 +34,7 @@ class Public::OrdersController < ApplicationController
           @order.order_details.create(item_id: item.id, amount:  params[:new_items][:amount][index])
         end
 
-        @order.comments.create(customer_id: current_customer.id, content: params[:comment])
+        @order.comments.create(customer_id: current_customer.id, content: params[:comment]) if params[:comment].present?
 
         redirect_to group_orders_path
       else
@@ -69,7 +69,8 @@ class Public::OrdersController < ApplicationController
 
     # モデル名_attributesが子のモデルに保存する要素
     #   :id, :_destroyをつけることで、編集と削除が可能になる
-    params.require(:order).permit(order_details_attributes: [:id, :item_id, :amount, :_destroy]).merge(group_id: params[:group_id])
+    params.require(:order).permit(order_details_attributes: [:id, :item_id, :amount, :_destroy])
+          .merge(group_id: params[:group_id], customer_id: current_customer.id)
   end
 
   def stats_params

@@ -12,6 +12,7 @@ class Comment < ApplicationRecord
 
   after_create do
     order.group.group_users.each do |customer|
+      next if content.blank?
       Notification.create(customer_id: customer.id, notifiable_type: "Comment", notifiable_id: id)
     end
   end

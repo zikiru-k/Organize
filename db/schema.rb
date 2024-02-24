@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 2024_02_23_115652) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "group_id", null: false
+    t.integer "customer_id"
     t.integer "draft"
     t.integer "stats", default: 0
     t.datetime "created_at", precision: 6, null: false
