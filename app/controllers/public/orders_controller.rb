@@ -1,6 +1,7 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!,except: [:top]
   before_action :ensure_guest_customer
+  before_action :get_latest_article
 
   def index
     @orders = Order.where(group_id: params[:group_id])
@@ -75,11 +76,5 @@ class Public::OrdersController < ApplicationController
 
   def stats_params
     params.require(:order).permit(:stats)
-  end
-
-  def ensure_guest_customer
-   if current_customer.guest_customer?
-     redirect_to top_path, notice: "新規登録をしてください。"
-   end
   end
 end

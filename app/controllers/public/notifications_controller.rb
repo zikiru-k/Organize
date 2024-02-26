@@ -2,7 +2,6 @@ class Public::NotificationsController < ApplicationController
   before_action :authenticate_customer!,except: [:top]
   before_action :ensure_guest_customer
 
-
   def update
     notification = current_customer.notifications.find(params[:id])
     notification.update(read: true)

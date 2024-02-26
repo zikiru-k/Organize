@@ -6,10 +6,22 @@
     <h2>※このサイトはポートフォリオです</h2>
   </section>
 
-  <section class="wrapper">
-    <h2>お知らせ</h2>
-    <p>最新の発注情報や更新された商品情報などを表示</p>
-  </section>
+  <% if customer_signed_in? %>
+    <section class="wrapper">
+      <h2>お知らせ</h2><span class="badge badge-danger"><%= current_customer.notifications.where(read: false).count %></span>
+      <p class="m-0">最新の発注情報や更新された商品情報などの通知を表示します</p>
+      <div>
+        <% if current_customer.notifications.where(read: false).any? %>
+          <small class="dropdown-item disabled">未読の通知を表示しています</small>
+          <% current_customer.notifications.where(read: false).limit(5).order(created_at: :desc).each do |notification| %>
+            <%= link_to notification.message, notification, method: :patch, class: "dropdown-item" %>
+          <% end %>
+        <% else %>
+          <span class="dropdown-item disabled">未読の通知はありません</span>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
 
   <section class="wrapper">
     <h2>使い方ガイド</h2>

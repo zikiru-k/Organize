@@ -7,20 +7,16 @@ class Notification < ApplicationRecord
   def message
     if notifiable_type === "Order"
       "#{notifiable.customer.full_name}さんが#{notifiable.group.name}で発注依頼を出しました"
-      # "#{notifiable.customer.last_name}さんが#{notifiable.group.name}で発注依頼を出しました。"
     else
-      "#{notifiable.customer.full_name}さんが#{notifiable.group.name}で発注にコメントしました。"
-      # "#{notifiable.customer.last_name}さんが#{notifiable.group.name}の発注詳細にコメントしました。"
+      "#{notifiable.customer.full_name}さんが#{notifiable.order.group.name}で発注にコメントしました。"
     end
   end
 
   def notifiable_path
     if notifiable_type === "Order"
       group_order_path(notifiable.group, notifiable)
-      # group_orders_path(notifiable.id) # 発注に関する通知の場合はのorderの一覧ページ
     else
       group_order_path(notifiable.order.group, notifiable.order)
-      # group_order_path(notifiable.id) # 発注詳細のコメントに関する通知の場合はorderの詳細ページ
     end
   end
 end
