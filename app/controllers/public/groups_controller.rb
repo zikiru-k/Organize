@@ -2,7 +2,6 @@ class Public::GroupsController < ApplicationController
   before_action :authenticate_customer!,except: [:top]
   before_action :ensure_current_customer_owner, only:[:edit, :update]
   before_action :ensure_guest_customer, only:[:show, :new, :create, :edit, :update]
-  before_action :get_latest_article
 
   def index
     @groups = Group.all

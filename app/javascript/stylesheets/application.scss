@@ -34,45 +34,12 @@ h3 {
   font-size: 20px;
 }
 
-// ヘッダー関係
-header {
-  padding: 5px 5% 5px;
-  top: 0;
-  width: 100%;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-}
-
-nav {
-  margin: 0 0 0 auto;
-}
-
-.header_ul {
-  list-style: none;
-  margin: 0;
-  display: flex;
-}
-
-.header_li {
-  display: flex;
-  margin: 15px;
-  font-size: 17px;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-// サイドバー関係
-.ss {
-  min-height: 100vh;
-  padding: 0;
-  background-color: #7386D5;
-}
-
+// ここからサイドバー/ヘッダー
 .logo {
   margin-bottom: 0;
   background-color: #7386D5;
-  line-height: 52px;
+  // 52px
+  line-height: 59px;
   text-align: center;
   font-size: 30px;
 }
@@ -83,7 +50,8 @@ nav {
 }
 
 .sidebar-link_link,
-.sidebar-link:hover, {
+.sidebar-link:hover,
+.sidebar-link:focus {
   color: white;
   background-color: #dee2e6;
   text-decoration: none;
@@ -95,7 +63,6 @@ nav {
   color: #fff;
   transition: all 0.3s;
   width: 250px;
-  height: 100vh;
 }
 
 #sidebar.active {
@@ -123,7 +90,7 @@ nav {
 #sidebar ul li.active>.sidebar-link,
 .sidebar-link[aria-expanded="true"] {
   color: #fff;
-  background: #6d7fcc;
+  background: #7386D5;
 }
 
 .sidebar-link[data-toggle="collapse"] {
@@ -141,23 +108,22 @@ nav {
 ul ul .sidebar-link {
   font-size: 0.9em !important;
   padding-left: 30px !important;
-  background: #6d7fcc;
+  background: #7386D5;
 }
 
 ul ul ul .sidebar-link {
   font-size: 0.9em !important;
   padding-left: 50px !important;
-  background: #6d7fcc;
+  background: #7386D5;
 }
 
 #content {
-    width: 100%;
-    padding: 20px;
-    min-height: 100vh;
-    transition: all 0.3s;
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+  transition: all 0.3s;
 }
 
-// navbar
 .navbar {
   padding: 10px 10px;
   background: #fff;
@@ -181,6 +147,7 @@ ul ul ul .sidebar-link {
     width: auto;
   }
 }
+// ここまでサイドバー/ヘッダー
 
 .container {
   margin: 15px auto;

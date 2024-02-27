@@ -1,7 +1,6 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!,except: [:top]
   before_action :ensure_guest_customer
-  before_action :get_latest_article
 
   def index
     @orders = Order.where(group_id: params[:group_id])

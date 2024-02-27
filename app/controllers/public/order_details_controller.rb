@@ -1,7 +1,6 @@
 class Public::OrderDetailsController < ApplicationController
   before_action :authenticate_customer!,except: [:top]
   before_action :ensure_guest_customer
-  before_action :get_latest_article
 
   def index
     @q = OrderDetail.includes(:order).where(orders: { group_id: params[:group_id] }).ransack(params[:q])

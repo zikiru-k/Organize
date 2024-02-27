@@ -1,7 +1,6 @@
 class Public::GroupUsersController < ApplicationController
   before_action :authenticate_customer!,except: [:top]
   before_action :ensure_guest_customer
-  before_action :get_latest_article
 
   def create
     group_customer = current_customer.group_users.new(group_id: params[:group_id])

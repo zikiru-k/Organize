@@ -2,7 +2,6 @@ class Public::ItemsController < ApplicationController
   before_action :authenticate_customer!,except: [:top]
   before_action :set_q, only: [:index, :favorite_index, :search]
   before_action :ensure_guest_customer
-  before_action :get_latest_article
 
   def index
     @items = Item.where(group_id: params[:group_id])

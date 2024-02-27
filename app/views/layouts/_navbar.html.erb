@@ -10,20 +10,53 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="nav navbar-nav ml-auto">
+      <ul class="nav navbar-nav mx-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Page</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Page</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Page</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Page</a>
+          <% if admin_signed_in? %>
+            <span class="navbar-text mr-3">管理者画面</span>
+          <% elsif customer_signed_in? %>
+            <span class="navbar-text mr-3"><%= @customer.full_name %></span>
+          <% end %>
+          <% if params[:group_id].present? %>
+            <span class="navbar-text">現在のグループ: <%= @current_group.name %></span>
+          <% end %>
         </li>
       </ul>
+
+      <% if params[:group_id].present? %>
+        <ul class="nav navbar-nav mr-0">
+          <% if admin_signed_in? || customer_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "発注依頼登録", new_group_order_path(params[:group_id]), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "商品登録", new_group_item_path(params[:group_id]), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "発注履歴", group_orders_path(params[:group_id]), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "在庫一覧", group_order_details_path(params[:group_id]), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "登録商品一覧", group_items_path(params[:group_id]), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "お気に入り一覧", group_items_favorite_index_path(params[:group_id]), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "タグ一覧", group_tags_path(params[:group_id]), class: "nav-link" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_customer_session_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "新規登録", new_customer_registration_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
     </div>
   </div>
 </nav>

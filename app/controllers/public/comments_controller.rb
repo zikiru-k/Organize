@@ -1,7 +1,6 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_customer!,except: [:top]
   before_action :ensure_guest_customer
-  before_action :get_latest_article
 
   def create
     order = Order.find(params[:order_id])

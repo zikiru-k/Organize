@@ -1,4 +1,5 @@
 class Admin::BookmarksController < ApplicationController
+  before_action :authenticate_admin!
 
   def create
     @comment = Comment.find(params[:comment_id])

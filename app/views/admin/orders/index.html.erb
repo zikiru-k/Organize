@@ -5,13 +5,10 @@
     <%= link_to "登録済み商品", admin_group_items_path(params[:group_id]), class:"btn btn-primary" %>
   </div>
 
-  <%# 現在の登録数を表示する。“#{}”は、Rubyの式展開 %>
-  <%#= "登録アルバム数 : #{@orders.count}" %>
-
   <%# @ordersでレコードが1件もない場合の分岐 %>
   <% if @orders.count == 0 %>
     <%# @ordersにデータがない場合の表示 %>
-    <p>発注情報はありません</p>
+    <p class="text-center m-5">発注情報はありません</p>
   <% else %>
     <div class="d-flex justify-content-center">
       <table class="table table-bordered mt-3" style="width: 80%">
@@ -19,6 +16,7 @@
           <th>発注日</th>
           <th>発注状況</th>
           <th>発注商品名 / 購入数</th>
+          <th>発注者</th>
         </thead>
         <%# @ordersにレコードがある場合、タイトルを表示する %>
         <% @orders.each do |order| %>
@@ -37,6 +35,8 @@
                 <% end %>
               </ul>
             </td>
+
+            <td><%= order.customer.full_name %></td>
           </tbody>
         <% end %>
       </table>
