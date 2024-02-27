@@ -1,4 +1,4 @@
-<nav class="sidebar">
+<nav>
   <p class="logo"><%= link_to "ORGANIZE", top_path, class: "logo-link" %></p>
 
   <ul class="list-unstyled components">
@@ -11,30 +11,28 @@
       <li><%= link_to "ABOUT", about_path, class: "sidebar-link" %></li>
       <li><%= link_to "マイページ", customers_mypage_path, class: "sidebar-link" %></li>
 
-      <li>
+      <li class="active">
         <a href="#Submenu" data-toggle="collapse" aria-expanded="false" data-target="#Submenu" class="sidebar-link dropdown-toggle">グループ</a>
 
         <ul class="collapse list-unstyled" id="Submenu">
           <li><%= link_to "グループ一覧", groups_path, class: "sidebar-link" %></li>
           <!--参加中のグループ-->
           <% @join_groups.each_with_index do |group, i| %>
-            <li>
-              <a href="#join_Subitem<%= i %>" data-toggle="collapse" aria-expanded="false" data-target="#join_Subitem<%= i %>" class="sidebar-link dropdown-toggle"><%= group.group.name %></a>
+            <a href="#join_Subitem<%= i %>" data-toggle="collapse" aria-expanded="false" data-target="#join_Subitem<%= i %>" class="sidebar-link dropdown-toggle"><%= group.group.name %></a>
 
-              <ul class="collapse list-unstyled" id="join_Subitem<%= i %>">
-                <li><%= link_to "発注依頼登録", new_group_order_path(group), class: "sidebar-link" %></li>
-                <li><%= link_to "商品登録", new_group_item_path(group), class: "sidebar-link" %></li>
-                <li><%= link_to "発注履歴画面", group_orders_path(group), class: "sidebar-link" %></li>
-                <li><%= link_to "在庫画面", group_order_details_path(group), class: "sidebar-link" %></li>
-                <li><%= link_to "登録商品一覧", group_items_path(group), class: "sidebar-link" %></li>
-                <li><%= link_to "お気に入り一覧", group_items_favorite_index_path(group), class: "sidebar-link" %></li>
-                <li><%= link_to "タグ一覧", group_tags_path(group), class: "sidebar-link" %></li>
-              </ul>
+            <ul class="collapse list-unstyled" id="join_Subitem<%= i %>">
+              <li><%= link_to "発注依頼登録", new_group_order_path(group), class: "sidebar-link" %></li>
+              <li><%= link_to "商品登録", new_group_item_path(group), class: "sidebar-link" %></li>
+              <li><%= link_to "発注履歴画面", group_orders_path(group), class: "sidebar-link" %></li>
+              <li><%= link_to "在庫画面", group_order_details_path(group), class: "sidebar-link" %></li>
+              <li><%= link_to "登録商品一覧", group_items_path(group), class: "sidebar-link" %></li>
+              <li><%= link_to "お気に入り一覧", group_items_favorite_index_path(group), class: "sidebar-link" %></li>
+              <li><%= link_to "タグ一覧", group_tags_path(group), class: "sidebar-link" %></li>
+            </ul>
           <% end %>
           <!--作成したグループ-->
           <% @created_groups.each_with_index do |group, i| %>
-            <li>
-              <a href="#created_Subitem<%= i %>" data-toggle="collapse" aria-expanded="false" data-target="#created_Subitem<%= i %>" class="sidebar-link dropdown-toggle"><%= group.name %></a>
+            <a href="#created_Subitem<%= i %>" data-toggle="collapse" aria-expanded="false" data-target="#created_Subitem<%= i %>" class="sidebar-link dropdown-toggle"><%= group.name %></a>
 
             <ul class="collapse list-unstyled" id="created_Subitem<%= i %>">
               <li><%= link_to "発注依頼登録", new_group_order_path(group), class: "sidebar-link" %></li>
@@ -66,47 +64,4 @@
 </nav>
 
 <script>
-  // 1つ目の階層のドロップダウン要素を取得
-  const firstLevelDropdown = document.getElementById("first-level-dropdown");
-
-  // 2つ目の階層のドロップダウン要素を取得
-  const secondLevelDropdowns = document.querySelectorAll(".second-level-dropdown");
-
-  // 1つ目の階層のドロップダウンメニューがクリックされた時の処理
-  firstLevelDropdown.addEventListener("click", function(event) {
-    // ドロップダウンが開いた状態の場合はクリックイベントの伝播を止めて関数を終了する
-    if (event.target.classList.contains("opened")) {
-      event.stopPropagation();
-      return;
-    }
-
-    // ドロップダウンメニューを開く処理
-    // ...ドロップダウンメニューを開くための処理...
-    event.target.classList.add("opened");
-  });
-
-  // 2つ目の階層のドロップダウンメニューがクリックされた時の処理
-  secondLevelDropdowns.forEach(function(dropdown) {
-    dropdown.addEventListener("click", function(event) {
-      // クリックイベントの伝播を止める
-      event.stopPropagation();
-
-      // ドロップダウンメニューが開いた状態の場合は関数を終了する
-      if (event.target.classList.contains("opened")) {
-        return;
-      }
-
-      // ドロップダウンメニューを開く処理
-      // ...ドロップダウンメニューを開くための処理...
-      event.target.classList.add("opened");
-    });
-  });
-
-  // ドロップダウンメニュー以外がクリックされた時にドロップダウンメニューを閉じる処理を記述する
-  document.addEventListener("click", function(event) {
-    firstLevelDropdown.classList.remove("opened");
-    secondLevelDropdowns.forEach(function(dropdown) {
-      dropdown.classList.remove("opened");
-    });
-  });
 </script>

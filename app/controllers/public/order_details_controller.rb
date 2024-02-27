@@ -6,7 +6,6 @@ class Public::OrderDetailsController < ApplicationController
   def index
     @q = OrderDetail.includes(:order).where(orders: { group_id: params[:group_id] }).ransack(params[:q])
     @order_details = @q.result(distinct: true)
-    # @order_details = OrderDetail.includes(:order).where(orders: { group_id: params[:group_id] })
   end
 
   def update

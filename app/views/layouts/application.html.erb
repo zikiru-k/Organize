@@ -12,16 +12,17 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <main>
-      <div class="row mr-0">
-        <div class="col-2 ss">
-          <%= render 'layouts/sidebar' %>
-        </div>
-        <div class="col-10">
-          <%= yield %>
-        </div>
+
+    <div class="d-flex">
+      <div id="sidebar">
+        <%= render 'layouts/sidebar' %>
       </div>
-    </main>
+
+      <main class="w-100">
+        <%= render 'layouts/navbar' %>
+        <%= yield %>
+      </main>
+    </div>
 
     <footer>
       <p>- ORGANIZE -</p>

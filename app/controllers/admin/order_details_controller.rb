@@ -2,7 +2,8 @@ class Admin::OrderDetailsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @order_details = OrderDetail.includes(:order).where(orders: { group_id: params[:group_id] })
+    @q = OrderDetail.includes(:order).where(orders: { group_id: params[:group_id] }).ransack(params[:q])
+    @order_details = @q.result(distinct: true)
   end
 
   def update
