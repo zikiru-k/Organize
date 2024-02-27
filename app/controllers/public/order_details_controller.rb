@@ -4,7 +4,9 @@ class Public::OrderDetailsController < ApplicationController
   before_action :get_latest_article
 
   def index
-    @order_details = OrderDetail.includes(:order).where(orders: { group_id: params[:group_id] })
+    @q = OrderDetail.includes(:order).where(orders: { group_id: params[:group_id] }).ransack(params[:q])
+    @order_details = @q.result(distinct: true)
+    # @order_details = OrderDetail.includes(:order).where(orders: { group_id: params[:group_id] })
   end
 
   def update

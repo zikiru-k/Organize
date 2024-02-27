@@ -143,18 +143,11 @@ ul ul .sidebar-link {
   background: #6d7fcc;
 }
 
-// .sidebar_topLine {
-//   width: 100%;
-//   height: 1px;
-//   background-color: #707070;
-//   opacity: 0.2;
-// }
-
-// .sidebar_bottomLine {
-//   width: 100%;
-//   height: 1px;
-//   background-color: #F7F7ED;
-// }
+ul ul ul .sidebar-link {
+  font-size: 0.9em !important;
+  padding-left: 50px !important;
+  background: #6d7fcc;
+}
 
 .container {
   margin: 15px auto;

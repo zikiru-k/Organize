@@ -1,4 +1,4 @@
-<div class="sidebar">
+<nav class="sidebar">
   <p class="logo"><%= link_to "ORGANIZE", top_path, class: "logo-link" %></p>
 
   <ul class="list-unstyled components">
@@ -63,4 +63,50 @@
       <li><%= link_to "ログイン", new_customer_session_path, class: "sidebar-link" %></li>
     <% end %>
   </ul>
-</div>
+</nav>
+
+<script>
+  // 1つ目の階層のドロップダウン要素を取得
+  const firstLevelDropdown = document.getElementById("first-level-dropdown");
+
+  // 2つ目の階層のドロップダウン要素を取得
+  const secondLevelDropdowns = document.querySelectorAll(".second-level-dropdown");
+
+  // 1つ目の階層のドロップダウンメニューがクリックされた時の処理
+  firstLevelDropdown.addEventListener("click", function(event) {
+    // ドロップダウンが開いた状態の場合はクリックイベントの伝播を止めて関数を終了する
+    if (event.target.classList.contains("opened")) {
+      event.stopPropagation();
+      return;
+    }
+
+    // ドロップダウンメニューを開く処理
+    // ...ドロップダウンメニューを開くための処理...
+    event.target.classList.add("opened");
+  });
+
+  // 2つ目の階層のドロップダウンメニューがクリックされた時の処理
+  secondLevelDropdowns.forEach(function(dropdown) {
+    dropdown.addEventListener("click", function(event) {
+      // クリックイベントの伝播を止める
+      event.stopPropagation();
+
+      // ドロップダウンメニューが開いた状態の場合は関数を終了する
+      if (event.target.classList.contains("opened")) {
+        return;
+      }
+
+      // ドロップダウンメニューを開く処理
+      // ...ドロップダウンメニューを開くための処理...
+      event.target.classList.add("opened");
+    });
+  });
+
+  // ドロップダウンメニュー以外がクリックされた時にドロップダウンメニューを閉じる処理を記述する
+  document.addEventListener("click", function(event) {
+    firstLevelDropdown.classList.remove("opened");
+    secondLevelDropdowns.forEach(function(dropdown) {
+      dropdown.classList.remove("opened");
+    });
+  });
+</script>
