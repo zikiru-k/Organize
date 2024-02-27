@@ -16,9 +16,11 @@ class Admin::GroupsController < ApplicationController
   def update
     group = Group.find(params[:id])
     if group.update(group_params)
-      redirect_to admin_group_path, notice: "グループ情報を更新しました。"
+      flash[:notice] = "グループ情報を更新しました。"
+      redirect_to admin_group_path
     else
-      render :edit, notice: "グループ情報を更新に失敗しました。"
+      flash.now[:alert] = "グループ情報を更新に失敗しました。"
+      render :edit
     end
   end
 

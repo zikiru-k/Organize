@@ -11,7 +11,11 @@ class Customer < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :notifications, dependent: :destroy
-
+  
+  validates :first_name, presence: true, uniqueness: true
+  validates :last_name, presence: true, uniqueness: true
+  validates :telephone_number, presence: true, uniqueness: true
+  
   def customer_status
     if is_active?
       "有効"

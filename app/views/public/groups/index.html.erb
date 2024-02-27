@@ -27,7 +27,9 @@
                   <% end %>
                 </p>
 
-                <p><%= link_to "発注詳細", group_orders_path(group) %></p>
+                <% if group.is_owned_by?(current_customer) || group.include_customer?(current_customer) %>
+                  <p><%= link_to "発注詳細", group_orders_path(group) %></p>
+                <% end %>
 
                 <% if group.is_owned_by?(current_customer) %>
                   <%= link_to "編集", edit_group_path(group), class:"btn btn-success btn-sm" %>

@@ -12,6 +12,7 @@ class Public::TagsController < ApplicationController
 
   def destroy
     Tag.find(params[:id]).destroy()
+    flash[:alert] = "タグを削除しました。"
     redirect_to request.referer
   end
 end

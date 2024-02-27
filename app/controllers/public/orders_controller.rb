@@ -36,8 +36,10 @@ class Public::OrdersController < ApplicationController
 
         @order.comments.create(customer_id: current_customer.id, content: params[:comment]) if params[:comment].present?
 
+        flash[:notice] = "発注願いを出しました。"
         redirect_to group_orders_path
       else
+        flash.now[:alert] = "発注願いが出せませんでした。"
         render :new
       end
     end
@@ -55,9 +57,11 @@ class Public::OrdersController < ApplicationController
       elsif order.cancel?
         order_details.update_all(stock_stats: 3)
       end
-      redirect_to group_orders_path(params[:group_id]), notice: "ステータスを更新しました。"
+      flash[:notice] = "ステータスを更新しました。"
+      redirect_to group_orders_path(params[:group_id])
     else
-      render :inde, notice: "ステータスの更新に失敗しました。"
+      flash.now[:alert] = "ステータスの更新に失敗しました。"
+      render :inde
     end
   end
 

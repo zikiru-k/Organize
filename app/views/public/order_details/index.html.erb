@@ -1,9 +1,8 @@
 <div class="container">
   <h1>在庫管理</h1>
   <div class="d-flex justify-content-around">
-    <%= link_to "発注願い作成", new_group_order_path, class:"btn btn-primary" %>
-    <%= link_to "発注状況", group_orders_path(params[:group_id]), class:"btn btn-primary" %>
-    <%= link_to "登録済み商品", group_items_path(params[:group_id]), class:"btn btn-primary" %>
+    <%= link_to "発注依頼作成", new_group_order_path, class:"btn btn-primary" %>
+    <%= link_to "発注履歴", group_orders_path(params[:group_id]), class:"btn btn-primary" %>
   </div>
 
   <%# @ordersでレコードが1件もない場合の分岐 %>

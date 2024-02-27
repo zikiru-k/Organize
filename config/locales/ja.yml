@@ -14,3 +14,7 @@
         cancel: 配達中止
         in_stock: 在庫あり
         no_stock: 在庫切れ
+  devise:
+    sessions:
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"

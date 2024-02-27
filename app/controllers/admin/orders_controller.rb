@@ -13,9 +13,11 @@ class Admin::OrdersController < ApplicationController
   def update
     order = Order.find(params[:id])
     if order.update(order_params)
-      redirect_to admin_group_orders_path(params[:group_id]), notice: "ステータスを更新しました。"
+      flash[:notice] = "ステータスを更新しました。"
+      redirect_to admin_group_orders_path(params[:group_id])
     else
-      render :index, notice: "ステータスの更新に失敗しました。"
+      flash.now[:alert] = "ステータスの更新に失敗しました。"
+      render :index
     end
   end
 

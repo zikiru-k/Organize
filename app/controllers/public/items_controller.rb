@@ -29,8 +29,10 @@ class Public::ItemsController < ApplicationController
     item = Item.new(item_params)
     if item.save
       item.save_tags(params[:item][:tag])
-      redirect_to group_item_path(params[:group_id], item), notice: "商品登録が出来ました"
+      flash[:notice] = "商品登録が出来ました"
+      redirect_to group_item_path(params[:group_id], item)
     else
+      flash.now[:alert] = "商品登録が出来ませんでした"
       render :new
     end
   end
@@ -55,8 +57,10 @@ class Public::ItemsController < ApplicationController
     item = Item.find(params[:id])
     if item.update(item_params)
       item.save_tags(params[:item][:tag])
+      flash[:notice] = "変更内容を保存しました。"
       redirect_to group_items_path(params[:group_id])
     else
+      flash.now[:alert] = "変更内容を保存できませんでした。"
       render :edit
     end
   end

@@ -3,4 +3,6 @@ class Tag < ApplicationRecord
   # itemsのアソシエーション
   #   Tag.itemsとすれば、タグに紐付けられたItemを取得可能になる
   has_many :items, through: :order_tag_relations
+
+  validates :name, length: { maximum: 50 }
 end

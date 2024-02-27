@@ -15,8 +15,10 @@ class Public::CustomersController < ApplicationController
   def update
     customer = Customer.find(current_customer.id)
     if customer.update(customer_params)
-      redirect_to customers_mypage_path, notice: "変更内容を保存しました。"
+      flash[:notice] = "変更内容を保存しました。"
+      redirect_to customers_mypage_path
     else
+      flash.now[:alert] = "変更内容を保存できませんでした。"
       render :edit
     end
   end
@@ -25,7 +27,8 @@ class Public::CustomersController < ApplicationController
     customer = Customer.find(current_customer.id)
     customer.update(is_active: false)
     reset_session
-    redirect_to top_path, notice: "退会処理を実行いたしました。"
+    flash[:alert] = "退会処理を実行いたしました。"
+    redirect_to top_path
   end
 
   private

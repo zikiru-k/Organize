@@ -1,9 +1,9 @@
 <div class="container">
   <h1>タグ一覧</h1>
-  <div class="row">
-    <% if @tags.count == 0 %>
-      <p class="text-center m-5">登録商品はありません</p>
-    <% else %>
+  <% if @tags.count == 0 %>
+    <p class="text-center m-5">タグのついた商品はありません</p>
+  <% else %>
+    <div class="row">
       <% @tags.each do |tag| %>
         <div class="col-md-3">
           <ul class="list-group" style="border-radius: 20px;">
@@ -21,8 +21,8 @@
           </ul>
         </div>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
   <div class="d-flex justify-content-around">
     <%= link_to "商品一覧に戻る", group_items_path(params[:group_id]), class:"btn btn-secondary" %>

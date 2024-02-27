@@ -4,9 +4,6 @@ Rails.application.routes.draw do\
   devise_scope :customer do
     post 'customer/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
-  # devise_for :customer, controllers: {
-  #   registrations: 'customer/registrations'
-  # }
 
   devise_for :users
 
@@ -24,11 +21,10 @@ Rails.application.routes.draw do\
   }
 
   namespace :admin do
-  # scope module: :admin do
     resources :groups, only: [:index, :show, :edit, :update, :destroy] do
       resource :group_users, only: [:create, :destroy]
       resources :orders, only: [:index, :show, :edit, :update] do
-        resources :comments, only: [:create, :destroy] do
+        resources :comments, only: [:destroy] do
           resource :bookmarks, only: [:create, :destroy]
         end
       end

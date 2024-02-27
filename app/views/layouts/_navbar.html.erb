@@ -18,16 +18,29 @@
             <span class="navbar-text mr-3"><%= @customer.full_name %></span>
           <% end %>
           <% if params[:group_id].present? %>
-            <span class="navbar-text">現在のグループ: <%= @current_group.name %></span>
+            <span class="navbar-text">現在のグループ：<%= @current_group.name %></span>
           <% end %>
         </li>
       </ul>
 
       <% if params[:group_id].present? %>
         <ul class="nav navbar-nav mr-0">
-          <% if admin_signed_in? || customer_signed_in? %>
+          <% if admin_signed_in? %>
             <li class="nav-item">
-              <%= link_to "発注依頼登録", new_group_order_path(params[:group_id]), class: "nav-link" %>
+              <%= link_to "発注履歴", admin_group_orders_path(params[:group_id]), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "在庫一覧", admin_group_order_details_path(params[:group_id]), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "登録商品一覧", admin_group_items_path(params[:group_id]), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "タグ一覧", admin_group_tags_path(params[:group_id]), class: "nav-link" %>
+            </li>
+          <% elsif customer_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "発注依頼作成", new_group_order_path(params[:group_id]), class: "nav-link" %>
             </li>
             <li class="nav-item">
               <%= link_to "商品登録", new_group_item_path(params[:group_id]), class: "nav-link" %>

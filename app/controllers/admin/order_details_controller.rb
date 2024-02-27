@@ -10,9 +10,11 @@ class Admin::OrderDetailsController < ApplicationController
     order_detail = OrderDetail.find(params[:id])
 
     if order_detail.update(stats_params)
-      redirect_to admin_group_order_details_path(params[:group_id]), notice: "ステータスを更新しました。"
+      flash[:notice] = "ステータスを更新しました。"
+      redirect_to admin_group_order_details_path(params[:group_id])
     else
-      render :index, notice: "ステータスの更新に失敗しました。"
+      flash.now[:alert] = "ステータスの更新に失敗しました。"
+      render :index
     end
   end
 
