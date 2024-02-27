@@ -133,6 +133,11 @@ ul ul ul .sidebar-link {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+.navbar-light .navbar-nav .nav-link {
+  color: black;
+  margin-left: 3px;
+}
+
 @media (max-width: 768px) {
   #sidebar {
       margin-left: -250px;
