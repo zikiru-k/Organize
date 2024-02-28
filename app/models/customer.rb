@@ -11,11 +11,11 @@ class Customer < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  
+
   validates :first_name, presence: true, uniqueness: true
   validates :last_name, presence: true, uniqueness: true
   validates :telephone_number, presence: true, uniqueness: true
-  
+
   def customer_status
     if is_active?
       "有効"
@@ -32,6 +32,9 @@ class Customer < ApplicationRecord
   def self.guest
     find_or_create_by!(email: GUEST_MEMBER_EMAIL) do |customer|
       customer.password = SecureRandom.urlsafe_base64
+      customer.first_name = "ゲスト"
+      customer.last_name = "ゲスト"
+      customer.telephone_number = "00000000000"
       # customer.confirmed_at = Time.now  # Confirmable を使用している場合は必要
       # 例えば name を入力必須としているならば， customer.name = "ゲスト" なども必要
     end

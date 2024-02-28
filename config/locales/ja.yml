@@ -18,3 +18,8 @@
     sessions:
       signed_in: "ログインしました。"
       signed_out: "ログアウトしました。"
+    Registrations:
+      signed_up: "新規登録しました。"
+new:
+        sign_up: アカウント登録
+      signed_up: アカウント登録が完了しました。
