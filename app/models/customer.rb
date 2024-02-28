@@ -12,9 +12,9 @@ class Customer < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
-  validates :first_name, presence: true, uniqueness: true
-  validates :last_name, presence: true, uniqueness: true
-  validates :telephone_number, presence: true, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :telephone_number, presence: true
 
   def customer_status
     if is_active?
