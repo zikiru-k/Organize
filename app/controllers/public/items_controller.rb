@@ -72,7 +72,7 @@ class Public::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :code, :capacity, :site).merge(group_id: params[:group_id])
+    params.require(:item).permit(:name, :code, :capacity, :site, :group_id).merge(group_id: params[:group_id])
   end
 
   def set_q
