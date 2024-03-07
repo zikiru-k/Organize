@@ -10,39 +10,41 @@
     <%# @ordersにデータがない場合の表示 %>
     <p class="text-center m-5">在庫情報はありません</p>
   <% else %>
+    <div class="table-responsive">
     <%# @ordersにレコードがある場合、タイトルを表示する %>
-    <div class="d-flex justify-content-center">
-      <table class="table table-bordered mt-3">
-        <thead class="text-center thead-light">
-          <th><%= sort_link(@q, :created_at, '発注日') %></th>
-          <th><%= sort_link(@q, :item_name, '商品名' ) %></th>
-          <th><%= sort_link(@q, :item_site, '購入先サイト') %></th>
-          <th><%= sort_link(@q, :item_code, 'コード' ) %></th>
-          <th><%= sort_link(@q, :item_capacity, '内容量') %></th>
-          <th><%= sort_link(@q, :amount, '購入数') %></th>
-          <th><%= sort_link(@q, :stock_stats, '在庫状況') %></th>
-        </thead>
-        <% @order_details.each do |detail| %>
-          <tbody class="text-center bg-white">
-            <td><%= link_to detail.created_at.in_time_zone('Asia/Tokyo').strftime('%Y年%m月%d日'), group_order_path(params[:group_id], detail) %></td>
-            <td><%= detail.item.name %></td>
-            <td><%= detail.item.site %></td>
-            <td><%= detail.item.code %></td>
-            <td><%= detail.item.capacity %></td>
-            <td><%= detail.amount %></td>
-            <td>
-              <% if detail.order.group.is_owned_by?(current_customer) %>
-                <%= form_with model: detail, url: group_order_detail_path(params[:group_id], detail), method: :patch do |detail| %>
-                  <%= detail.select :stock_stats, OrderDetail.stock_stats.keys.map {|k| [I18n.t("enums.order_detail.stock_stats.#{k}"), k]} %>
-                  <%= detail.submit "更新する", class:"btn btn-success btn-sm" %>
+      <div class="d-flex justify-content-center">
+        <table class="table table-bordered mt-3">
+          <thead class="text-center thead-light">
+            <th><%= sort_link(@q, :created_at, '発注日') %></th>
+            <th><%= sort_link(@q, :item_name, '商品名' ) %></th>
+            <th><%= sort_link(@q, :item_site, '購入先サイト') %></th>
+            <th><%= sort_link(@q, :item_code, 'コード' ) %></th>
+            <th><%= sort_link(@q, :item_capacity, '内容量') %></th>
+            <th><%= sort_link(@q, :amount, '購入数') %></th>
+            <th><%= sort_link(@q, :stock_stats, '在庫状況') %></th>
+          </thead>
+          <% @order_details.each do |detail| %>
+            <tbody class="text-center bg-white">
+              <td><%= link_to detail.created_at.in_time_zone('Asia/Tokyo').strftime('%Y年%m月%d日'), group_order_path(params[:group_id], detail) %></td>
+              <td><%= detail.item.name %></td>
+              <td><%= detail.item.site %></td>
+              <td><%= detail.item.code %></td>
+              <td><%= detail.item.capacity %></td>
+              <td><%= detail.amount %></td>
+              <td>
+                <% if detail.order.group.is_owned_by?(current_customer) %>
+                  <%= form_with model: detail, url: group_order_detail_path(params[:group_id], detail), method: :patch do |detail| %>
+                    <%= detail.select :stock_stats, OrderDetail.stock_stats.keys.map {|k| [I18n.t("enums.order_detail.stock_stats.#{k}"), k]} %>
+                    <%= detail.submit "更新する", class:"btn btn-success btn-sm" %>
+                  <% end %>
+                <% else %>
+                  <%= detail.stock_stats_i18n %>
                 <% end %>
-              <% else %>
-                <%= detail.stock_stats_i18n %>
-              <% end %>
-            </td>
-          </tbody>
-        <% end %>
-      </table>
+              </td>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
     </div>
   <% end %>
 
