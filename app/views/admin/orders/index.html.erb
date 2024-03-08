@@ -6,36 +6,38 @@
     <%# @ordersにデータがない場合の表示 %>
     <p class="text-center m-5">発注情報はありません</p>
   <% else %>
-    <div class="d-flex justify-content-center">
-      <table class="table table-bordered mt-3" style="width: 80%">
-        <thead class="text-center thead-light">
-          <th>発注日</th>
-          <th>発注状況</th>
-          <th>発注商品名 / 購入数</th>
-          <th>発注者</th>
-        </thead>
-        <%# @ordersにレコードがある場合、タイトルを表示する %>
-        <% @orders.each do |order| %>
-          <tbody class="text-center bg-white">
-            <td><%= link_to order.created_at.in_time_zone('Asia/Tokyo').strftime('%Y年%m月%d日 %H時%M分'), admin_group_order_path(order.group_id, order) %></td>
-            <td>
-              <%= form_with model: order, url: admin_group_order_path(params[:group_id], order), method: :patch do |order| %>
-                <%= order.select :stats, Order.stats.keys.map {|k| [I18n.t("enums.order.stats.#{k}"), k]} %>
-                <%= order.submit "更新する", class:"btn btn-success btn-sm" %>
-              <% end %>
-            </td>
-            <td>
-              <ul class="m-0">
-                <% order.order_details.each do |detail| %>
-                  <li class="text-left"><%= detail.item.name %> / <%= detail.amount %></li>
+    <div class="table-responsive">
+      <div class="d-flex justify-content-center">
+        <table class="table table-bordered mt-3 text-nowrap" style="width: 80%">
+          <thead class="text-center thead-light">
+            <th>発注日</th>
+            <th>発注状況</th>
+            <th>発注商品名 / 購入数</th>
+            <th>発注者</th>
+          </thead>
+          <%# @ordersにレコードがある場合、タイトルを表示する %>
+          <% @orders.each do |order| %>
+            <tbody class="text-center bg-white">
+              <td><%= link_to order.created_at.in_time_zone('Asia/Tokyo').strftime('%Y年%m月%d日 %H時%M分'), admin_group_order_path(order.group_id, order) %></td>
+              <td>
+                <%= form_with model: order, url: admin_group_order_path(params[:group_id], order), method: :patch do |order| %>
+                  <%= order.select :stats, Order.stats.keys.map {|k| [I18n.t("enums.order.stats.#{k}"), k]} %>
+                  <%= order.submit "更新する", class:"btn btn-success btn-sm" %>
                 <% end %>
-              </ul>
-            </td>
+              </td>
+              <td>
+                <ul class="m-0">
+                  <% order.order_details.each do |detail| %>
+                    <li class="text-left"><%= detail.item.name %> / <%= detail.amount %></li>
+                  <% end %>
+                </ul>
+              </td>
 
-            <td><%= order.customer.full_name %></td>
-          </tbody>
-        <% end %>
-      </table>
+              <td><%= order.customer.full_name %></td>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
     </div>
   <% end %>
 
