@@ -271,23 +271,17 @@ footer {
 //   height: auto;
 // }
 
-.form-signin {
-  max-width: 330px;
-  padding: 1rem;
+// ログイン/新規登録画面
+.form-control::placeholder {
+  color: #ccc;
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 
-.form-signin .form-floating:focus-within {
-  z-index: 2;
+.form-control:focus {
+  box-shadow: none;
 }
 
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.border-bottom {
+  border-bottom: 1px solid #888888 !important;
 }

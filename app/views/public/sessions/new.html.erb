@@ -1,51 +1,67 @@
 <div class="container">
   <h1>ログイン</h1>
+  <div class="row mt-4 d-flex justify-content-center">
+    <div class="col-md-7 col-lg-6">
+      <%= form_with model: @customer, url: new_customer_session_path, local: true do |f| %>
+        <form action="#">
+          <div class="row">
 
-    <%= form_with model: @customer, url: new_customer_session_path, local: true do |f| %>
-      <form class="form-horizontal">
-        <div class="form-group my-3 d-flex justify-content-center align-items-center">
-          <%= f.label :email, "メールアドレス",class:"col-sm-2 control-label" %><br />
-          <div class="col-sm-4">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com",class:" form-control" %>
+            <!-- アドレス -->
+            <div class="input-group col-lg-12 mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                  <i class="fa fa-envelope text-muted"></i>
+                </span>
+              </div>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address",class:" form-control bg-white border-left-0 border-md" %>
+            </div>
+
+            <!-- パスワード -->
+            <div class="input-group col-lg-12 mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                  <i class="fa fa-lock text-muted"></i>
+                </span>
+              </div>
+              <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password",class:"form-control bg-white border-left-0 border-md" %>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group col-lg-12 mx-auto mb-0">
+              <%= f.submit "ログイン", class:"btn btn-primary btn-block py-2 font-weight-bold" %>
+            </div>
+
+            <!-- Divider Text -->
+            <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+              <div class="border-bottom w-100 ml-5"></div>
+              <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
+              <div class="border-bottom w-100 mr-5"></div>
+            </div>
+
+            <!-- ゲストログイン -->
+            <div class="text-center w-100">
+              <p class="text-muted font-weight-bold">ゲストログインする場合は <%= link_to 'こちら', customer_guest_sign_in_path, method: :post, class:"text-primary ml-2" %>　をクリックしてください</p>
+            </div>
+
+            <!-- 新規登録に移行 -->
+            <div class="text-center w-100">
+              <p class="text-muted font-weight-bold">会員登録がお済みでない方は <%= link_to "こちら", new_customer_registration_path, class:"text-primary ml-2" %>　から新規登録をしてください</p>
+            </div>
+
           </div>
-        </div>
-
-        <div class="form-group my-3 d-flex justify-content-center align-items-center">
-          <%= f.label :password, "パスワード",class:"col-sm-2 control-label" %><br />
-          <div class="col-sm-4">
-            <%= f.password_field :password, autocomplete: "current-password",class:"form-control" %>
-          </div>
-        </div>
-
-        <div class="text-center mt-3 mb-5">
-          <%= f.submit "ログイン", class:"btn btn-info" %>
-        </div>
-      </form>
-      
-      <form class="text-center">
-        
-        <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput">メールアドレス</label>
-        </div>
-        
-        <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="パスワード">
-          <label for="floatingPassword">パスワード</label>
-        </div>
-        
-        <button class="btn btn-primary w-100 py-2" type="submit">サインイン</button>
-        <p class="mt-5 mb-3 text-body-secondary">&copy; 2017-2024</p>
-      </form>
-    <% end %>
-
-  <div class="text-center my-5">
-    <h1>ゲストログイン（閲覧用）</h1>
-    <%= link_to 'ゲストログイン', customer_guest_sign_in_path, method: :post, class:"btn btn-info my-3"  %>
-  </div>
-
-  <div class="text-center mt-3 mb-5">
-    <h1>会員登録がお済みでない方</h1>
-    <%= link_to "こちら", new_customer_registration_path %>　から新規登録をしてください
+        </form>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<script>
+  $(function () {
+      $('input, select').on('focus', function () {
+          $(this).parent().find('.input-group-text').css('border-color', '#80bdff');
+      });
+      $('input, select').on('blur', function () {
+          $(this).parent().find('.input-group-text').css('border-color', '#ced4da');
+      });
+  });
+</script>
