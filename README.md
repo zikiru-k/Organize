@@ -46,9 +46,16 @@
 - 発注・在庫管理の仕事内容を新入社員等に教える時
 ​
 ## 設計書
+- ER図
+![PF_ER](https://github.com/zikiru-k/Organize/assets/149685941/2cdf9609-b1e6-4726-893b-28e78a802a4f)
 
-後ほど作成予定
-​
+- アプリケーション詳細設計
+https://docs.google.com/spreadsheets/d/14CYPBsEEOgwJj4of6aoT74TSi7QxxYo4C-gYVr4eCVQ/edit#gid=0
+
+- テーブル定義書
+https://docs.google.com/spreadsheets/d/1VOfQ_Oylv4SC3OzqT7ROiSkT89VfAPwxGGNfyVM92lA/edit#gid=1432769366
+
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL

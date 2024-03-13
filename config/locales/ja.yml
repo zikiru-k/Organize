@@ -14,12 +14,22 @@
         cancel: 配達中止
         in_stock: 在庫あり
         no_stock: 在庫切れ
+# https://note.com/y0419y/n/n62eb612eeb7b deviseのフラッシュメッセージ関係
   devise:
     sessions:
-      signed_in: "ログインしました。"
-      signed_out: "ログアウトしました。"
-    Registrations:
-      signed_up: "新規登録しました。"
-new:
+      already_signed_out: 既にログアウト済みです。
+      new:
+        sign_in: ログイン
+      signed_in: ログインしました。
+      signed_out: ログアウトしました。
+    registrations:
+      destroyed: アカウントを削除しました。またのご利用をお待ちしております。
+      new:
         sign_up: アカウント登録
       signed_up: アカウント登録が完了しました。
+      signed_up_but_inactive: ログインするためには、アカウントを有効化してください。
+      signed_up_but_locked: アカウントが凍結されているためログインできません。
+      signed_up_but_unconfirmed: 本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。
+      update_needs_confirmation: アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。
+      updated: アカウント情報を変更しました。
+      updated_but_not_signed_in: あなたのアカウントは正常に更新されましたが、パスワードが変更されたため、再度ログインしてください。

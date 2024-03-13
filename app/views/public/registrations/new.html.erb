@@ -54,7 +54,7 @@
                   <i class="fa fa-lock text-muted"></i>
                 </span>
               </div>
-              <%= f.password_field :password, autocomplete: "password", placeholder: "password", class:"form-control bg-white border-left-0 border-md" %>
+              <%= f.password_field :password, autocomplete: "new-password", placeholder: "password", class:"form-control bg-white border-left-0 border-md" %>
             </div>
 
             <!-- パスワード確認用 -->
@@ -64,12 +64,12 @@
                   <i class="fa fa-lock text-muted"></i>
                 </span>
               </div>
-              <%= f.password_field :password_confirmation, autocomplete: "passwordConfirmation", placeholder: "passwordConfirmation", class:"form-control bg-white border-left-0 border-md" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-passwordn", placeholder: "passwordConfirmation", class:"form-control bg-white border-left-0 border-md" %>
             </div>
 
             <!-- Submit Button -->
             <div class="form-group col-lg-12 mx-auto mb-0">
-              <%= f.submit "新規登録", class:"font-weight-bold　btn btn-primary btn-block py-2" %>
+              <%= f.submit "新規登録", class:"btn btn-primary btn-block py-2 font-weight-bold" %>
             </div>
 
             <!-- Divider Text -->
@@ -81,7 +81,7 @@
 
             <!-- ログイン画面に移行 -->
             <div class="text-center w-100">
-              <p class="text-muted font-weight-bold">既に登録済みの方は <%= link_to "こちら", new_customer_session_path %>　からログインしてください</p>
+              <p class="text-muted font-weight-bold">既に登録済みの方は <%= link_to "こちら", new_customer_session_path %> からログインしてください</p>
             </div>
 
           </div>
