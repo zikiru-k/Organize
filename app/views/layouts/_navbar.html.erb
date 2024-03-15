@@ -49,13 +49,13 @@
               <%= link_to "発注履歴", group_orders_path(params[:group_id]), class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "在庫一覧", group_order_details_path(params[:group_id]), class: "nav-link" %>
+              <%= link_to "在庫管理", group_order_details_path(params[:group_id]), class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "登録商品一覧", group_items_path(params[:group_id]), class: "nav-link" %>
+              <%= link_to "登録商品", group_items_path(params[:group_id]), class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "お気に入り一覧", group_items_favorite_index_path(params[:group_id]), class: "nav-link" %>
+              <%= link_to "お気に入り", group_items_favorite_index_path(params[:group_id]), class: "nav-link" %>
             </li>
             <li class="nav-item">
               <%= link_to "タグ一覧", group_tags_path(params[:group_id]), class: "nav-link" %>
