@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>登録済み商品</h1>
+  <h1>登録商品</h1>
   <div class="d-flex justify-content-around">
     <%= link_to "商品登録", new_group_item_path, class:"btn btn-primary" %>
     <%= search_form_for @q, url: search_group_items_path(params[:group_id]) do |f| %>
