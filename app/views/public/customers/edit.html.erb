@@ -1,47 +1,45 @@
 <div class="container">
   <h1>マイページ編集</h1>
   <div class="row">
-
     <div class="col-md-8 offset-2">
-
-  <%= form_with model: @customer, url: customers_information_path, method: :patch, local: true do |f| %>
-    <form class="form-horizontal d-flex justify-content-center">
-      <div class="card">
-        <div class="card-body">
-
-          <div class="form-group my-3 d-flex align-items-center offset-2">
-            <%= f.label :"氏名：", class:"col-sm-4 m-0 control-label" %>
-            <div class="col-sm-3">
-              <%= f.text_field :last_name, class:"form-control m-0" %>
-            </div>
-            <div class="col-sm-3">
-              <%= f.text_field :first_name, class:"form-control m-0" %>
+      <%= form_with model: @customer, url: customers_information_path, method: :patch, local: true do |f| %>
+        <form class="form-horizontal d-flex justify-content-center">
+          <div class="card">
+            <div class="card-body">
+    
+              <div class="form-group my-3 d-flex align-items-center offset-2">
+                <%= f.label :"氏名：", class:"col-sm-4 m-0 control-label" %>
+                <div class="col-sm-3">
+                  <%= f.text_field :last_name, class:"form-control m-0" %>
+                </div>
+                <div class="col-sm-3">
+                  <%= f.text_field :first_name, class:"form-control m-0" %>
+                </div>
+              </div>
+    
+              <div class="form-group my-3 d-flex align-items-center offset-2">
+                <%= f.label :email, "メールアドレス：", class:"col-sm-4 m-0 control-label" %><br />
+                <div class="col-sm-6">
+                  <%= f.text_field :email, class:"form-control" %>
+                </div>
+              </div>
+    
+              <div class="form-group my-3 d-flex align-items-center offset-2">
+                <%= f.label :telephone_number, "電話番号：", class:"col-sm-4 m-0 control-label" %><br />
+                <div class="col-sm-6">
+                  <%= f.text_field :telephone_number, class:"form-control" %>
+                </div>
+              </div>
+    
+              <div class="d-flex justify-content-around mt-5">
+                <%= link_to "戻る", customers_mypage_path, class:"btn btn-secondary" %>
+                <%= f.submit "変更", class:"btn btn-success" %>
+                <%= link_to "退会", customers_unsubscribe_path, class:"btn btn-danger" %>
+              </div>
             </div>
           </div>
-
-          <div class="form-group my-3 d-flex align-items-center offset-2">
-            <%= f.label :email, "メールアドレス：", class:"col-sm-4 m-0 control-label" %><br />
-            <div class="col-sm-6">
-              <%= f.text_field :email, class:"form-control" %>
-            </div>
-          </div>
-
-          <div class="form-group my-3 d-flex align-items-center offset-2">
-            <%= f.label :telephone_number, "電話番号：", class:"col-sm-4 m-0 control-label" %><br />
-            <div class="col-sm-6">
-              <%= f.text_field :telephone_number, class:"form-control" %>
-            </div>
-          </div>
-
-          <div class="d-flex justify-content-around mt-5">
-            <%= link_to "戻る", customers_mypage_path, class:"btn btn-secondary" %>
-            <%= f.submit "変更", class:"btn btn-success" %>
-            <%= link_to "退会", customers_unsubscribe_path, class:"btn btn-danger" %>
-          </div>
-        </div>
-      </div>
-    </form>
-  <% end %>
-  </div>
+        </form>
+      <% end %>
+    </div>
   </div>
 </div>
