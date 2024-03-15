@@ -1,23 +1,21 @@
 <div class="container">
   <h1>マイページ編集</h1>
+  <div class="row">
+
+    <div class="col-md-8 offset-2">
+
   <%= form_with model: @customer, url: customers_information_path, method: :patch, local: true do |f| %>
     <form class="form-horizontal d-flex justify-content-center">
       <div class="card">
         <div class="card-body">
 
           <div class="form-group my-3 d-flex align-items-center offset-2">
-            <%= f.label :"氏名：", class:"col-sm-2 m-0 control-label" %>
-            <div class="col-2 text-right">
-              <%= f.label :last_name, "苗字", class:"m-0 control-label" %>
+            <%= f.label :"氏名：", class:"col-sm-4 m-0 control-label" %>
+            <div class="col-sm-3">
+              <%= f.text_field :last_name, class:"form-control m-0" %>
             </div>
             <div class="col-sm-3">
-              <%= f.text_field :last_name, class:"form-control" %>
-            </div>
-            <div class="text-right">
-              <%= f.label :first_name, "名前", class:"m-0 control-label" %>
-            </div>
-            <div class="col-sm-3">
-              <%= f.text_field :first_name, class:"form-control" %>
+              <%= f.text_field :first_name, class:"form-control m-0" %>
             </div>
           </div>
 
@@ -44,4 +42,6 @@
       </div>
     </form>
   <% end %>
+  </div>
+  </div>
 </div>

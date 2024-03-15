@@ -4,12 +4,12 @@
   <div class="d-flex justify-content-center align-items-center p-5">
     <div class="card">
       <div class="card-body">
-        <p class="text-center">
+        <p class="text-center my-3">
         退会された場合、保存されている全ての情報が削除されます。<br>
         「退会する」を押した時点で、退会手続きが完了しますのでご注意ください。
         </p>
         <%= form_with model: @customer, url: customers_withdraw_path, method: :patch,  local: true do |f| %>
-          <div class="d-flex justify-content-around my-5">
+          <div class="d-flex justify-content-around my-3">
             <%= link_to "退会しない", customers_mypage_path, class:"btn btn-primary"  %>
             <%= f.submit "退会する", class:"btn btn-danger" %>
           </div>
