@@ -98,4 +98,29 @@
 
     });
   }
+  
+  // 選択された商品がお気に入りであるかどうかをチェックする関数
+  function checkFavoriteItem(selectedItem) {
+    // お気に入りの商品の名前を含む配列
+    var favoriteItems = [/* お気に入りの商品の名前 */];
+
+    // 選択された商品がお気に入りであるかどうかを判断
+    if (favoriteItems.includes(selectedItem)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // プルダウンリストの選択が変更されたときに呼び出される関数
+  function itemChange(elem) {
+    var selectedItem = elem.options[elem.selectedIndex].text;
+
+    // 選択された商品がお気に入りであれば、クラスを追加して文字色を変更
+    if (checkFavoriteItem(selectedItem)) {
+      elem.classList.add('favorite-item');
+    } else {
+      elem.classList.remove('favorite-item');
+    }
+  }
 </script>
