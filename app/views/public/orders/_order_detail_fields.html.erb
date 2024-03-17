@@ -18,7 +18,7 @@
       <div id="existing_area">
         <%= f.label :name, "登録済み商品", class:"control-label" %>
         <!--{onChange:"itemChange(this)" }のthisはcollection_selectを表す-->
-        <%= f.collection_select :item_id, Item.all, :id, :name, {include_blank: "選択して下さい"}, {onChange:"itemChange(this)" } %>
+        <%= f.collection_select :item_id, Item.where(group_id: params[:group_id]), :id, :name, {include_blank: "選択して下さい"}, {onChange:"itemChange(this)" } %>
         <div class="item_info"></div>
         <div class="form-group">
           <%= f.label :amount, "購入数", class:"control-label" %>
@@ -79,10 +79,10 @@
     item_info.empty();
 
     $.ajax({
+      //   group_item GET    /groups/:group_id/items/ajax_show/:id(.:format)  public/items#ajax_show
       // url: '/groups/<%= params[:group_id] %>/items/ajax_show/' + item_id,
-      url: `/groups/<%= params[:group_id] %>/items/ajax_show/${item_id}`,
       // url: '/groups/' + params[:group_id] + '/items/ajax_show/' + item_id,
-     //   group_item GET    /groups/:group_id/items/ajax_show/:id(.:format)  public/items#ajax_show
+      url: `/groups/<%= params[:group_id] %>/items/ajax_show/${item_id}`,
             /* 自サイトのドメインであれば、https://kinocolog.com/ajax/test.html というURL指定も可 */
 
       type: 'GET',
@@ -97,30 +97,5 @@
             alert('通信失敗！');
 
     });
-  }
-  
-  // 選択された商品がお気に入りであるかどうかをチェックする関数
-  function checkFavoriteItem(selectedItem) {
-    // お気に入りの商品の名前を含む配列
-    var favoriteItems = [/* お気に入りの商品の名前 */];
-
-    // 選択された商品がお気に入りであるかどうかを判断
-    if (favoriteItems.includes(selectedItem)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  // プルダウンリストの選択が変更されたときに呼び出される関数
-  function itemChange(elem) {
-    var selectedItem = elem.options[elem.selectedIndex].text;
-
-    // 選択された商品がお気に入りであれば、クラスを追加して文字色を変更
-    if (checkFavoriteItem(selectedItem)) {
-      elem.classList.add('favorite-item');
-    } else {
-      elem.classList.remove('favorite-item');
-    }
   }
 </script>
