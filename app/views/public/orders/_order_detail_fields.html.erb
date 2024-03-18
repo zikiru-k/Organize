@@ -18,7 +18,7 @@
       <div id="existing_area">
         <%= f.label :name, "登録済み商品", class:"control-label" %>
         <!--{onChange:"itemChange(this)" }のthisはcollection_selectを表す-->
-        <%= f.collection_select :item_id, Item.where(group_id: params[:group_id]), :id, :name, {include_blank: "選択して下さい"}, {onChange:"itemChange(this)" } %>
+        <%= f.collection_select :item_id, Item.where(group_id: params[:group_id]), :id, :name, {include_blank: "選択して下さい"}, {onChange:"itemChange(this)", id: "your_select_id" } %>
         <div class="item_info"></div>
         <div class="form-group">
           <%= f.label :amount, "購入数", class:"control-label" %>
@@ -71,7 +71,6 @@
 
   // 既存情報のcollection_selectの情報取得と表示
   function itemChange(elem){
-
     var id = $(elem).attr('id'); // collection_selectのid属性取得
     var item_id = $(elem).val(); // item_idのid属性取得
     // collection_selectの親(div id="existing_area")からitem_infoの場所を探す
@@ -97,5 +96,13 @@
             alert('通信失敗！');
 
     });
+
+      var selectElement = $(elem).parent().find("select"); // 該当するselect要素を取得
+      selectElement.find("option").each(function() {
+        // 特定の文字列を含む場合に色を変更する
+        if ($(this).text().includes("マカロン")) {
+          $(this).css("color", "red"); // 特定の文字列の色を赤色に変更する
+        }
+      });
   }
 </script>
