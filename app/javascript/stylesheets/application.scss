@@ -293,6 +293,7 @@ footer {
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+  z-index: 3; /* アイコンを最前面に表示 */
 }
 
 .password-field {
