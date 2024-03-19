@@ -285,3 +285,26 @@ footer {
 .border-bottom {
   border-bottom: 1px solid #888888 !important;
 }
+
+// ログイン画面のパスワードの表示用
+.toggle-password {
+  position: absolute;
+  right: 30px; /* テキストフィールドの右端からの距離 */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.password-field {
+  position: relative;
+}
+
+/* パスワードを表示するアイコン */
+.fa-eye:before {
+  content: "\f06e";
+}
+
+/* パスワードを非表示にするアイコン */
+.fa-eye-slash:before {
+  content: "\f070";
+}
