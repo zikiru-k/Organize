@@ -3,7 +3,7 @@ class Public::OrdersController < ApplicationController
   before_action :ensure_guest_customer
 
   def index
-    @orders = Order.where(group_id: params[:group_id])
+    @orders = Order.where(group_id: params[:group_id]).page(params[:page]).per(20)
   end
 
   def show
