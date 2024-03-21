@@ -3,10 +3,11 @@ class Admin::TagsController < ApplicationController
 
   def index
     items = Item.where(group_id: params[:group_id])
-    @tags = []
+    tags = []
     items.each do |item|
-      @tags += item.tags
+      tags += item.tags
     end
+    @tags = Kaminari.paginate_array(tags).page(params[:page]).per(24)
   end
 
   def destroy

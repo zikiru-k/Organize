@@ -4,7 +4,7 @@ class Public::GroupsController < ApplicationController
   before_action :ensure_guest_customer, only:[:show, :new, :create, :edit, :update]
 
   def index
-    @groups = Group.all
+    @groups = Group.all.page(params[:page]).per(9)
   end
 
   def show

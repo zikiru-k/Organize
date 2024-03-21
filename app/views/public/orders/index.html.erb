@@ -51,7 +51,9 @@
       </div>
     </div>
   <% end %>
-<%= paginate @orders %>
+
+  <%= paginate @orders, theme: 'bootstrap-5' %>
+
   <div class="d-flex justify-content-around">
     <%= link_to "グループ一覧に戻る", groups_path, class:"btn btn-secondary" %>
   </div>

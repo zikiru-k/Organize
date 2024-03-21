@@ -2,7 +2,7 @@ class Admin::GroupsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @groups = Group.all
+    @groups = Group.all.page(params[:page]).per(9)
   end
 
   def show

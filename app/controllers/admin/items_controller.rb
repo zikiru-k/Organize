@@ -3,7 +3,7 @@ class Admin::ItemsController < ApplicationController
   before_action :set_q, only: [:index, :search]
 
   def index
-    @items = Item.where(group_id: params[:group_id])
+    @items = Item.where(group_id: params[:group_id]).page(params[:page])
   end
 
   def show

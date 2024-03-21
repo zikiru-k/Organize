@@ -2,7 +2,7 @@ class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @orders = Order.where(group_id: params[:group_id])
+    @orders = Order.where(group_id: params[:group_id]).page(params[:page])
   end
 
   def show

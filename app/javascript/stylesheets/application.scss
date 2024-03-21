@@ -243,34 +243,6 @@ footer {
   border: solid 1px #930403;
 }
 
-// .error_list {
-// 	position: relative;
-// 	padding: 0;
-// 	margin: 0;
-// 	list-style-type: none;
-// }
-
-// .error_list>li {
-//   padding: 0.3em 0.5em;
-//   margin: 3px;
-//   line-height: 1.5;
-//   vertical-align: middle;
-// }
-
-// .field_with_errors {
-//   display: inline-block;
-// }
-
-// .field_with_errors>.control-label {
-//   max-width: 100%;
-// }
-
-// .field_with_errors>.form-control {
-//   border: 2px solid #fb0000;
-//   border-radius: 6px;
-//   height: auto;
-// }
-
 // ログイン/新規登録画面
 .form-control::placeholder {
   color: #ccc;
@@ -308,4 +280,10 @@ footer {
 /* パスワードを非表示にするアイコン */
 .fa-eye-slash:before {
   content: "\f070";
+}
+
+// ページネイション関係
+.pagination {
+  padding: 10px 0;
+  justify-content: center;
 }

@@ -4,12 +4,12 @@ class Public::ItemsController < ApplicationController
   before_action :ensure_guest_customer
 
   def index
-    @items = Item.where(group_id: params[:group_id])
+    @items = Item.where(group_id: params[:group_id]).page(params[:page])
   end
 
   def favorite_index
     favorites = Favorite.where(customer_id: current_customer.id).pluck(:item_id)
-    @items = Item.find(favorites)
+    @items = Item.where(id: favorites).page(params[:page])
   end
 
   def show
