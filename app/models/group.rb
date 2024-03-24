@@ -6,8 +6,8 @@ class Group < ApplicationRecord
   belongs_to :owner, class_name: "Customer"
   belongs_to :permit, class_name: "Customer"
 
-  validates :name, presence: true, uniqueness: true
-  validates :content, presence: true, length: { maximum: 300 }
+  validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
+  validates :content, presence: true, length: { maximum: 200 }
 
   def is_owned_by?(customer)
     owner.id == customer.id
