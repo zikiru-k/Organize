@@ -15,13 +15,12 @@ class Admin::ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    if item.update(item_params)
-      item.save_tags(params[:item][:tag])
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      @item.save_tags(params[:item][:tag])
       flash[:notice] = "商品登録情報を更新しました。"
-      redirect_to admin_group_item_path(params[:group_id], item)
+      redirect_to admin_group_item_path(params[:group_id], @item)
     else
-      flash.now[:alert] = "商品登録情報を更新に失敗しました。"
       render :edit
     end
   end

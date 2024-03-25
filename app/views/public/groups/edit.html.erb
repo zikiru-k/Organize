@@ -1,30 +1,35 @@
 <div class="container">
   <h1>グループ編集</h1>
+  <%= render 'layouts/errors', model: @group %>
 
-  <%= form_with model: @group, url: group_path, method: :patch, local: true do |f| %>
-    <form class="form-horizontal">
-      <div class="card">
-        <div class="card-body">
-          <div class="form-group my-3 d-flex justify-content-center align-items-center">
-            <%= f.label :name, "グループ名：", class:"col-sm-3 m-0 control-label" %>
-            <div class="col-sm-4">
-              <%= f.text_field :name, class:"form-control" %>
+  <div class="row">
+    <div class=" offreset col-md-8 offset-2">
+      <%= form_with model: @group, url: group_path, method: :patch, local: true do |f| %>
+        <form class="form-horizontal">
+          <div class="card">
+            <div class="card-body">
+              <div class="form-group my-3 d-flex justify-content-center align-items-center">
+                <%= f.label :name, "グループ名：", class:"col-sm-4 col-md-3 m-0 control-label" %>
+                <div class="col-sm-7 col-md-6">
+                  <%= f.text_field :name, placeholder: "50文字以内", class:"form-control" %>
+                </div>
+              </div>
+
+              <div class="form-group my-3 d-flex justify-content-center align-items-center">
+                <%= f.label :content, "紹介文：", class:"col-sm-4 col-md-3 m-0 control-label" %>
+                <div class="col-sm-7 col-md-6">
+                  <%= f.text_area :content, placeholder: "200文字以内", class:"form-control" %>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-around mt-3">
+                <%= link_to "変更しない", groups_path, class:"btn btn-secondary" %>
+                <%= f.submit :"変更する", class: "btn btn-success" %>
+              </div>
             </div>
           </div>
-
-          <div class="form-group my-3 d-flex justify-content-center align-items-center">
-            <%= f.label :content, "紹介文：", class:"col-sm-3 m-0 control-label" %>
-            <div class="col-sm-4">
-              <%= f.text_area :content, class:"form-control" %>
-            </div>
-          </div>
-
-          <div class="d-flex justify-content-around mt-3">
-            <%= link_to "変更しない", groups_path, class:"btn btn-secondary" %>
-            <%= f.submit :"変更する", class: "btn btn-success" %>
-          </div>
-        </div>
-      </div>
-    </form>
-  <% end %>
+        </form>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -26,13 +26,12 @@ class Public::ItemsController < ApplicationController
   end
 
   def create
-    item = Item.new(item_params)
-    if item.save
-      item.save_tags(params[:item][:tag])
+    @item = Item.new(item_params)
+    if @item.save
+      @item.save_tags(params[:item][:tag])
       flash[:notice] = "商品登録が出来ました"
-      redirect_to group_item_path(params[:group_id], item)
+      redirect_to group_item_path(params[:group_id], @item)
     else
-      flash.now[:alert] = "商品登録が出来ませんでした"
       render :new
     end
   end

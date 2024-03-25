@@ -34,6 +34,24 @@ h3 {
   font-size: 20px;
 }
 
+.container {
+  margin: 15px auto;
+}
+
+.card {
+  margin: 15px;
+  border-radius: 20px 20px 20px 20px;
+}
+
+// 商品登録画面のタグのコメント
+#small-text-new {
+  padding-left: 35%;
+}
+
+.small-text-edit {
+  padding-left: 40%;
+}
+
 // ここからサイドバー/ヘッダー
 .logo {
   margin-bottom: 0;
@@ -137,26 +155,7 @@ ul ul ul .sidebar-link {
   color: black;
   margin-left: 3px;
 }
-
-@media (max-width: 768px) {
-  #sidebar {
-      margin-left: -250px;
-  }
-  #sidebar.active {
-      margin-left: 0;
-  }
-  #sidebarCollapse span {
-      display: none;
-  }
-  h1 {
-    width: auto;
-  }
-}
 // ここまでサイドバー/ヘッダー
-
-.container {
-  margin: 15px auto;
-}
 
 dl {
   display: flex;
@@ -168,11 +167,6 @@ dt {
 
 dd {
   width: 30%;
-}
-
-.card {
-  margin: 15px;
-  border-radius: 20px 20px 20px 20px;
 }
 
 // 商品一覧のタグレイアウト
@@ -226,15 +220,18 @@ footer {
 
 // バリデーションエラーメッセージ関係
 .error {
-  width: 50%;
+  width: fit-content;
   margin: 0 auto;
+  padding: 5px 20px;
 }
 
 .error_list {
+  padding: 5px;
   margin: 0;
 }
 
 .error_list li {
+  text-align: justify;
   list-style-type: none;
 }
 
@@ -300,4 +297,33 @@ footer {
 .pagination {
   padding: 10px 0;
   justify-content: center;
+}
+
+
+@media (max-width: 768px) {
+  .offreset {
+    margin-left: 0;
+  }
+
+  // 商品登録画面のタグのコメント
+  #small-text-new {
+    padding-left: 41%;
+  }
+  .small-text-edit {
+    padding-left: 35%;
+  }
+
+  // サイドバー関係
+  #sidebar {
+    margin-left: -250px;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #sidebarCollapse span {
+    display: none;
+  }
+  h1 {
+    width: auto;
+  }
 }

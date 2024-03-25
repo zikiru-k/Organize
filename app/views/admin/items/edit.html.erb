@@ -1,5 +1,6 @@
 <div class="container">
   <h1>商品編集</h1>
+  <%= render 'layouts/errors', model: @item %>
 
   <%= form_with model: @item, url: admin_group_item_path(params[:group_id], @item), method: :patch, local: true do |f| %>
     <form class="form-horizontal">

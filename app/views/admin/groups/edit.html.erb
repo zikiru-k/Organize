@@ -1,6 +1,7 @@
 <div class="container">
   <h1>グループ編集</h1>
-  
+  <%= render 'layouts/errors', model: @group %>
+
   <%= form_with model: @group, url: admin_group_path, method: :patch, local: true do |f| %>
     <form class="form-horizontal">
       <div class="card">

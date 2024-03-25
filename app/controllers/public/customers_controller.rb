@@ -13,12 +13,11 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
-    customer = Customer.find(current_customer.id)
-    if customer.update(customer_params)
+    @customer = Customer.find(current_customer.id)
+    if @customer.update(customer_params)
       flash[:notice] = "変更内容を保存しました。"
       redirect_to customers_mypage_path
     else
-      flash.now[:alert] = "変更内容を保存できませんでした。"
       render :edit
     end
   end

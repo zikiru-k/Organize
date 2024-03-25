@@ -14,12 +14,11 @@ class Admin::GroupsController < ApplicationController
   end
 
   def update
-    group = Group.find(params[:id])
-    if group.update(group_params)
+    @group = Group.find(params[:id])
+    if @group.update(group_params)
       flash[:notice] = "グループ情報を更新しました。"
       redirect_to admin_group_path
     else
-      flash.now[:alert] = "グループ情報を更新に失敗しました。"
       render :edit
     end
   end
