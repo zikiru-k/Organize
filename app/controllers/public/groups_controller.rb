@@ -16,14 +16,14 @@ class Public::GroupsController < ApplicationController
   end
 
   def create
-    group = Group.new(group_params)
-    group.owner_id = current_customer.id
-    group.permit_id = current_customer.id
-    if group.save
+    @group = Group.new(group_params)
+    @group.owner_id = current_customer.id
+    @group.permit_id = current_customer.id
+    if @group.save
       flash[:notice] = "グループを作成しました。"
-      redirect_to groups_path, method: :post
+      redirect_to @groups_path, method: :post
     else
-      flash.now[:alert] = "グループの作成に失敗しました。"
+      # flash.now[:alert] = "グループの作成に失敗しました。"
       render :new
     end
   end

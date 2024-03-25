@@ -224,13 +224,27 @@ footer {
   background: #fff;
 }
 
+// バリデーションエラーメッセージ関係
+.error {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.error_list {
+  margin: 0;
+}
+
+.error_list li {
+  list-style-type: none;
+}
+
+// フラッシュメッセージ関係
 .flash-message {
   border-radius: 5px;
   padding: 16px 24px;
   margin: 16px 0px;
 }
 
-// エラーメッセージ関係
 .flash-message.notice {
   background-color: #bcdfff;
   color: #0067C0;

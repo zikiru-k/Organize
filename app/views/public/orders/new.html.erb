@@ -3,6 +3,7 @@
 
   <%# バリデーションメッセージの部分テンプレート %>
   <%#= render 'layouts/error_messages', model: @order %>
+  
   <%# フォーム部分 %>
   <%= form_with model: @order, url: group_orders_path do |order| %>
     <div class="row">

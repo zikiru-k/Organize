@@ -1,5 +1,7 @@
 <div class="container">
   <h1>グループ新規登録</h1>
+  <%= render 'layouts/errors', model: @group %>
+
   <div class="row">
     <div class="col-md-8 offset-2">
       <%= form_with model: @group, url: groups_path, method: :post, local: true do |f| %>

@@ -45,7 +45,7 @@
 
       <div>
         <%= form_with model: [@order, @comment], url: group_order_comments_path(params[:group_id], params[:id]) do |f| %>
-          <%= f.text_area :content, rows: '5', placeholder: "コメントをここに" %>
+          <%= f.text_area :content, rows: '5', placeholder: "300文字以内" %>
           <%= f.submit "送信する" %>
         <% end %>
       </div>
