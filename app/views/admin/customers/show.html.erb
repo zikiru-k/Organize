@@ -1,29 +1,28 @@
 <div class="container">
   <h1>会員詳細</h1>
-
   <div class="row">
-    <div class="col-md-8">
+    <div class="offreset col-md-6 offset-1">
       <div class="card">
-        <div class="card-body">
+        <div class="card-body px-0">
           <div class="d-flex justify-content-center align-items-center">
             <p class="col-4">会員ID：</p>
-            <p class="col-4"><%= @customer.id %></p>
+            <p class="col-5"><%= @customer.id %></p>
           </div>
           <div class="d-flex justify-content-center align-items-center">
             <p class="col-4">氏名：</p>
-            <p class="col-4"><%= @customer.full_name %></p>
+            <p class="col-5"><%= @customer.full_name %></p>
           </div>
           <div class="d-flex justify-content-center align-items-center">
             <p class="col-4">メールアドレス：</p>
-            <p class="col-4"><%= @customer.email %></p>
+            <p class="col-5"><%= @customer.email %></p>
           </div>
           <div class="d-flex justify-content-center align-items-center">
             <p class="col-4">電話番号：</p>
-            <p class="col-4"><%= @customer.telephone_number %></p>
+            <p class="col-5"><%= @customer.telephone_number %></p>
           </div>
           <div class="d-flex justify-content-center align-items-center">
             <p class="col-4">ステータス：</p>
-            <p class="col-4">
+            <p class="col-5">
               <% if @customer.is_active? %>
                 <span class="badge badge-primary">有効</span>
               <% else %>

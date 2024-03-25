@@ -1,47 +1,51 @@
 <div class="container">
   <h1>商品詳細</h1>
-
-  <div class="row d-flex justify-content-center">
-    <div class="col-8">
+  <div class="row">
+    <div class="offreset col-md-8 offset-2">
       <div class="card">
         <div class="card-body">
 
-          <div class="d-flex justify-content-center align-items-center my-3 mb-10">
-            <p class="col-3">商品名：</p>
-            <p class="col-5"><%= @item.name %></p>
+          <div class="my-3 d-flex justify-content-center align-items-center">
+            <p class="col-sm-4 col-md-3">商品名：</p>
+            <p class="col-sm-7 col-md-6"><%= @item.name %></p>
           </div>
 
-          <div class="d-flex justify-content-center align-items-center my-3 mb-10">
-            <p class="col-3">購入先サイト：</p>
-            <p class="col-5"><%= @item.site %></p>
+          <div class="my-3 d-flex justify-content-center align-items-center">
+            <p class="col-sm-4 col-md-3">購入先サイト：</p>
+            <p class="col-sm-7 col-md-6"><%= @item.site %></p>
           </div>
 
-          <div class="d-flex justify-content-center align-items-center my-3 mb-10">
-            <p class="col-3">コード：</p>
-            <p class="col-5"><%= @item.code %></p>
+          <div class="my-3 d-flex justify-content-center align-items-center">
+            <p class="col-sm-4 col-md-3">コード：</p>
+            <p class="col-sm-7 col-md-6"><%= @item.code %></p>
           </div>
 
-          <div class="d-flex justify-content-center align-items-center my-3 mb-10">
-            <p class="col-3">内容量：</p>
-            <p class="col-5"><%= @item.capacity %></p>
+          <div class="my-3 d-flex justify-content-center align-items-center">
+            <p class="col-sm-4 col-md-3">内容量：</p>
+            <p class="col-sm-7 col-md-6"><%= @item.capacity %></p>
           </div>
 
-          <div class="d-flex justify-content-center align-items-center my-3 mb-10">
-            <p class="col-3">タグ：</p>
-            <ul class="cp_list d-flex justify-content-start col-5">
+          <div class="my-3 d-flex justify-content-center align-items-center">
+            <p class="col-sm-4 col-md-3 m-0">タグ：</p>
+            <ul class="cp_list d-flex justify-content-start col-sm-7 col-md-6">
               <% @item.tags.each do |tag| %>
                 <li>
-                  <%= link_to tag.name, admin_group_tags_path(params[:group_id]) %>
+                  <%= link_to tag.name, group_tags_path(params[:group_id]) %>
                 </li>
               <% end %>
             </ul>
           </div>
+
+          <div class="d-flex justify-content-around mt-3">
+            <%= link_to "編集", edit_admin_group_item_path(params[:group_id], @item), class:"btn btn-success" %>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
 
-  <div class="d-flex justify-content-around">
-    <%= link_to "注文履歴に戻る", admin_group_orders_path(params[:group_id]), class:"btn btn-primary" %>
+  <div class="d-flex justify-content-around mt-3">
+    <%= link_to "注文履歴に戻る", admin_group_orders_path(params[:group_id]), class:"btn btn-secondary" %>
   </div>
 </div>

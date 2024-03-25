@@ -1,5 +1,6 @@
 <div class="container">
   <h1>商品編集</h1>
+  <%= render 'layouts/errors', model: @item %>
 
   <div class="row">
     <div class="offreset col-md-8 offset-2">
@@ -7,6 +8,7 @@
         <form class="form-horizontal d-flex justify-content-center">
           <div class="card">
             <div class="card-body">
+
               <div class="my-3 d-flex justify-content-center align-items-center">
                 <p class="col-sm-4 col-md-3 m-0">商品名:</p>
                 <div class="col-sm-7 col-md-6">
@@ -44,7 +46,7 @@
               </div>
               <small class="small-text-edit">スペースで区切ることで複数指定できます。</small>
 
-              <div class="d-flex justify-content-around text-center mt-5">
+              <div class="d-flex justify-content-around mt-3">
                 <%= link_to "変更しない", group_items_path(params[:group_id]), class:"btn btn-secondary" %>
                 <%= f.submit "変更する", class: "btn btn-info" %>
               </div>

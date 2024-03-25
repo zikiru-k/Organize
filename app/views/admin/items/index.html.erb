@@ -48,10 +48,10 @@
       </div>
     </div>
   <% end %>
-  
+
   <%= paginate @items, theme: 'bootstrap-5' %>
 
-  <div class="d-flex justify-content-around">
+  <div class="d-flex justify-content-around mt-3">
     <%= link_to "注文履歴に戻る", admin_group_orders_path(params[:group_id]), class:"btn btn-secondary" %>
   </div>
 </div>
