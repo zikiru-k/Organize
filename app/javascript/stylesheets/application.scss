@@ -214,6 +214,11 @@ ul.cp_list li {
   padding-left: 70px;
 }
 
+.br-SP {
+  display: none;
+}
+
+
 footer {
   text-align: center;
   line-height: 40px;
@@ -330,5 +335,14 @@ footer {
   }
   h1 {
     width: auto;
+  }
+
+  // ABOUTのサービス概要のレスポンシブ対応
+  .p-responsive {
+    white-space: nowrap;
+  }
+
+  .br-SP {
+    display: inline-block;
   }
 }
