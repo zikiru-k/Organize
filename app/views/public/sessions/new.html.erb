@@ -1,5 +1,7 @@
 <div class="container">
   <h1>ログイン</h1>
+  <%= render 'layouts/errors', model: @customer %>
+
   <div class="row mt-4 d-flex justify-content-center">
     <div class="col-md-7 col-lg-6">
       <%= form_with model: @customer, url: new_customer_session_path, local: true do |f| %>

@@ -16,11 +16,16 @@
         no_stock: 在庫切れ
   activerecord:
     attributes:
+      admin:
+       email: メールアドレス
+       password: パスワード
       customer:
         last_name: 苗字
         first_name: 名前
         email: メールアドレス
         telephone_number: 電話番号
+        password: パスワード
+        password_confirmation: 確認用パスワード
       group:
         name: グループ名
         content: 紹介文

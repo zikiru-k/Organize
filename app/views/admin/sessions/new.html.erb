@@ -1,5 +1,7 @@
 <div class="container">
   <h1>管理者ログイン</h1>
+  <%= render 'layouts/errors', model: @admin %>
+
   <div class="row mt-4 d-flex justify-content-center">
     <div class="col-md-7 col-lg-6">
       <%= form_with model: @admin, url: new_admin_session_path, local: true do |f| %>
