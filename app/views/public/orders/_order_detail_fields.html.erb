@@ -12,7 +12,7 @@
           <input type="radio" id="new_mode" name="existing" onclick="modeChange(this)" value="new" />
             新規
         </label>
-        
+
       </div>
 
       <!--既存-->
@@ -96,14 +96,6 @@
             /* 通信失敗時 */
             alert('通信失敗！');
 
-    });
-
-    var selectElement = $(elem).parent().find("select"); // 該当するselect要素を取得
-    selectElement.find("option").each(function() {
-      // 特定の文字列を含む場合に色を変更する
-      if ($(this).text().includes("マカロン")) {
-        $(this).css("color", "red"); // 特定の文字列の色を赤色に変更する
-      }
     });
   }
 </script>

@@ -34,7 +34,7 @@ Rails.application.routes.draw do\
           get 'search'
         end
       end
-      resources :tags, only: [:index, :destroy]
+      resources :tags, only: [:index, :show, :destroy]
     end
     resources :customers, only: [:index, :show, :edit, :update]
   end
@@ -63,7 +63,7 @@ Rails.application.routes.draw do\
         resource :favorites, only: [:create, :destroy]
       end
       get "items/ajax_show/:id" , to: "items#ajax_show"
-      resources :tags, only: [:index, :destroy]
+      resources :tags, only: [:index, :show, :destroy]
     end
     resources :notifications, only: [:index, :update, :destroy]
 

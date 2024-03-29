@@ -39,7 +39,6 @@ class Public::OrdersController < ApplicationController
         flash[:notice] = "発注願いを出しました。"
         redirect_to group_orders_path
       else
-        flash.now[:alert] = "発注願いが出せませんでした。"
         render :new
       end
     end

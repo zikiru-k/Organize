@@ -30,7 +30,7 @@
             <ul class="cp_list d-flex justify-content-start col-sm-7 col-md-6">
               <% @item.tags.each do |tag| %>
                 <li>
-                  <%= link_to tag.name, group_tags_path(params[:group_id]) %>
+                  <%= link_to tag.name, group_tag_path(params[:group_id], tag) %>
                 </li>
               <% end %>
             </ul>

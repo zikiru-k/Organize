@@ -13,55 +13,7 @@
     <%# @ordersにデータがない場合の表示 %>
     <p class="text-center m-5">登録商品はありません</p>
   <% else %>
-    <div class="table-responsive">
-      <div class="d-flex justify-content-center">
-        <table class="table table-bordered mt-3 text-nowrap">
-          <thead class="text-center thead-light">
-            <th></th>
-            <th>商品名</th>
-            <th>購入先サイト</th>
-            <th>コード</th>
-            <th>内容量</th>
-            <th>タグ</th>
-            <th></th>
-          </thead>
-          <% @items.each do |item| %>
-            <tbody class="text-center bg-white">
-              <td>
-                <div id="favorite_btn_<%= item.id %>">
-                  <%= render "public/favorites/favorite", item: item %>
-                </div>
-              </td>
-              <td><%= item.name %></td>
-              <td><%= item.site %></td>
-              <td ><%= item.code %></td>
-              <td><%= item.capacity %></td>
-
-              <td class="p-1">
-                <!--後からタグを追加したい/入力後に＋ボタンを押して追加したい-->
-                <!--      <i class="fa-solid fa-circle-plus" aria-hidden style="color: orange;"></i>-->
-                <!--<%#= form_with(model: item, url: group_item_path(params[:group_id], item), method: :patch, local: true) do |f| %>-->
-                <!--  <%#= f.text_field :tag, value: item.tags.pluck(:name).join(' '), class: "form-control" %>-->
-                <!--  <small>スペースで区切ることで複数指定できます。</small>-->
-                <!--  <%#= f.submit "タグを追加", class: "btn btn-primary btn-sm" %>-->
-                <!--<#% end %>-->
-                <ul class="cp_list d-flex justify-content-start">
-                  <% item.tags.each do |tag| %>
-                    <li>
-                      <%= link_to tag.name, group_tags_path(params[:group_id]) %>
-                    </li>
-                    <%= link_to group_tag_path(params[:group_id], tag), method: :delete do %>
-                      <i class="fa-solid fa-circle-xmark" aria-hidden style="color: red;"></i>
-                    <% end %>
-                  <% end %>
-                </ul>
-              </td>
-              <td><%= link_to "編集", edit_group_item_path(params[:group_id], item), class:"btn btn-success btn-sm" %></td>
-            </tbody>
-          <% end %>
-        </table>
-      </div>
-    </div>
+    <%= render "index", items: @items %>
   <% end %>
 
   <%= paginate @items, theme: 'bootstrap-5' %>

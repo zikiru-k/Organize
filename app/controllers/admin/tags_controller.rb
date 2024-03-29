@@ -10,6 +10,11 @@ class Admin::TagsController < ApplicationController
     @tags = Kaminari.paginate_array(tags).page(params[:page]).per(24)
   end
 
+  def show
+    @tag = Tag.find(params[:id])
+    @items = @tag.items.where(group_id: params[:group_id]).page(params[:page])
+  end
+
   def destroy
     Tag.find(params[:id]).destroy()
     flash[:alert] = "タグを削除しました。"

@@ -2,8 +2,8 @@
   <h1>発注</h1>
 
   <%# バリデーションメッセージの部分テンプレート %>
-  <%#= render 'layouts/error_messages', model: @order %>
-  
+  <%= render 'layouts/errors', model: @order %>
+
   <%# フォーム部分 %>
   <%= form_with model: @order, url: group_orders_path do |order| %>
     <div class="row">
