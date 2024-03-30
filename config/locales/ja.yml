@@ -43,7 +43,6 @@
       previous: <i class="fas fa-angle-left"></i>
       next: <i class="fas fa-angle-right"></i>
       truncate: "..."
-
 # https://qiita.com/Jackson123/items/1a656a7d8f7b2fb7bcc5
   devise:
     confirmations:
