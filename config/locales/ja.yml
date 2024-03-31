@@ -34,7 +34,9 @@
         code: コード
         capacity: 内容量
         site: サイト名
-      order_detail:
+      # アソシエーションを組んだ時のカラムのバリデーションエラーメッセージを日本語にしたいとき
+      # 親/子sで記述する
+      order/order_details:
         amount: 購入数
   views:
     pagination:

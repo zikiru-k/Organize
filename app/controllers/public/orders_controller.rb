@@ -3,7 +3,7 @@ class Public::OrdersController < ApplicationController
   before_action :ensure_guest_customer
 
   def index
-    @orders = Order.where(group_id: params[:group_id]).page(params[:page])
+    @orders = Order.where(group_id: params[:group_id]).page(params[:page]).per(15)
   end
 
   def show
@@ -18,6 +18,30 @@ class Public::OrdersController < ApplicationController
   def create
     ActiveRecord::Base.transaction do
       @order = Order.new(order_params)
+      # new_itemsがなにもない場合、バリデーションエラーとする。
+      if params[:order].blank? || params[:new_items].blank?
+        @order.errors.add(:base, '発注依頼を入力して下さい。')
+        render :new
+        return
+      end
+      # 新しい商品を作る場合のdetailに対するバリデーション
+      params[:new_items][:name].each_with_index do |name, index|
+        next if name.blank?
+        if params[:new_items][:amount][index] == "0" || params[:new_items][:amount][index].blank?
+          @order.errors.add(:base, '商品の購入数は0以上を入力して下さい。')
+          render :new
+          return
+        end
+      end
+      # 既存の商品に対してのバリデーション
+      params["order"]["order_details_attributes"].each do |value|
+        if value[1]["amount"] == "0" || value[1]["amount"].blank?
+          @order.errors.add(:base, '商品の購入数は0以上を入力して下さい。')
+          render :new
+          return
+        end
+      end
+
 
       if @order.save
         # 新規商品があればitemに新規登録される
@@ -67,12 +91,13 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    # orderかnew_itemsがなにもない場合、バリデーションエラーとする。
-    return if params[:order].blank? || params[:new_items].blank?
+
+    # return if params[:order].blank? || params[:new_items].blank?
 
     # モデル名_attributesが子のモデルに保存する要素
     #   :id, :_destroyをつけることで、編集と削除が可能になる
-    params.require(:order).permit(order_details_attributes: [:id, :item_id, :amount, :_destroy])
+    # params.require(:order)はOrderのカラムが必要なければ書かなくていい
+    params.permit(order_details_attributes: [:id, :item_id, :amount, :_destroy])
           .merge(group_id: params[:group_id], customer_id: current_customer.id)
   end
 
