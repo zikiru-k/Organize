@@ -1,3 +1,18 @@
 <div class="container">
   <h1>通知一覧</h1>
+
+  <section class="wrapper">
+    <h2>お知らせ</h2><span class="badge badge-danger"><%= current_customer.notifications.where(read: false).count %></span>
+    <p class="m-0">最新の発注情報や更新された商品情報などの通知を表示します</p>
+    <div>
+      <% if current_customer.notifications.where(read: false).any? %>
+        <small class="dropdown-item disabled">未読の通知を表示しています</small>
+        <% current_customer.notifications.where(read: false).limit(5).order(created_at: :desc).each do |notification| %>
+          <%= link_to notification.message, notification, method: :patch, class: "dropdown-item" %>
+        <% end %>
+      <% else %>
+        <span class="dropdown-item disabled">未読の通知はありません</span>
+      <% end %>
+    </div>
+  </section>
 </div>
