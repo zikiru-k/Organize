@@ -9,10 +9,13 @@ class Public::NotificationsController < ApplicationController
   end
 
   def index
-    @notifications = current_customer.notifications.order(created_at: :desc).page(params[:page]).per(20)
-    @notifications.where(read: false).each do |notification|
-      notification.update(read: true)
-    end
+    @notifications = current_customer.notifications.where(read: false).order(created_at: :desc).page(params[:page]).per(20)
+    @notifications.update_all(read: true)
+
+    # @notifications = current_customer.notifications.order(created_at: :desc).page(params[:page]).per(20)
+    # @notifications.where(read: false).each do |notification|
+    #   notification.update(read: true)
+    #end
   end
 
   def destroy
